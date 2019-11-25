@@ -2,11 +2,38 @@
 'vim' configuration
 
 ## Installation
-```bash
+
+1.  Configure with convenient scripts
+
+    ```bash
     wget -qO- https://raw.github.com/sunowsir/vim/master/setup.sh | sh -x
-```
+    ```
+
+    
+
+2.  Manual configuration
+
+    ```bash
+    cd ~/
+    
+    mv -f ~/vim ~/vim_old
+    mv -f ~/.vim ~/.vim_old
+    mv -f ~/.vimrc ~/.vimrc_old
+    
+    https://github.com/sunowsir/.vim.git
+    
+    vim -c "PlugInstall" -c "q" -c "q"
+    
+    # Wait for the configuration to complete and go back to the terminal
+    sudo chmod +x ~/.vim/plugged/YouCompleteMe/install.sh
+    ~/.vim/plugged/YouCompleteMe/install.sh
+    ```
+
+    
 
 ## Shortcuts
+
+>   Vim's native features go to search on its own
 
 | Key            | function                                                     |
 | -------------- | ------------------------------------------------------------ |
@@ -17,6 +44,7 @@
 | Ｒ             | 普通模式下：更改vimrc文件后使其立即生效                      |
 | <ctrl>＋j      | 普通模式下：保存．插入模式或选择模式下：退出当前模式．也就是说，在任意模式下，按住<ctrl>再连续按两次j就一定是保存了 |
 | <ctrl>＋c      | 选择模式下：复制当前选中内容到系统剪切板．                   |
-| <空格>＋gy     | 普通模式下：进入阅读模式，再安一次快捷键退出阅读模式         |
+| <空格>＋g+y    | 普通模式下：进入阅读模式，再安一次快捷键退出阅读模式         |
+| <ctrl>+o+o     | 终端下任意位置键入vim，后面不加文件，直接进入vim紧接着按住<ctrl>双击o，就会出现上次编辑的文件 |
 
 

@@ -12,7 +12,8 @@
 
 """""""""""""""""""""""""""  启动执行
 
-exec "nohlsearch"
+exec 'nohlsearch'
+
 
 """"""""""""""""""""""""""" 设置 
 
@@ -98,8 +99,8 @@ set shiftwidth=4
 set softtabstop=4
 
 " 行尾空格显示
-set list
-set listchars=tab:▸\ ,trail:▫
+" set list
+" set listchars=tab:▸\ ,trail:▫
 
 " 光标移动到buffer的顶部和底部时保持3行距离  
 set scrolloff=3
@@ -166,65 +167,6 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 
 
 
-""""""""""""""""""""""""""" 新文件自动插入
-"新建.c,.h,.sh,.java文件，自动插入文件头 
-
-
-autocmd BufNewFile *.cpp,*.[ch],*.sh,*.rb,*.java,*.py exec ":call SetTitle()" 
-""定义函数SetTitle，自动插入文件头 
-func! SetTitle() 
-	"如果文件类型为.sh文件 
-	if &filetype == 'sh' 
-		call setline(1,"\#!/bin/bash") 
-		call append(line("."), "") 
-    elseif &filetype == 'python'
-        call setline(1,"#!/usr/bin/env python3")
-        call append(line("."),"# coding=utf-8")
-	    call append(line(".")+1, "") 
-
-    elseif &filetype == 'ruby'
-        call setline(1,"#!/usr/bin/env ruby")
-        call append(line("."),"# encoding: utf-8")
-	    call append(line(".")+1, "")
-
-"    elseif &filetype == 'mkd'
-"        call setline(1,"<head><meta charset=\"UTF-8\"></head>")
-	else 
-		call setline(1, "/*************************************************************************") 
-		call append(line("."), "	> File Name:    ".expand("%")) 
-		call append(line(".")+1, "	> Author:       sunowsir") 
-		call append(line(".")+2, "	> Mail:         sunow.wang@gmail.com") 
-		call append(line(".")+3, "	> Created Time: ".strftime("%c")) 
-		call append(line(".")+4, " ************************************************************************/") 
-		call append(line(".")+5, "")
-	endif
-	if expand("%:e") == 'cpp'
-		call append(line(".")+6, "#include <iostream>")
-		call append(line(".")+7, "")
-	endif
-	if &filetype == 'c'
-		call append(line(".")+6, "#include <stdio.h>")
-		call append(line(".")+7, "")
-	endif
-	if expand("%:e") == 'h'
-		call append(line(".")+6, "#ifndef _".toupper(expand("%:r"))."_H")
-		call append(line(".")+7, "#define _".toupper(expand("%:r"))."_H")
-		call append(line(".")+8, "#endif")
-	endif
-	if &filetype == 'java'
-		call append(line(".")+6,"public class ".expand("%:r"))
-		call append(line(".")+7,"")
-	endif
-	"新建文件后，自动定位到文件末尾
-endfunc 
-autocmd BufNewFile * normal G
-
-
-
-
-
-
-
 """"""""""""""""""""""""""" 按键映射
 
 
@@ -237,7 +179,6 @@ map s <nop>
 map Q :q<CR>
 map R :source $MYVIMRC<CR>
 map <C-j> :w<CR>
-map <C-a> ggvG"+y
 
 imap <C-j> <ESC>
 
@@ -280,7 +221,8 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'mbbill/undotree/'
 
 " Other visual enhancement
-Plug 'nathanaelkane/vim-indent-guides'
+" Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Yggdroot/indentLine'
 Plug 'itchyny/vim-cursorword'
 
 " Git
@@ -304,9 +246,6 @@ Plug 'vim-scripts/indentpython.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plug 'vimwiki/vimwiki'
-
-" Bookmarks
-Plug 'kshenoy/vim-signature'
 
 " Other useful utilities
 Plug 'terryma/vim-multiple-cursors'
@@ -438,15 +377,19 @@ let g:python_highlight_all = 1
 " let g:python_slow_sync = 0
 
 
+" " ===
+" " === vim-indent-guide
+" " ===
+" let g:indent_guides_guide_size = 1
+" let g:indent_guides_start_level = 2
+" let g:indent_guides_enable_on_vim_startup = 1
+" let g:indent_guides_color_change_percent = 1
+" silent! unmap <LEADER>ig
+" autocmd WinEnter * silent! unmap <LEADER>ig
 " ===
-" === vim-indent-guide
+" === indentLine
 " ===
-let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 2
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_color_change_percent = 1
-silent! unmap <LEADER>ig
-autocmd WinEnter * silent! unmap <LEADER>ig
+let g:indentLine_char = '┊'
 
 
 " ===
@@ -454,33 +397,6 @@ autocmd WinEnter * silent! unmap <LEADER>ig
 " ===
 map <LEADER>gy :Goyo<CR>
 
-
-" ===
-" === vim-signiture
-" ===
-let g:SignatureMap = {
-        \ 'Leader'             :  "m",
-        \ 'PlaceNextMark'      :  "m,",
-        \ 'ToggleMarkAtLine'   :  "m.",
-        \ 'PurgeMarksAtLine'   :  "dm-",
-        \ 'DeleteMark'         :  "dm",
-        \ 'PurgeMarks'         :  "dm/",
-        \ 'PurgeMarkers'       :  "dm?",
-        \ 'GotoNextLineAlpha'  :  "m<LEADER>",
-        \ 'GotoPrevLineAlpha'  :  "",
-        \ 'GotoNextSpotAlpha'  :  "m<LEADER>",
-        \ 'GotoPrevSpotAlpha'  :  "",
-        \ 'GotoNextLineByPos'  :  "",
-        \ 'GotoPrevLineByPos'  :  "",
-        \ 'GotoNextSpotByPos'  :  "mn",
-        \ 'GotoPrevSpotByPos'  :  "mp",
-        \ 'GotoNextMarker'     :  "",
-        \ 'GotoPrevMarker'     :  "",
-        \ 'GotoNextMarkerAny'  :  "",
-        \ 'GotoPrevMarkerAny'  :  "",
-        \ 'ListLocalMarks'     :  "m/",
-        \ 'ListLocalMarkers'   :  "m?"
-        \ }
 
 
 " ===
@@ -490,13 +406,11 @@ let g:undotree_DiffAutoOpen = 0
 map L :UndotreeToggle<CR>
 
 
-
-" ===
 " === ALE
 " ===
 
 let g:ale_sign_column_always = 1
-let g:ale_sign_error = 'x'
+let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '!'
 
 let g:ale_linters_explicit = 1
@@ -509,11 +423,6 @@ let g:ale_linters = { 'c': ['gcc'], 'cpp': ['gcc'] }
 
 let g:ale_c_gcc_options = '-Wall -std=c99'
 let g:ale_cpp_gcc_options = '-Wall -std=c++14'
-
-" 作者：韦易笑
-" 链接：https://www.zhihu.com/question/47691414/answer/373700711
-" 来源：知乎
-" 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 

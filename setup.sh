@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt-get install -y wget curl gcc g++ 
+sudo apt-get install -y vim wget curl gcc g++ 
 
 cd ~/
 mv -f ~/vim ~/vim_old

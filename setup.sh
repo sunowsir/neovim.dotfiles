@@ -15,3 +15,4 @@ vim -c "PlugInstall" -c "q" -c "q"
 sudo chmod +x ~/.vim/plugged/YouCompleteMe/install.sh
 python3 ~/.vim/plugged/YouCompleteMe/install.sh
 
+

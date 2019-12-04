@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt-get install -y vim wget curl gcc g++ python3 python3-pip exuberant-ctags
+sudo apt-get install -y vim wget curl gcc g++ python-dev python3-dev python3 python3-pip exuberant-ctags
 
 cd ~/
 mv -f ~/vim ~/vim_old

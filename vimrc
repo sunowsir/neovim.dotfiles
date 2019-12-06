@@ -62,8 +62,6 @@ filetype indent on
 " 为特定文件类型载入相关缩进文件
 filetype plugin on
 
-filetype plugin indent on
-
 " 编码设置为utf-8
 set encoding=utf-8
 
@@ -415,9 +413,9 @@ let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 let g:airline#extensions#ale#enabled = 1
 
-let g:ale_linters = { 'c': ['gcc'], 'cpp': ['gcc'] }
+let g:ale_linters = { 'c': ['gcc'], 'cpp': ['g++'] }
 
-let g:ale_c_gcc_options = '-Wall -std=c99'
+let g:ale_c_gcc_options = '-Wall -std=c11'
 let g:ale_cpp_gcc_options = '-Wall -std=c++14'
 
 

@@ -1,4 +1,4 @@
-/bin/bash: :w: 未找到命令
+#!/bin/bash
 sudo apt-get install -y vim wget curl gcc g++ python-dev python3-dev python3 python3-pip exuberant-ctags cmake clang
 
 mv -f ~/vim ~/vim_old

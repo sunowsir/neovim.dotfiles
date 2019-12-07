@@ -14,7 +14,7 @@
 2.  Manual configuration
 
     ```bash
-    sudo apt-get install -y vim wget curl gcc g++ python3 python3-pip exuberant-ctags
+    sudo apt-get install -y vim wget curl gcc g++ python3 python3-pip exuberant-ctags clang
     
     cd ~/
     mv -f ~/vim ~/vim_old
@@ -27,7 +27,7 @@
     
     # Wait for the configuration to complete and go back to the terminal
     sudo chmod +x ~/.vim/plugged/YouCompleteMe/install.py
-    python3 ~/.vim/plugged/YouCompleteMe/install.py
+    python3 ~/.vim/plugged/YouCompleteMe/install.py --clang-completer
 
     ```
 

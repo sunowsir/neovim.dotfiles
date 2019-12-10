@@ -21,4 +21,3 @@ sudo chmod +x ~/.vim/plugged/YouCompleteMe/install.py
 python3 ~/.vim/plugged/YouCompleteMe/install.py --clang-completer
 
 echo -e "\033[1;31m安装完成\033[0m"
-

@@ -18,6 +18,6 @@ rm -rf ./install
 
 # Wait for the configuration to complete and go back to the terminal !!!
 sudo chmod +x ~/.vim/plugged/YouCompleteMe/install.py
-python3 ~/.vim/plugged/YouCompleteMe/install.py --clang-completer
+python3 ~/.vim/plugged/YouCompleteMe/install.py --clang-completer --system-libclang
 
 echo -e "\033[1;31m安装完成\033[0m"

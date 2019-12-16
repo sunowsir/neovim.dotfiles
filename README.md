@@ -15,6 +15,7 @@
 
     ```bash
 
+    # You need a version of clang above 7.
     sudo apt-get install -y vim wget curl gcc g++ python3 python3-pip exuberant-ctags clang
     
     cd ~/

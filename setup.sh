@@ -20,4 +20,6 @@ rm -rf ./install
 sudo chmod +x ~/.vim/plugged/YouCompleteMe/install.py
 python3 ~/.vim/plugged/YouCompleteMe/install.py --clang-completer --system-libclang
 
+cp ~/.vim/.ycm_extra_conf.py ~/
+
 echo -e "\033[1;31m安装完成\033[0m"

@@ -7,7 +7,13 @@
 
     ```bash
     wget -qO- https://raw.githubusercontent.com/sunowsir/.vim/master/setup.sh | sh -x
-    # 或者将该脚本下载下来执行都一样。
+    ```
+    或者将该脚本下载下来执行
+    ```bash
+    cd ~/
+    git clone https://github.com/sunowsir/.vim.git 
+    sudo chmod +x ~/.vim/setup.sh
+    ~/.vim/setup.sh
     ```
 
     

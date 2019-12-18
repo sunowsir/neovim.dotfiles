@@ -13,7 +13,7 @@ mv -f ~/vim ~/vim_old
 mv -f ~/.vim ~/.vim_old
 mv -f ~/.vimrc ~/.vimrc_old
 
-# curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 git clone https://github.com/sunowsir/.vim.git
 

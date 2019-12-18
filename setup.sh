@@ -1,10 +1,13 @@
 #!/bin/bash
 
-echo -e "\033[1;31m请仔细监控安装过程是否出现错误提示\033[0m"
+echo -e "\033[1;31m请在网络状态良好的情况下安装配置并仔细监控安装过程是否出现错误提示\033[0m"
 
 sudo apt-get install -y vim wget curl gcc g++ python-dev python3-dev python3 python3-pip exuberant-ctags cmake clang
 
-sudo pip3 install pylint
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+sudo chmod +x ./get-pip.py
+sudo -H python3 ./get-pip.py
+sudo -H pip3 install pylint
 
 mv -f ~/vim ~/vim_old
 mv -f ~/.vim ~/.vim_old

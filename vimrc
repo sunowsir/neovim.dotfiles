@@ -32,7 +32,7 @@ set incsearch
 " 搜索词忽略大小写
 set ignorecase 
 
-" 只能大小写
+" 智能大小写
 set smartcase 
 
 " 行号
@@ -52,6 +52,7 @@ set showcmd
 
 " tab 联想补全
 set wildmenu
+
 
 " 防止老旧的vi与vim某些操作不同导致的冲突
 set nocompatible
@@ -86,10 +87,10 @@ set cindent
 " 输入tab时自动转化为空格
 set expandtab
 
-" 一个tab键所占的列数
+" 设置缩进
+" shiftwidth (sw) : 使用每层缩进的空格数。
+" tabstop (ts):     编辑时一个TAB字符占多少个空格的位置。
 set tabstop=4
-
-" reindent时缩进的列数
 set shiftwidth=4
 
 " 敲入tab时实际占有的列数
@@ -136,7 +137,7 @@ set showmatch
 set matchtime=1
 
 "打开文件类型检测, 加了这句才可以用智能补全
-set completeopt=longest,menu
+" set completeopt=longest,menu
 
 
 " 用缩进表示折叠
@@ -145,15 +146,36 @@ set foldmethod=indent
 " 打开文件后默认展开所有折叠
 set foldlevel=99
 
-
-set sw=4
-set ts=4
+" 编辑时将所有 Tab 替换为空格。
+" 该选项只在编辑时将 Tab 替换为空格，如果打开一个已经存在的文件，并不会将已有的 Tab 替换为空格。
+" 如果希望进行这样的替换的话，可以使用这条命令“:retab”。
 set et
+
+" 不在单词中间断行。
+" 设置了这个选项后，如果一行文字非常长，无法在一行内显示完的话，
+" 它会在单词与单词间的空白处断开，尽量不会把一个单词分成两截放在两个不同的行里。
 set lbr
+
+" 打开断行模块对亚洲语言支持。
+" m 表示允许在两个汉字之间断行，即使汉字之间没有出现空格。
+" B 表示将两行合并为一行的时候，汉字与汉字之间不要补空格。
+" 该命令支持的更多的选项请参看用户手册。
 set fo+=mB
+
+" 显示括号配对情况。
+" 打开这个选项后，当输入后括号(包括小括号、中括号、大括号) 的时候，
+" 光标会跳回前括号片刻，然后跳回来，以此显示括号的配对情况。
 set sm
+
+" 指定在选择文本时，光标所在位置也属于被选中的范围。
+" 如果指定 selection=exclusive 的话，可能会出现某些文本无法被选中的情况。
 set selection=inclusive
+
+" 当右键单击窗口的时候，弹出快捷菜单。
 set mousemodel=popup
+
+" set tw = n : 设置光标超过n列的时候折行。
+" n = 0: 永不折行
 set tw=0
 
 
@@ -466,6 +488,7 @@ let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 let g:airline#extensions#ale#enabled = 1
 
+"
 let g:ale_linters = { 
             \ 'c': ['gcc'],
             \ 'cpp': ['g++'], 

@@ -41,7 +41,7 @@
         185.31.19.133 avatars1.githubusercontent.com
         192.30.253.120 codeload.github.com
         ```
-        如果依然不管用，可以去查ip的网站查以下无法解析的域名的真实ip，然后在hosts文件中改一下。
+        如果依然不管用，可以去查ip的网站查一下无法解析的域名的真实ip，然后在hosts文件中改一下。
         
     * 确保您的clang版本在7以上, 并且默认的libclang版本也在7以上, 
     否则请删除setup.sh中 `install.py` 的 `--system-libclang` 参数。

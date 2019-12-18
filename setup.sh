@@ -4,6 +4,8 @@ echo -e "\033[1;31m请仔细监控安装过程是否出现错误提示\033[0m"
 
 sudo apt-get install -y vim wget curl gcc g++ python-dev python3-dev python3 python3-pip exuberant-ctags cmake clang
 
+sudo pip3 install pylint
+
 mv -f ~/vim ~/vim_old
 mv -f ~/.vim ~/.vim_old
 mv -f ~/.vimrc ~/.vimrc_old

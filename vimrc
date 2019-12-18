@@ -223,7 +223,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
 
 " Error checking
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 
 " Auto Complete
 Plug 'Valloric/YouCompleteMe'
@@ -375,8 +375,8 @@ let g:ycm_python_binary_path = "/usr/bin/python3"
 " ===
 " === ale
 " ===
-let b:ale_linters = ['pylint']
-let b:ale_fixers = ['autopep8', 'yapf']
+" let b:ale_linters = ['pylint']
+" let b:ale_fixers = ['autopep8', 'yapf']
 
 
 " ===
@@ -466,7 +466,11 @@ let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 let g:airline#extensions#ale#enabled = 1
 
-let g:ale_linters = { 'c': ['gcc'], 'cpp': ['g++'] }
+let g:ale_linters = { 
+            \ 'c': ['gcc'],
+            \ 'cpp': ['g++'], 
+            \ 'py': ['pylint'], 
+            \ }
 
 let g:ale_c_gcc_options = '-Wall -std=c11'
 let g:ale_cpp_gcc_options = '-Wall -std=c++14'

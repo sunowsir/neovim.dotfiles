@@ -31,3 +31,7 @@ cp ~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py ~/
 
 echo -e "\033[1;31m阅读README和YouCompleteMe官方文档，根据自己需求更改~/.ycm_extra_conf.py\033[0m"
 echo -e "\033[1;31m安装完成\033[0m"
+
+
+
+

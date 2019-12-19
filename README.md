@@ -43,8 +43,6 @@
         ```
         如果依然不管用，可以去查ip的网站查一下无法解析的域名的真实ip，然后在hosts文件中改一下。
         
-    * 确保您的clang版本在7以上, 并且默认的libclang版本也在7以上, 
-    否则请删除setup.sh中 `install.py` 的 `--system-libclang` 参数。
     * 如果您不需要C家族语言的高级补全，或者您当前的网络环境不是很好，
     您可以删除`setup.sh`中`python3 ~/.vim/plugged/YouCompleteMe/install.py `后面的全部参数。
     * 如果您需要某些库的库函数的补全功能，

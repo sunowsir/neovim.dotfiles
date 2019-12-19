@@ -53,7 +53,6 @@ set showcmd
 " tab 联想补全
 set wildmenu
 
-
 " 防止老旧的vi与vim某些操作不同导致的冲突
 set nocompatible
 
@@ -68,6 +67,15 @@ filetype plugin on
 
 " 编码设置为utf-8
 set encoding=utf-8
+
+" 设置菜单语言为中文, 编码为utf-8
+set langmenu=zh_CN.UTF-8
+
+" 设置提示语言为中文, 编码为utf-8
+language message zh_CN.UTF-8
+
+" 防止特殊符号无法正常显示
+set ambiwidth=double
 
 " 协调vim配色异常
 let &t_ut=' '
@@ -136,7 +144,7 @@ set showmatch
 " 匹配括号高亮的时间（单位是十分之一秒）
 set matchtime=1
 
-"打开文件类型检测, 加了这句才可以用智能补全
+" 打开文件类型检测, 加了这句才可以用智能补全
 " set completeopt=longest,menu
 
 
@@ -149,7 +157,7 @@ set foldlevel=99
 " 编辑时将所有 Tab 替换为空格。
 " 该选项只在编辑时将 Tab 替换为空格，如果打开一个已经存在的文件，并不会将已有的 Tab 替换为空格。
 " 如果希望进行这样的替换的话，可以使用这条命令“:retab”。
-set et
+" set et
 
 " 不在单词中间断行。
 " 设置了这个选项后，如果一行文字非常长，无法在一行内显示完的话，
@@ -178,8 +186,6 @@ set mousemodel=popup
 " n = 0: 永不折行
 set tw=0
 
-
-
 " 回到上次打开文件光标所在位置
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
@@ -195,7 +201,6 @@ noremap K 5k
 
 " 当已定位到搜索词的位置后，需要关闭搜索高亮，使用该快捷键
 noremap <LEADER><CR> :nohlsearch<CR>
-
 
 " 将s按键映射为无功能
 map s <nop>

@@ -13,9 +13,9 @@ mv -f ~/vim ~/vim_old
 mv -f ~/.vim ~/.vim_old
 mv -f ~/.vimrc ~/.vimrc_old
 
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
 git clone https://github.com/sunowsir/.vim.git
+
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 echo "请在良好的网络环境下安装，然后耐心等候，安装完成后终端会有提示!" > install
 

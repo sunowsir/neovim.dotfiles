@@ -4,9 +4,11 @@ echo -e "\033[1;31m请在网络状态良好的情况下安装配置并仔细监�
 
 sudo apt-get install -y vim wget curl gcc g++ python-dev python3-dev python3 python3-pip exuberant-ctags cmake clang
 
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-sudo chmod +x ./get-pip.py
-sudo -H python3 ./get-pip.py
+# 如果pip更新失败可以尝试下面注释的部分.
+# curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+# sudo chmod +x ./get-pip.py
+# sudo -H python3 ./get-pip.py
+sudo -H pip3 instal --upgrade pip
 sudo -H pip3 install pylint
 
 mv -f ~/vim ~/vim_old

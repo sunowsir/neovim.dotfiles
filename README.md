@@ -45,7 +45,7 @@
         
     * 如果您不需要C家族语言的高级补全, 您可以:
         * 删除`setup.sh`文件中`python3 ~/.vim/plugged/YouCompleteMe/install.py`这一句命令后面的参数。
-    * 如果您当前的网络环境不是很好, 在执行`python3 ~/.vim/plugged/YouCompleteMe/install.py --clang-completer` 的时候libclang总是下载失败, 您可以:
+    * 如果您在执行`python3 ~/.vim/plugged/YouCompleteMe/install.py --clang-completer` 的时候libclang总是下载失败, 您可以:
         * 在其他设备上通过某种方式下载[libclang](https://dl.bintray.com/ycm-core/libclang/libclang-9.0.0-x86_64-unknown-linux-gnu.tar.bz2), 
         然后移动到`~/.vim/plugged/YouCompleteMe/third_party/ycmd/clang_archives/`下（不用解压，将下载后的压缩包直接仍里）。
     * 如果您需要某些库的库函数的补全功能，

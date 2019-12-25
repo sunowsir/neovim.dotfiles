@@ -6,7 +6,6 @@
 "
 "
 
-"""""""""""""""""""""""""""  启动执行
 
 " 打开文件消除之前搜索产生的高亮
 exec 'nohlsearch'
@@ -59,10 +58,10 @@ set nocompatible
 " 文件识别
 filetype on
 
-" 载入文件类型插件
+" 为特定文件类型载入相关缩进文件
 filetype indent on
 
-" 为特定文件类型载入相关缩进文件
+" 载入文件类型插件
 filetype plugin on
 
 " 编码设置为utf-8
@@ -73,6 +72,8 @@ set langmenu=zh_CN.UTF-8
 
 " 设置提示语言为中文, 编码为utf-8
 language message zh_CN.UTF-8
+
+set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
 
 " 防止特殊符号无法正常显示
 set ambiwidth=double
@@ -144,8 +145,8 @@ set showmatch
 " 匹配括号高亮的时间（单位是十分之一秒）
 set matchtime=1
 
-" 打开文件类型检测, 加了这句才可以用智能补全
-" set completeopt=longest,menu
+" 智能补全
+set completeopt=longest,menu
 
 
 " 用缩进表示折叠
@@ -189,6 +190,57 @@ set tw=0
 " 回到上次打开文件光标所在位置
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
+au BufRead,BufNewFile *.sh set filetype=sh
+au BufRead,BufNewFile *.py set filetype=python
+au BufRead,BufNewFile *.c set filetype=c
+au BufRead,BufNewFile *.cc set filetype=c
+au BufRead,BufNewFile *.cpp set filetype=cpp
+au BufRead,BufNewFile *.c set filetype=c
+au BufRead,BufNewFile *.h set filetype=cpp
+
+
+""""""""""""""""""""""""""" 新文件自动插入标题
+
+
+
+"新建.c,.h,.sh,.java文件，自动插入文件头 
+autocmd BufNewFile *.cpp,*.[ch],*.sh,*.py exec ":call SetTitle()" 
+""定义函数SetTitle，自动插入文件头 
+func SetTitle() 
+	"如果文件类型为.sh文件 
+	if &filetype == 'sh' 
+		call setline(1,"\#!/bin/bash") 
+		call append(line("."), "") 
+    elseif &filetype == 'python'
+        call setline(1,"#!/usr/bin/env python")
+        call append(line("."),"# coding=utf-8")
+	    call append(line(".")+1, "") 
+	else 
+		call setline(1, "/*************************************************************************") 
+		call append(line("."), "	> File      : ".expand("%")) 
+		call append(line(".")+1, "	> Author    : sunowsir") 
+		call append(line(".")+2, "	> Mail      : sunowsir@163.com") 
+		call append(line(".")+3, "	> Creation  : ".strftime("%c")) 
+		call append(line(".")+4, " ************************************************************************/") 
+		call append(line(".")+5, "")
+	endif
+	if expand("%:e") == 'cpp'
+		call append(line(".")+6, "#include<iostream>")
+		call append(line(".")+7, "")
+	endif
+	if &filetype == 'c'
+		call append(line(".")+6, "#include<stdio.h>")
+		call append(line(".")+7, "")
+	endif
+	if expand("%:e") == 'h'
+		call append(line(".")+6, "#ifndef _".toupper(expand("%:r"))."_H")
+		call append(line(".")+7, "#define _".toupper(expand("%:r"))."_H")
+		call append(line(".")+8, "#endif")
+	endif
+	"新建文件后，自动定位到文件末尾
+endfunc 
+
+autocmd BufNewFile * normal G
 
 
 

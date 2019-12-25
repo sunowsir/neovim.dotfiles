@@ -43,8 +43,11 @@
         ```
         如果依然不管用，可以去查ip的网站查一下无法解析的域名的真实ip，然后在hosts文件中改一下。
         
-    * 如果您不需要C家族语言的高级补全，或者您当前的网络环境不是很好，
-    您可以删除`setup.sh`中`python3 ~/.vim/plugged/YouCompleteMe/install.py `后面的全部参数。
+    * 如果您不需要C家族语言的高级补全, 您可以:
+        * 删除`setup.sh`文件中`python3 ~/.vim/plugged/YouCompleteMe/install.py`这一句命令后面的参数。
+    * 如果您在执行`python3 ~/.vim/plugged/YouCompleteMe/install.py --clang-completer` 的时候libclang总是下载失败, 您可以:
+        * 在其他设备上通过某种方式下载[libclang](https://dl.bintray.com/ycm-core/libclang/libclang-9.0.0-x86_64-unknown-linux-gnu.tar.bz2), 
+        然后移动到`~/.vim/plugged/YouCompleteMe/third_party/ycmd/clang_archives/`下（不用解压，将下载后的压缩包直接仍里）。
     * 如果您需要某些库的库函数的补全功能，
     您可以在执行完`setup.sh`后，在`~/.ycm_extra_conf.py`中的`flags`数组中添加您需要的库的头文件,例如:
         ```python
@@ -79,7 +82,7 @@
 
 ---
 
-> 由于某些原因下载速度可能会非常慢, 请自行寻找解决办法...
-
+[libclang]: https://dl.bintray.com/ycm-core/libclang/libclang-9.0.0-x86_64-unknown-linux-gnu.tar.bz2
+> 由于某些原因绝大多数需要网络的时候下载速度可能都会非常慢, 请自行寻找解决办法...
 
 

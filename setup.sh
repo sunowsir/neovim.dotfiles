@@ -25,7 +25,7 @@ rm -rf ./install
 
 # Wait for the configuration to complete and go back to the terminal !!!
 sudo chmod +x ~/.vim/plugged/YouCompleteMe/install.py
-python3 ~/.vim/plugged/YouCompleteMe/install.py --all
+python3 ~/.vim/plugged/YouCompleteMe/install.py --clang-completer
 
 cp ~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py ~/
 

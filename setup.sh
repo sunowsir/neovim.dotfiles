@@ -40,12 +40,6 @@ git clone https://github.com/sunowsir/.vim.git
 
 judgeErrorExit ${?} "git clone https://github.com/sunowsir/.vim.git"
 
-mkdir ~/.vim/plugged
-cd ~/.vim/plugged
-git clone https://gitee.com/mirrors/youcompleteme.git
-mv ./youcompleteme YouCompleteMe
-cd ~/
-
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 judgeErrorExit ${?} "download `plug.vim` failed."

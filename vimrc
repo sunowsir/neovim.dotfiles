@@ -127,6 +127,9 @@ set autowrite
 "禁止生成临时文件
 set nobackup
 
+" 禁止生成交换文件
+set noswapfile
+
 " 在处理未保存或只读文件的时候，弹出确认
 set confirm
 
@@ -206,7 +209,7 @@ au BufRead,BufNewFile *.h set filetype=cpp
 "新建.c,.h,.sh,.java文件，自动插入文件头 
 autocmd BufNewFile *.cpp,*.[ch],*.sh,*.py exec ":call SetTitle()" 
 ""定义函数SetTitle，自动插入文件头 
-func SetTitle() 
+func! SetTitle() 
 	"如果文件类型为.sh文件 
 	if &filetype == 'sh' 
 		call setline(1,"\#!/bin/bash") 
@@ -282,80 +285,124 @@ vmap <C-c> "+y
 
 
 
-""""""""""""""""""""""""""" 插件
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 插件
 
 
 
 call plug#begin('~/.vim/plugged')
 
-
+" vim状态栏
 Plug 'vim-airline/vim-airline'
+
+" 主题
 Plug 'connorholyday/vim-snazzy'
 
 
-
-" File navigation
+" 文件树: 
+" 侧边栏文件树
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+" nerdtree的辅助工具
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
-" Taglist
+
+" 侧边栏展示当前文件结构：类的结构、函数原型等
 Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
 
-" Error checking
-" Plug 'w0rp/ale'
 
-" Auto Complete
+" 异步语法检查插件(被注释掉的那个版本没用明白)
+" Plug 'w0rp/ale'  
+Plug 'dense-analysis/ale'
+
+
+" 代码补全插件，功能很强大，但是最难安装
 Plug 'Valloric/YouCompleteMe'
 
-" Undo Tree
+
+" 可视化撤销历史记录
 Plug 'mbbill/undotree/'
 
-" Other visual enhancement
+
+" 缩进插件
 " Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Yggdroot/indentLine'
+
+
+" 使用下划线展示光标处在的单词以及其他处的该单词
 Plug 'itchyny/vim-cursorword'
 
-" Git
+
+"" git相关:  
+" 方便的查看与跳转git推送、合并等操作产生的的冲突
 Plug 'rhysd/conflict-marker.vim'
+" 将git相关操作集成到vim中，在vim中无需回到终端即可进行git相关操作
 Plug 'tpope/vim-fugitive'
-Plug 'mhinz/vim-signify'
+" 展示当前编辑的文件的增加、减少、更改。
+Plug 'mhinz/vim-signify' 
+" vim的gitignore插件
 Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 
-" HTML, CSS, JavaScript, PHP, JSON, etc.
-Plug 'elzr/vim-json'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'spf13/PIV', { 'for' :['php', 'vim-plug'] }
-Plug 'gko/vim-coloresque', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
-Plug 'pangloss/vim-javascript', { 'for' :['javascript', 'vim-plug'] }
-Plug 'mattn/emmet-vim'
 
-" Python
+" 根据自己需要自行选择
+" 关于 HTML, CSS, JavaScript, PHP, JSON, 等等的插件 
+Plug 'elzr/vim-json'
+" Plug 'hail2u/vim-css3-syntax'
+" Plug 'spf13/PIV', { 'for' :['php', 'vim-plug'] }
+Plug 'gko/vim-coloresque', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
+" Plug 'pangloss/vim-javascript', { 'for' :['javascript', 'vim-plug'] }
+" Plug 'mattn/emmet-vim'
+
+
+" Python 格式规范辅助插件
 Plug 'vim-scripts/indentpython.vim'
 
-" Markdown
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
-Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
-Plug 'vimwiki/vimwiki'
 
-" Other useful utilities
+" Markdown 相关插件: 
+" 使用vim编写markdown的时候，启用该插件，可以在浏览器同步滚动渲染
+" Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
+" 使用vim编写markdown的时候，启用该插件，可以自动格式化插入的表格
+Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
+
+
+" wiki文档插件
+" Plug 'vimwiki/vimwiki'
+
+
+" 快速重构
 Plug 'terryma/vim-multiple-cursors'
+
+
+" 以一种舒服的方式阅览文档
 Plug 'junegunn/goyo.vim' " distraction free writing mode
-Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'` to change 'word' to `word`
+
+
+" 快速更改包含标记，例如快速的将一对双引号改为单引号
+" Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'` to change 'word' to `word`
+
+
+" 使用正则表达式对文本进行整理
 Plug 'godlygeek/tabular' " type ;Tabularize /= to align the =
+
+
+" 快速选中插件
 Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or type i) i] i} ip
-Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line
+
+
+" 快速注释插件
+" Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line
+
+
 
 " Dependencies
 Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'kana/vim-textobj-user'
-Plug 'fadein/vim-FIGlet'
+" 快速生成本文对象
+" Plug 'kana/vim-textobj-user'
+" ascii字母
+" Plug 'fadein/vim-FIGlet'
+" 括号匹配
 Plug 'Raimondi/delimitMate'
 
 
-" ALE 
-Plug 'dense-analysis/ale'
-
-" vim-gutentags
+" vim-gutentags，标签管理插件
 Plug 'ludovicchabant/vim-gutentags'
 
 
@@ -363,13 +410,17 @@ call plug#end()
 
 
 
-"""""""""""""" 插件使用配置
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 插件使用配置
+
+
 
 " ===
 " === snazzy
 " ===
 color snazzy
 let g:SnazzyTransparent=1
+
 
 
 " ===
@@ -388,6 +439,7 @@ let NERDTreeMapCloseDir = "n"
 let NERDTreeMapChangeRoot = "y"
 
 
+
 " ==
 " == NERDTree-git
 " ==
@@ -404,12 +456,12 @@ let g:NERDTreeIndicatorMapCustom = {
     \ }
 
 
+
 " ===
 " === You Complete ME
 " ===
+" 设置快捷键
 nnoremap gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
-"YouCompleteMe
 "配置默认文件路径
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 "打开vim时不再询问是否加载ycm_extra_conf.py配置
@@ -451,6 +503,7 @@ let g:ycm_python_interpreter_path = "/usr/bin/python3"
 let g:ycm_python_binary_path = "/usr/bin/python3"
 
 
+
 " ===
 " === ale
 " ===
@@ -458,10 +511,12 @@ let g:ycm_python_binary_path = "/usr/bin/python3"
 " let b:ale_fixers = ['autopep8', 'yapf']
 
 
+
 " ===
 " === Taglist
 " ===
 map <silent> T :TagbarOpenAutoClose<CR>
+
 
 
 " ===
@@ -491,16 +546,20 @@ let g:mkdp_port = ''
 let g:mkdp_page_title = '「${name}」'
 
 
+
 " ===
 " === vim-table-mode
 " ===
 map <LEADER>tm :TableModeToggle<CR>
+
+
 
 " ===
 " === Python-syntax
 " ===
 let g:python_highlight_all = 1
 " let g:python_slow_sync = 0
+
 
 
 " " ===
@@ -518,6 +577,7 @@ let g:python_highlight_all = 1
 let g:indentLine_char = '┊'
 
 
+
 " ===
 " === Goyo
 " ===
@@ -532,12 +592,20 @@ let g:undotree_DiffAutoOpen = 0
 map L :UndotreeToggle<CR>
 
 
+
 " === ALE
 " ===
 
 let g:ale_sign_column_always = 1
+
 let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '!'
+" let g:ale_sign_error = 'Ⓔ'
+
+" let g:ale_sign_warning = '➜'
+" let g:ale_sign_warning = '！'
+" let g:ale_sign_warning = '☞'
+" let g:ale_sign_warning = 'Ⓦ'
+let g:ale_sign_warning = '⚡'
 
 let g:ale_linters_explicit = 1
 let g:ale_echo_msg_format = '[%linter%] %code: %%s'
@@ -550,10 +618,12 @@ let g:ale_linters = {
             \ 'c': ['gcc'],
             \ 'cpp': ['g++'], 
             \ 'py': ['pylint'], 
+            \ 'sh': ['bash'], 
             \ }
 
 let g:ale_c_gcc_options = '-Wall -std=c11'
 let g:ale_cpp_gcc_options = '-Wall -std=c++14'
+
 
 
 " === 

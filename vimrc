@@ -367,7 +367,7 @@ Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 " Plug 'vimwiki/vimwiki'
 
 
-" 快速重构
+" 多光标快速重构
 Plug 'terryma/vim-multiple-cursors'
 
 

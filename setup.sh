@@ -24,7 +24,7 @@ judgeErrorExit ${?} "sudo apt-get install -y vim wget curl gcc g++ python-dev py
 # curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 # sudo chmod +x ./get-pip.py
 # sudo -H python3 ./get-pip.py
-sudo -H pip3 instal --upgrade pip
+sudo -H pip3 install --upgrade pip
 
 judgeErrorExit ${?} "sudo -H pip3 instal --upgrade pip"
 
@@ -42,7 +42,7 @@ judgeErrorExit ${?} "git clone https://github.com/sunowsir/.vim.git"
 
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-judgeErrorExit ${?} "download `plug.vim` failed."
+judgeErrorExit ${?} "download \"plug.vim\" failed."
 
 echo "请在良好的网络环境下安装，然后耐心等候，安装完成后终端会有提示!" > install
 
@@ -56,7 +56,7 @@ rm -rf ./install
 sudo chmod +x ~/.vim/plugged/YouCompleteMe/install.py
 python3 ~/.vim/plugged/YouCompleteMe/install.py --clang-completer
 
-judgeErrorExit ${?} "python3 ~/.vim/plugged/YouCompleteMe/install.py --clang-completer (you can read `~/.vim/README.md` find solution)"
+judgeErrorExit ${?} "python3 ~/.vim/plugged/YouCompleteMe/install.py --clang-completer (you can read \"~/.vim/README.md\" find solution)"
 
 cp ~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py ~/
 

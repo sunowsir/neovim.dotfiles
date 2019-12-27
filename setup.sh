@@ -8,15 +8,17 @@ function judgeErrorExit() {
     then
         echo -e "\033[1;31mERROR\033[0m : ${info}"
         echo -e "\033[1;31mTips\033[0m : It could be the network cause."
-        exit ${retNum}
+        exit "${retNum}"
     fi
     
-    return ${retNum}
+    return "${retNum}"
 }
 
 echo -e "\033[1;31m请在网络状态良好的情况下安装配置并仔细监控安装过程是否出现错误提示\033[0m"
+echo -e "\033[1;31mYouCompleteMe插件和ale插件比较大，可能会下载失败或者卡死不动\033[0m"
+echo -e "\033[1;31m可以用其他方式从github克隆下来，然后放置到~/.vim/plugged下\033[0m"
 
-sudo apt-get install -y vim vim-python-jedi wget curl gcc g++ python-dev python3-dev python3 python3-pip exuberant-ctags cmake clang 
+sudo apt-get install -y vim vim-python-jedi git wget curl gcc g++ python-dev python3-dev python3 python3-pip exuberant-ctags cmake clang shellcheck
 
 judgeErrorExit ${?} "sudo apt-get install -y vim wget curl gcc g++ python-dev python3-dev python3 python3-pip exuberant-ctags cmake clang"
 

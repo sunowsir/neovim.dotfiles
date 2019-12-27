@@ -610,19 +610,19 @@ let g:ale_sign_warning = '⚡'
 let g:ale_linters_explicit = 1
 let g:ale_echo_msg_format = '[%linter%] %code: %%s'
 let g:ale_lint_on_text_changed = 'normal'
-let g:ale_lint_on_insert_leave = 1
-let g:airline#extensions#ale#enabled = 1
+let g:ale_lint_on_insert_leave = 0
+let g:airline#extensions#ale#enabled = -1
 
 "
 let g:ale_linters = { 
             \ 'c': ['gcc'],
             \ 'cpp': ['g++'], 
-            \ 'py': ['pylint'], 
-            \ 'sh': ['bash'], 
+            \ 'python': ['pylint'], 
+            \ 'sh': ['shellcheck'], 
             \ }
 
 let g:ale_c_gcc_options = '-Wall -std=c11'
-let g:ale_cpp_gcc_options = '-Wall -std=c++14'
+let g:ale_cpp_gcc_options = '-Wall -std=c++11'
 
 
 

@@ -1,29 +1,64 @@
 # MYvimrc
-'vim' configuration
+> 如果您有一定的使用基础，那么可以自行根据需求进行更改
 
 ## Installation
+> 由于网络等原因，`setup.sh`基本不能用
 
-1.  使用`setup.sh`脚本配置
-
-    ```bash
-    wget -qO- https://raw.githubusercontent.com/sunowsir/.vim/master/setup.sh > ~/setup.sh
-    chmod +x ~/setup.sh
-    ~/setup.sh
-    ```
-    或者将该脚本下载下来执行
-    ```bash
-    cd ~/
-    git clone https://github.com/sunowsir/.vim.git 
-    sudo chmod +x ~/.vim/setup.sh
-    ~/.vim/setup.sh
-    ```
-
-    
-
+1. 配置步骤
+    1. 安装必要软件
+        ```bash
+        sudo apt-get install -y vim vim-python-jedi git wget curl gcc g++ python-dev python3-dev python3 python3-pip exuberant-ctags cmake clang shellcheck
+        ```
+    2. 更新pip并安装`pylint`
+        ```bash
+        sudo pip3 install --upgrade pip
+        sudo pip install pylint
+        ```
+    3. 备份旧配置
+        > 如果您当前的机器没有配置过vim可以跳过该步骤
+        ```bash
+        rm -rf ~/.vim_old
+        mv -f ~/.vim ~/.vim_old
+        mv -f ~/.vimrc ~/.vimrc_old
+        ```
+    4. 创建vim配置目录
+        ```bash
+        mkdir ~/.vim
+        ```
+    5. 下载`vim-plug`vim插件管理工具
+        1. 自动下载
+        ```bash
+        curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        ```
+        2. 手动拷贝
+            ```bash
+            mkdir ~/.vim/autoload/
+            touch ~/.vim/autoload/plug.vim
+            # 打开 <https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim> 
+            # 将内容拷贝到`~/.vim/autoload/plug.vim`中
+            ```
+    6. 拷贝vim配置文件
+        > 这一步如果没有反应可以打开下面的链接将文件复制下来，粘贴到`~/.vim/vimrc`中
+        ```bash
+        wget -qO- https://raw.githubusercontent.com/sunowsir/.vim/master/setup.sh > ~/.vim/vimrc
+        ```
+    7. 安装插件
+        > 插件安装完成会重新回到终端可输入命令的状态
+        > 这一步和下一步，如果有条件，最好在特殊的网络环境下进行
+        ```bash
+        vim install -c "PlugInstall" -c "q" -c "q"
+        ```
+    8. 编译`YouCompleteMe`代码补全插件，使其正常工作
+        > 其他语言补全支持请查看`python3 ~/.vim/plugged/YouCompleteMe/install.py --help`
+        1. 基本补全
+        ```bash
+        python3 ~/.vim/plugged/YouCompleteMe/install.py 
+        ```
+        2. c家族语言支持
+        ```bash
+        python3 ~/.vim/plugged/YouCompleteMe/install.py --clang-completer
+        ```
 2.  注意事项
-    > 这里绝大部分都是由于某些网络原因导致的问题，
-    > 如果您有条件最好在特殊的网络条件下进行配置，
-    > 即可避免如下绝大部分问题。
 
     * 如果您发现无法解析github系列域名，可以如下方式更改hosts文件：
         使用管理员权限打开/etc/hosts文件，将如下内容复制进去
@@ -89,7 +124,7 @@
 
 ---
 
-[libclang]: https://dl.bintray.com/ycm-core/libclang/libclang-9.0.0-x86_64-unknown-linux-gnu.tar.bz2
+libclang: <https://dl.bintray.com/ycm-core/libclang/libclang-9.0.0-x86_64-unknown-linux-gnu.tar.bz2>
 > 由于某些原因绝大多数需要网络的时候下载速度可能都会非常慢, 请自行寻找解决办法...
 
 

@@ -466,7 +466,6 @@ nnoremap gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 "打开vim时不再询问是否加载ycm_extra_conf.py配置
 let g:ycm_confirm_extra_conf = 0
-set completeopt=longest,menu
 "自动开启语义补全
 let g:ycm_seed_identifiers_with_syntax = 1
 "在注释中也开启补全
@@ -478,7 +477,7 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 "开启基于tag的补全，可以在这之后添加需要的标签路径
 let g:ycm_collect_identifiers_from_tags_files = 1
 "开始补全的字符数
-let g:ycm_min_num_of_chars_for_completion = 2
+" let g:ycm_min_num_of_chars_for_completion = 2
 "补全后自动关闭预览窗口
 let g:ycm_autoclose_preview_window_after_completion = 1
 "禁止缓存匹配项,每次都重新生成匹配项
@@ -613,7 +612,7 @@ let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 0
 let g:airline#extensions#ale#enabled = -1
 
-"
+" 配置每种语言的检查工具
 let g:ale_linters = { 
             \ 'c': ['gcc'],
             \ 'cpp': ['g++'], 

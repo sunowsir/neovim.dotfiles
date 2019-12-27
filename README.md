@@ -6,7 +6,9 @@
 1.  使用`setup.sh`脚本配置
 
     ```bash
-    wget -qO- https://raw.githubusercontent.com/sunowsir/.vim/master/setup.sh | sh -x
+    wget -qO- https://raw.githubusercontent.com/sunowsir/.vim/master/setup.sh > ~/setup.sh
+    chmod +x ~/setup.sh
+    ~/setup.sh
     ```
     或者将该脚本下载下来执行
     ```bash

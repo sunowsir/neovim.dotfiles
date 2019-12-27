@@ -34,7 +34,7 @@ sudo -H pip3 install pylint
 
 judgeErrorExit ${?} "sudo -H pip3 install pylint"
 
-mv -f ~/vim ~/vim_old
+rm ~/.vim_old
 mv -f ~/.vim ~/.vim_old
 mv -f ~/.vimrc ~/.vimrc_old
 

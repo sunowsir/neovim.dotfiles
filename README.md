@@ -31,12 +31,10 @@
         curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         ```
         2. 手动拷贝
-            ```bash
-            mkdir ~/.vim/autoload/
-            touch ~/.vim/autoload/plug.vim
-            # 打开 <https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim> 
-            # 将内容拷贝到`~/.vim/autoload/plug.vim`中
-            ```
+            1. 新建目录: `mkdir ~/.vim/autoload/`
+            2. 新建文件: `touch ~/.vim/autoload/plug.vim`
+            2. 打开 <https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim> 
+            4. 将内容拷贝到`~/.vim/autoload/plug.vim`中
     6. 拷贝vim配置文件
         > 这一步如果没有反应可以打开下面的链接将文件复制下来，粘贴到`~/.vim/vimrc`中
         ```bash

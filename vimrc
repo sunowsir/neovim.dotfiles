@@ -193,6 +193,8 @@ set tw=0
 " 回到上次打开文件光标所在位置
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
+
+au BufRead,BufNewFile *.lua set filetype=lua
 au BufRead,BufNewFile *.sh set filetype=sh
 au BufRead,BufNewFile *.py set filetype=python
 au BufRead,BufNewFile *.c set filetype=c
@@ -207,17 +209,20 @@ au BufRead,BufNewFile *.h set filetype=cpp
 
 
 "新建.c,.h,.sh,.java文件，自动插入文件头 
-autocmd BufNewFile *.cpp,*.[ch],*.sh,*.py exec ":call SetTitle()" 
+autocmd BufNewFile *.cpp,*.[ch],*.sh,*.py,*.lua exec ":call SetTitle()" 
 ""定义函数SetTitle，自动插入文件头 
 func! SetTitle() 
 	"如果文件类型为.sh文件 
 	if &filetype == 'sh' 
-		call setline(1,"\#!/bin/bash") 
+		call setline(1,"#!/bin/bash") 
 		call append(line("."), "") 
     elseif &filetype == 'python'
-        call setline(1,"#!/usr/bin/env python")
+        call setline(1,"#!/usr/bin/python")
         call append(line("."),"# coding=utf-8")
 	    call append(line(".")+1, "") 
+    elseif &filetype == 'lua'
+		call setline(1,"#!/bin/lua") 
+		call append(line("."), "") 
 	else 
 		call setline(1, "/*************************************************************************") 
 		call append(line("."), "	> File      : ".expand("%")) 
@@ -618,6 +623,7 @@ let g:ale_linters = {
             \ 'cpp': ['g++'], 
             \ 'python': ['pylint'], 
             \ 'sh': ['shellcheck'], 
+            \ 'lua': ['luacheck'], 
             \ }
 
 let g:ale_c_gcc_options = '-Wall -std=c11'

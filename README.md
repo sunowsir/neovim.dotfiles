@@ -98,12 +98,13 @@
 
 2. 注意事项
 
-    * 如果您要使用neovim：
+    * 如果您要配置neovim：
 
         1. 在`~/.config/`下创建`nvim`目录。
         2. 将第八步的vimrc放到nvim下，重命名为`init.vim`。
-        3. 其余文件相同，都放到nvim下。
-        4. 安装nvim的python依赖：`sudo pip3 install --upgrade pynvim`
+        3. 打开init.vim，将`call plug#begin('~/.vim/plugged')`这句，单引号里的路径改为`~/.config/nvim/plugged`。
+        4. 其余文件相同，都放到nvim下。
+        5. 安装nvim的python依赖：`sudo pip3 install --upgrade pynvim`
 
     * 如果您发现无法解析github系列域名，可以如下方式更改hosts文件：
         使用管理员权限打开/etc/hosts文件，将如下内容复制进去

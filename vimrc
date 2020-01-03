@@ -94,7 +94,7 @@ set autoindent
 set cindent
 
 " 输入tab时自动转化为空格
-set expandtab
+" set expandtab
 
 " 设置缩进
 " shiftwidth (sw) : 使用每层缩进的空格数。
@@ -158,11 +158,6 @@ set foldmethod=indent
 " 打开文件后默认展开所有折叠
 set foldlevel=99
 
-" 编辑时将所有 Tab 替换为空格。
-" 该选项只在编辑时将 Tab 替换为空格，如果打开一个已经存在的文件，并不会将已有的 Tab 替换为空格。
-" 如果希望进行这样的替换的话，可以使用这条命令“:retab”。
-" set et
-
 " 不在单词中间断行。
 " 设置了这个选项后，如果一行文字非常长，无法在一行内显示完的话，
 " 它会在单词与单词间的空白处断开，尽量不会把一个单词分成两截放在两个不同的行里。
@@ -194,6 +189,7 @@ set tw=0
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 
+" 设置文件类型，使得vim能识别新建文件的类型
 au BufRead,BufNewFile *.lua set filetype=lua
 au BufRead,BufNewFile *.sh set filetype=sh
 au BufRead,BufNewFile *.py set filetype=python
@@ -286,10 +282,6 @@ vmap <C-c> "+y
 
 
 
-
-
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 插件
 
 
@@ -303,40 +295,43 @@ Plug 'vim-airline/vim-airline'
 Plug 'connorholyday/vim-snazzy'
 
 
-" 文件树: 
+"""""" 数据显示：
+
 " 侧边栏文件树
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-" nerdtree的辅助工具
+" 侧边栏文件树插件的辅助工具
 Plug 'Xuyuanp/nerdtree-git-plugin'
-
-
-" 侧边栏展示当前文件结构：类的结构、函数原型等
-Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
-
-
-" 异步语法检查插件(被注释掉的那个版本没用明白)
-" Plug 'w0rp/ale'  
-Plug 'dense-analysis/ale'
-
-
-" 代码补全插件，功能很强大，但是最难安装
-Plug 'Valloric/YouCompleteMe'
-
-
 " 可视化撤销历史记录
 Plug 'mbbill/undotree/'
-
-
-" 缩进插件
-" Plug 'nathanaelkane/vim-indent-guides'
-Plug 'Yggdroot/indentLine'
-
-
+" 侧边栏展示当前文件结构：类的结构、函数原型等
+Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
 " 使用下划线展示光标处在的单词以及其他处的该单词
 Plug 'itchyny/vim-cursorword'
 
+""""""
 
-"" git相关:  
+
+
+"""""" 代码质量：
+
+" 异步语法检查插件
+Plug 'dense-analysis/ale'
+" 代码补全插件，功能很强大，但是最难安装
+Plug 'Valloric/YouCompleteMe'
+" 缩进插件
+" Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Yggdroot/indentLine'
+" Python 格式规范辅助插件
+Plug 'vim-scripts/indentpython.vim'
+
+""""""
+
+
+
+
+
+"""""" git相关:  
+
 " 方便的查看与跳转git推送、合并等操作产生的的冲突
 Plug 'rhysd/conflict-marker.vim'
 " 将git相关操作集成到vim中，在vim中无需回到终端即可进行git相关操作
@@ -346,9 +341,13 @@ Plug 'mhinz/vim-signify'
 " vim的gitignore插件
 Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 
+"""""" 
 
-" 根据自己需要自行选择
-" 关于 HTML, CSS, JavaScript, PHP, JSON, 等等的插件 
+
+
+
+"""""" HTML, CSS, JavaScript, PHP, JSON, 等等相关: 
+
 Plug 'elzr/vim-json'
 " Plug 'hail2u/vim-css3-syntax'
 " Plug 'spf13/PIV', { 'for' :['php', 'vim-plug'] }
@@ -356,16 +355,18 @@ Plug 'gko/vim-coloresque', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'c
 " Plug 'pangloss/vim-javascript', { 'for' :['javascript', 'vim-plug'] }
 " Plug 'mattn/emmet-vim'
 
-
-" Python 格式规范辅助插件
-Plug 'vim-scripts/indentpython.vim'
+"""""" 
 
 
-" Markdown 相关插件: 
+
+""""""" Markdown 相关插件: 
+
 " 使用vim编写markdown的时候，启用该插件，可以在浏览器同步滚动渲染
 " Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
 " 使用vim编写markdown的时候，启用该插件，可以自动格式化插入的表格
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
+
+""""""" 
 
 
 " wiki文档插件
@@ -394,7 +395,6 @@ Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or 
 
 " 快速注释插件
 " Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line
-
 
 
 " Dependencies

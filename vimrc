@@ -471,7 +471,7 @@ let g:NERDTreeIndicatorMapCustom = {
 " 设置快捷键
 nnoremap gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "配置默认文件路径
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 "打开vim时不再询问是否加载ycm_extra_conf.py配置
 let g:ycm_confirm_extra_conf = 0
 "自动开启语义补全
@@ -618,8 +618,8 @@ let g:ale_linters = {
             \ 'lua': ['luacheck'], 
             \ }
 
-let g:ale_c_gcc_options = '-Wall -std=c11'
-let g:ale_cpp_gcc_options = '-Wall -std=c++11'
+let g:ale_c_gcc_options = '-Wall -Wshadow -Wid-clash-len'
+let g:ale_cpp_gcc_options = '-Wall -Wshadow -Wid-clash-len'
 
 
 
@@ -629,7 +629,7 @@ let g:ale_cpp_gcc_options = '-Wall -std=c++11'
 " gutentags搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归 "
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
 
-" 所生成的数据文件的名称 "
+" 所生成的数据文件的名称
 let g:gutentags_ctags_tagfile = '.tags'
 
 " 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录 "
@@ -644,6 +644,8 @@ endif
 let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+
+set tags+=$QTDIR\include\tags
 
 
 

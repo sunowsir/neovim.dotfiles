@@ -10,7 +10,7 @@
 
     1. 安装必要软件
         ```bash
-        sudo apt-get install -y vim vim-python-jedi git wget curl gcc g++ python-dev python3-dev python3 python3-pip exuberant-ctags cmake
+        sudo apt-get install -y vim vim-scripts vim-gtk vim-python-jedi git wget curl gcc g++ python-dev python3-dev python3 python3-pip exuberant-ctags cmake 
         ```
 
     2. 配置shell脚本语法检查工具
@@ -96,6 +96,37 @@
            python3 ~/.vim/plugged/YouCompleteMe/install.py --all
            ```
 
+    11. 编辑`~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py`文件添加需要支持的头文件
+
+         > 根据需要自行添加，例如需要C、C++基础库函数和qt库的补全：
+
+         ```python
+         '-isystem',
+         '/usr/include',
+         '-isystem',
+         '/usr/include/c++/6.3.0',
+         '-isystem',
+         '/usr/include/libdtk-2.0.16/DCore',
+         '-isystem',
+         '/usr/include/libdtk-2.0.16/DWidget',
+         '-isystem',
+         '/usr/include/x86_64-linux-gnu',
+         '-isystem',
+         '/usr/include/x86_64-linux-gnu/c++/6.3.0/bits',
+         '-isystem',
+         '/usr/include/x86_64-linux-gnu/c++/6.3.0/ext',
+         '-isystem',
+         '/usr/include/x86_64-linux-gnu/asm',
+         '-isystem',
+         '/usr/include/x86_64-linux-gnu/bits',
+         '-isystem',
+         '/usr/include/x86_64-linux-gnu/gnu',
+         '-isystem',
+         '/usr/include/x86_64-linux-gnu/qt5',
+         ```
+
+         
+
 2. 注意事项
 
     * 如果您发现无法解析github系列域名，可以如下方式更改hosts文件：
@@ -133,11 +164,20 @@
     * 如果您需要某些库的库函数的补全功能，
       您可以在执行完`setup.sh`后，在`~/.ycm_extra_conf.py`中的`flags`数组中添加您需要的库的头文件,例如:
         ```python
-        '-isystem', 
-        '/usr/include/', 
-        '-I', 
-        '~/mylib/include', 
+      '-isystem',
+      '/usr/include',
+      '-isystem',
+      '/usr/include/c++/6.3.0',
+      '-isystem',
+      '/usr/include/libdtk-2.0.16/DCore',
+      '-isystem',
+      '/usr/include/libdtk-2.0.16/DWidget',
+      '-isystem',
+      '/usr/include/x86_64-linux-gnu',
+      '-isystem',
+      '/usr/include/x86_64-linux-gnu/qt5',
         ```
+
 
 ## 快捷键
 
@@ -151,7 +191,8 @@
 | `<shift>`+`q`          | 普通模式下：退出vim                                          |
 | `<shift>`+`r`          | 普通模式下：更改vimrc文件后使其立即生效                      |
 | `<ctrl>`+`j`           | 普通模式下：保存．插入模式或选择模式下：退出当前模式．也就是说，在任意模式下，按住`<ctrl>`再连续按两次j就一定是保存了 |
-| `<ctrl>`+`c`           | 选择模式下：复制当前选中内容到系统剪切板．                   |
+| `<shift>`+`y`          | 选择模式下：复制当前选中内容到系统剪切板                     |
+| `<shift>`+`P`          | 普通模式下：粘贴系统剪切板内容到光标位置                     |
 | `<空格>`+`g`+`y`       | 普通模式下：进入阅读模式，再安一次快捷键退出阅读模式         |
 | `<ctrl>`+`o`+`o`       | 终端下任意位置键入vim，后面不加文件，直接进入vim紧接着按住`<ctrl>`双击o，就会出现上次编辑的文件 |
 | `t`+`t`                | 打开文件树，文件树按回车打开目录                             |

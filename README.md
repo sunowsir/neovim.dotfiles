@@ -73,13 +73,13 @@
 
     9. 安装插件
         > 插件安装完成会重新回到终端可输入命令的状态
-        > 这一步和下一步，如果有条件，最好在特殊的网络环境下进行
+        > 这一步和下一步，如果有条件，最好在***==特殊==***的网络环境下进行
         ```bash
         vim install -c "PlugInstall" -c "q" -c "q"
         ```
 
     10. 编译`YouCompleteMe`代码补全插件，使其正常工作
-        > 其他语言补全支持请查看`python3 ~/.vim/plugged/YouCompleteMe/install.py --help`
+        > 其他语言补全支持请查看`python3 ~/.vim/plugged/YouCompleteMe/install.py --help` 
         1. 基本补全
 
            ```bash
@@ -130,8 +130,11 @@
 2. 注意事项
 
     * 如果您发现无法解析github系列域名，可以如下方式更改hosts文件：
-        使用管理员权限打开/etc/hosts文件，将如下内容复制进去
+      
+> 如果依然不管用，可以去查ip的网站查一下无法解析的域名的真实ip，然后在hosts文件中改一下。
 
+        使用管理员权限打开/etc/hosts文件，将如下内容复制进去
+        
         ```bash
         199.232.28.133 raw.githubusercontent.com
         151.101.44.249 github.global.ssl.fastly.net 
@@ -150,20 +153,21 @@
         185.31.16.184 github.global.ssl.fastly.net 
         185.31.18.133 avatars0.githubusercontent.com 
         185.31.19.133 avatars1.githubusercontent.com
-        192.30.253.120 codeload.github.com
+192.30.253.120 codeload.github.com
         ```
-        如果依然不管用，可以去查ip的网站查一下无法解析的域名的真实ip，然后在hosts文件中改一下。
-
+        
     * 如果您不需要C家族语言的高级补全, 您可以:
-        * 删除`setup.sh`文件中`python3 ~/.vim/plugged/YouCompleteMe/install.py`这一句命令后面的参数。
-
+      
+      * 删除`setup.sh`文件中`python3 ~/.vim/plugged/YouCompleteMe/install.py`这一句命令后面的所有参数。
+      
     * 如果您在执行`python3 ~/.vim/plugged/YouCompleteMe/install.py --clang-completer` 的时候libclang总是下载失败, 您可以:
-        * 在其他设备上通过某种方式下载[libclang](https://dl.bintray.com/ycm-core/libclang/libclang-9.0.0-x86_64-unknown-linux-gnu.tar.bz2), 
-        然后移动到`~/.vim/plugged/YouCompleteMe/third_party/ycmd/clang_archives/`下（不用解压，将下载后的压缩包直接仍里）。
+    * 在其他设备上通过某种方式下载[libclang](https://dl.bintray.com/ycm-core/libclang/libclang-9.0.0-x86_64-unknown-linux-gnu.tar.bz2), 
+          然后移动到`~/.vim/plugged/YouCompleteMe/third_party/ycmd/clang_archives/`下（不用解压，将下载后的压缩包直接仍里）。
 
-    * 如果您需要某些库的库函数的补全功能，
-      您可以在执行完`setup.sh`后，在`~/.ycm_extra_conf.py`中的`flags`数组中添加您需要的库的头文件,例如:
-        ```python
+  * 如果您需要某些库的库函数的补全功能，
+    您可以在执行完`setup.sh`后，在`~/.ycm_extra_conf.py`中的`flags`数组中添加您需要的库的头文件,例如:
+    
+    ```python
       '-isystem',
       '/usr/include',
       '-isystem',
@@ -171,12 +175,16 @@
       '-isystem',
       '/usr/include/libdtk-2.0.16/DCore',
       '-isystem',
-      '/usr/include/libdtk-2.0.16/DWidget',
-      '-isystem',
-      '/usr/include/x86_64-linux-gnu',
-      '-isystem',
-      '/usr/include/x86_64-linux-gnu/qt5',
-        ```
+        '/usr/include/libdtk-2.0.16/DWidget',
+        '-isystem',
+        '/usr/include/x86_64-linux-gnu',
+        '-isystem',
+        '/usr/include/x86_64-linux-gnu/qt5',
+    ```
+    
+      
+    
+      
 
 
 ## 快捷键
@@ -191,8 +199,8 @@
 | `<shift>`+`q`          | 普通模式下：退出vim                                          |
 | `<shift>`+`r`          | 普通模式下：更改vimrc文件后使其立即生效                      |
 | `<ctrl>`+`j`           | 普通模式下：保存．插入模式或选择模式下：退出当前模式．也就是说，在任意模式下，按住`<ctrl>`再连续按两次j就一定是保存了 |
-| `<shift>`+`y`          | 选择模式下：复制当前选中内容到系统剪切板                     |
-| `<shift>`+`P`          | 普通模式下：粘贴系统剪切板内容到光标位置                     |
+| `<shift>`+`y`          | 选择模式下：复制当前选中内容到系统剪切板  (需要gui支持，建议在安装vim的时候直接安装Gvim) |
+| `<shift>`+`P`          | 普通模式下：粘贴系统剪切板内容到光标位置  (同上)             |
 | `<空格>`+`g`+`y`       | 普通模式下：进入阅读模式，再安一次快捷键退出阅读模式         |
 | `<ctrl>`+`o`+`o`       | 终端下任意位置键入vim，后面不加文件，直接进入vim紧接着按住`<ctrl>`双击o，就会出现上次编辑的文件 |
 | `t`+`t`                | 打开文件树，文件树按回车打开目录                             |
@@ -201,12 +209,20 @@
 | `g`+`d`                | 普通模式下：跳转到光标所在函数的定义处（不支持跨文件）       |
 | `<ctrl>`+`o`           | 普通模式下：跳回之前光标的位置，可以和`g`+`d`配合使用        |
 | `shift`+`l`            | 普通模式下：查看撤销历史（后悔药）                           |
+| `<空格>`+`<s>`         | 普通模式下：插件当前行的错误详细信息                         |
+
+
 
 
 
 ---
 
 libclang: <https://dl.bintray.com/ycm-core/libclang/libclang-9.0.0-x86_64-unknown-linux-gnu.tar.bz2>
-> 由于某些原因绝大多数需要网络的时候下载速度可能都会非常慢, 请自行寻找解决办法...
+
+由于某些原因绝大多数需要网络的时候下载速度可能都会非常慢, 请自行寻找解决办法，可能需要在某种特定的网络环境下进行...
+
+
+
+
 
 

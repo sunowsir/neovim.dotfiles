@@ -228,6 +228,9 @@ vmap <C-j> <ESC>
 " vmap <C-c> "+y
 vmap Y "+y
 
+" 显示详细错误信息
+nmap <Leader>s :ALEDetail<CR>
+
 " 
 
 
@@ -241,7 +244,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 
 " 主题
-Plug 'connorholyday/vim-snazzy'
+" Plug 'connorholyday/vim-snazzy'
 
 
 """""" 数据显示：
@@ -371,8 +374,8 @@ call plug#end()
 " ===
 " === snazzy
 " ===
-color snazzy
-let g:SnazzyTransparent=1
+" color snazzy
+" let g:SnazzyTransparent = 1
 
 
 
@@ -546,8 +549,8 @@ let g:ale_sign_column_always = 1
 
 " 
 let g:ale_sign_error = '✗'
-" let g:ale_sign_warning = '⚡'
-let g:ale_sign_warning = '⚠'
+" let g:ale_sign_warning = '⚠'
+let g:ale_sign_warning = '⚡'
 
 let g:ale_linters_explicit = 1
 let g:ale_echo_msg_format = '[%linter%] %code: %%s'
@@ -557,15 +560,16 @@ let g:airline#extensions#ale#enabled = -1
 
 " 配置每种语言的检查工具
 let g:ale_linters = { 
-            \ 'c': ['gcc'],
-            \ 'cpp': ['g++'], 
+            \ 'c': ['clang'],
+            \ 'cpp': ['clang'], 
             \ 'python': ['pylint'], 
             \ 'sh': ['shellcheck'], 
             \ 'lua': ['luacheck'], 
             \ }
 
-let g:ale_c_gcc_options = '-Wall -Wshadow -Wid-clash-len'
-let g:ale_cpp_gcc_options = '-Wall -Wshadow -Wid-clash-len'
+let g:ale_c_gcc_options = '-Wall '
+let g:ale_cpp_gcc_options = '-Wall '
+let g:ale_sign_column_always = 0
 
 
 
@@ -599,7 +603,29 @@ set tags+=$QTDIR\include\tags
 " === 
 " === NewFileTitle
 " === 
-let g:NFT_author = "sunowsir"
-let g:NFT_Mail = "sunowsir@163.com"
+"
+let g:NFT_author				= "sunowsir"
+let g:NFT_Mail					= "sunowsir@163.com"
+
+let g:NFT_shell_interpreter		= "/bin/bash"
+let g:NFT_python_interpreter	= "/bin/python"
+let g:NFT_python_coding			= "utf-8"
+let g:NFT_lua_interpreter		= "/bin/lua"
+
+let g:NFT_support_type_Dic		= {
+			\ 'c'			: ['c'],
+			\ 'cpp'			: ['cpp', 'cxx'], 
+			\ 'go'			: ['go'],
+			\ 'sh'			: ['sh'], 
+			\ 'python'		: ['py'], 
+			\ 'lua'			: ['lua'], 
+			\ 'vim'			: ['vim'], 
+			\}
+
+
+
+
+
+"""""""""""""""""""""""""""""""""""""""
 
 

@@ -94,12 +94,12 @@ set autoindent
 set cindent
 
 " 输入tab时自动转化为空格
-" set expandtab
+set expandtab
 
-" 设置缩进
 " shiftwidth (sw) : 使用每层缩进的空格数。
-" tabstop (ts):     编辑时一个TAB字符占多少个空格的位置。
 set tabstop=4
+
+" tabstop (ts):     编辑时一个TAB字符占多少个空格的位置。
 set shiftwidth=4
 
 " 敲入tab时实际占有的列数
@@ -109,8 +109,8 @@ set softtabstop=4
 " set list
 " set listchars=tab:▸\ ,trail:▫
 
-" 光标移动到buffer的顶部和底部时保持3行距离  
-set scrolloff=3
+" 光标移动到buffer的顶部和底部时保持若干行行距离  
+set scrolloff=5
 
 " 总是显示状态栏
 set laststatus=2
@@ -220,6 +220,9 @@ map P "+p
 
 " 插入模式下: 退出插入模式
 imap <C-j> <ESC>
+
+" 输入括号自动换行并对齐
+imap {<CR> {}<ESC>i<CR><ESC>O
 
 " 选择模式下: 退出选择模式
 vmap <C-j> <ESC>

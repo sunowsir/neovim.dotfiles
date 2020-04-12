@@ -6,9 +6,23 @@
 "
 "
 
+""""""""""""""""""""""""""" 启动执行
 
 " 打开文件消除之前搜索产生的高亮
 exec 'nohlsearch'
+
+
+""""""""""""""""""""""""""" 函数
+
+" 大括号自动分行, C/C++下的自动命令 'from https://www.jianshu.com/p/a403d9332d47'
+function BracketsEnter(char)
+    if getline('.')[col('.')-1] == a:char
+        return "\<Enter>\<Tab>\<Esc>mpa\<Enter>\<Esc>`pa" 
+    else
+        return "\<Enter>"
+    endif
+endf
+
 
 
 """"""""""""""""""""""""""" 设置 
@@ -43,7 +57,7 @@ set relativenumber
 " 光标线
 set cursorline
 
-" 换行显示　－－　使得字不会超出屏幕显示
+" 换行显示 -- 使得字不会超出屏幕显示
 set wrap 
 
 " 状态栏显示命令
@@ -73,6 +87,7 @@ set langmenu=zh_CN.UTF-8
 " 设置提示语言为中文, 编码为utf-8
 language message zh_CN.UTF-8
 
+" 设置文件默认编码
 set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
 
 " 防止特殊符号无法正常显示
@@ -93,8 +108,15 @@ set autoindent
 " 按照Ｃ语言语法进行自动缩进
 set cindent
 
-" 输入tab时自动转化为空格
-set expandtab
+" 特殊缩进设置 :case括号、C++类权限关键字是否缩进
+set cinoptions=l1,g0
+
+" 大括号自动分行, C/C++下的自动命令 'from https://www.jianshu.com/p/a403d9332d47'
+autocmd BufWritePre,BufRead *.c :inoremap <Enter> <c-r>=BracketsEnter('}')<CR>
+autocmd BufWritePre,BufRead *.cpp :inoremap <Enter> <c-r>=BracketsEnter('}')<CR>
+
+" 输入tab时不要自动转化为空格
+set noexpandtab
 
 " shiftwidth (sw) : 使用每层缩进的空格数。
 set tabstop=4
@@ -151,7 +173,6 @@ set matchtime=1
 " 智能补全
 set completeopt=longest,menu
 
-
 " 用缩进表示折叠
 set foldmethod=indent
 
@@ -181,9 +202,12 @@ set selection=inclusive
 " 当右键单击窗口的时候，弹出快捷菜单。
 set mousemodel=popup
 
-" set tw = n : 设置光标超过n列的时候折行。
-" n = 0: 永不折行
+" set tw = n : 设置光标超过n列的时候折行，
+" 当n = 0 时代表永不折行。
 set tw=0
+
+" 制表符缩进线
+set list lcs=tab:\¦\ 
 
 " 关闭vim的独立剪切板，使用系统剪切板
 " set clipboard+=unnamed
@@ -210,26 +234,31 @@ map s <nop>
 " 退出
 map Q :q<CR>
 
-" 使得更改后的vimrc立即生效
-map R :source $MYVIMRC<CR>
-
-" 普通模式下: 保存
+" 普通模式下保存
 map <C-j> :w<CR>
+
+" 普通模式下全选
+map <C-A> <ESC><ESC>ggVG
 
 map P "+p
 
 " 插入模式下: 退出插入模式
 imap <C-j> <ESC>
 
-" 输入括号自动换行并对齐
-imap {<CR> {}<ESC>i<CR><ESC>O
+" 插入括号自动换行并对齐
+" imap {<CR> {}<ESC>i<CR><ESC>O
+
+" 从插入模式进入普通模式下并全选
+imap <C-A> <ESC>ggVG
 
 " 选择模式下: 退出选择模式
 vmap <C-j> <ESC>
 
-" 选择模式下: 复制到外部(不知为何，有时候不好使)
-" vmap <C-c> "+y
+" 选择模式下: 复制到外部
 vmap Y "+y
+
+" 从选择模式进入普通模式下并全选
+vmap <C-A> <ESC>ggVG
 
 " 显示详细错误信息
 nmap <Leader>s :ALEDetail<CR>
@@ -237,14 +266,15 @@ nmap <Leader>s :ALEDetail<CR>
 " 
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 插件
+""""""""""""""""""""""""" 插件
 
 
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 " vim状态栏
 Plug 'vim-airline/vim-airline'
+
 
 " 主题
 " Plug 'connorholyday/vim-snazzy'
@@ -276,8 +306,6 @@ Plug 'Valloric/YouCompleteMe'
 " 缩进插件
 " Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Yggdroot/indentLine'
-" Python 格式规范辅助插件
-Plug 'vim-scripts/indentpython.vim'
 
 """"""
 
@@ -315,6 +343,8 @@ Plug 'gko/vim-coloresque', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'c
 
 " 使用vim编写markdown的时候，启用该插件，可以在浏览器同步滚动渲染
 " Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+
 " 使用vim编写markdown的时候，启用该插件，可以自动格式化插入的表格
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 
@@ -381,7 +411,6 @@ call plug#end()
 " let g:SnazzyTransparent = 1
 
 
-
 " ===
 " === NERDTree
 " ===
@@ -422,7 +451,7 @@ let g:NERDTreeIndicatorMapCustom = {
 " 设置快捷键
 nnoremap gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "配置默认文件路径
-let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.config/nvim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 "打开vim时不再询问是否加载ycm_extra_conf.py配置
 let g:ycm_confirm_extra_conf = 0
 "自动开启语义补全
@@ -480,7 +509,7 @@ let g:mkdp_refresh_slow = 0
 let g:mkdp_command_for_global = 0
 let g:mkdp_open_to_the_world = 0
 let g:mkdp_open_ip = ''
-let g:mkdp_browser = 'google-chrome'
+let g:mkdp_browser = ''
 let g:mkdp_echo_preview_url = 0
 let g:mkdp_browserfunc = ''
 let g:mkdp_preview_options = {
@@ -496,6 +525,8 @@ let g:mkdp_markdown_css = ''
 let g:mkdp_highlight_css = ''
 let g:mkdp_port = ''
 let g:mkdp_page_title = '「${name}」'
+map <LEADER>mp :MarkdownPreview<CR>
+map <LEADER>smp :MarkdownPreviewStop<CR>
 
 
 
@@ -514,19 +545,21 @@ let g:python_highlight_all = 1
 
 
 
-" " ===
-" " === vim-indent-guide
-" " ===
+" ===
+" === vim-indent-guide
+" ===
 " let g:indent_guides_guide_size = 1
 " let g:indent_guides_start_level = 2
 " let g:indent_guides_enable_on_vim_startup = 1
 " let g:indent_guides_color_change_percent = 1
 " silent! unmap <LEADER>ig
-" autocmd WinEnter * silent! unmap <LEADER>ig
+" autocmd vimEnter * silent! unmap <LEADER>ig
+
 " ===
 " === indentLine
 " ===
-let g:indentLine_char = '┊'
+let g:indentLine_char = '¦'
+" let g:indentLine_color_term = 239
 
 
 

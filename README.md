@@ -23,7 +23,7 @@
     # 1. incomplete installation .
     python3 ~/.config/nvim/plugged/YouCompleteMe/install.py
     
-    # 3. the installation provides complete completement sit-in capabilities for c-famaily language.
+    # 2. the installation provides complete completement sit-in capabilities for c-famaily language.
     # need you have a better network enviroment.
     python3 ~/.config/nvim/plugged/YouCompleteMe/install.py --clang-completer
 

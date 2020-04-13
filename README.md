@@ -28,7 +28,7 @@
     python3 ~/.config/nvim/plugged/YouCompleteMe/install.py --clang-completer
 
     # 3. full installation ( need a better network enviroment and `npm` enviroment and `go` enviroment ) . 
-    sudo apt-get instal clang golang-go nodejs nodejs-dev npm
+    sudo apt-get instal clang golang-go nodejs nodejs-dev npm 
     python3 ~/.config/nvim/plugged/YouCompleteMe/install.py --all --system-libclang --clang-completer
 
     ```

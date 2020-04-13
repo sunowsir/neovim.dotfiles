@@ -11,18 +11,14 @@
 " 打开文件消除之前搜索产生的高亮
 exec 'nohlsearch'
 
-
-""""""""""""""""""""""""""" 函数
-
-" 大括号自动分行, C/C++下的自动命令 'from https://www.jianshu.com/p/a403d9332d47'
-function BracketsEnter(char)
-    if getline('.')[col('.')-1] == a:char
-        return "\<Enter>\<Tab>\<Esc>mpa\<Enter>\<Esc>`pa" 
-    else
-        return "\<Enter>"
-    endif
-endf
-
+" ===
+" === Auto load for first time uses(from github.com/theniceboy/nvim/init.vim)
+" ===
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+	silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 
 """"""""""""""""""""""""""" 设置 
@@ -111,9 +107,6 @@ set cindent
 " 特殊缩进设置 :case括号、C++类权限关键字是否缩进
 set cinoptions=l1,g0
 
-" 大括号自动分行, C/C++下的自动命令 'from https://www.jianshu.com/p/a403d9332d47'
-autocmd BufWritePre,BufRead *.c :inoremap <Enter> <c-r>=BracketsEnter('}')<CR>
-autocmd BufWritePre,BufRead *.cpp :inoremap <Enter> <c-r>=BracketsEnter('}')<CR>
 
 " 输入tab时不要自动转化为空格
 set noexpandtab
@@ -216,8 +209,6 @@ set list lcs=tab:\¦\
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 
-
-
 """"""""""""""""""""""""""" 按键映射
 
 
@@ -263,7 +254,15 @@ vmap <C-A> <ESC>ggVG
 " 显示详细错误信息
 nmap <Leader>s :ALEDetail<CR>
 
-" 
+" 大括号自动分行, 参考https://www.jianshu.com/p/a403d9332d47
+inoremap <Enter> <c-r>=EnterCmd('}')<CR>
+function EnterCmd(char) 
+    if getline('.')[col('.')-1] == a:char
+        return "\<Enter>\<Tab>\<Esc>mpa\<Enter>\<Esc>`pa" 
+    else
+        return "\<Enter>"
+    endif
+endfunction
 
 
 """"""""""""""""""""""""" 插件
@@ -640,26 +639,41 @@ set tags+=$QTDIR\include\tags
 " === NewFileTitle
 " === 
 "
-let g:NFT_author				= "sunowsir"
-let g:NFT_Mail					= "sunowsir@163.com"
-
-let g:NFT_shell_interpreter		= "/bin/bash"
-let g:NFT_python_interpreter	= "/bin/python"
-let g:NFT_python_coding			= "utf-8"
-let g:NFT_lua_interpreter		= "/bin/lua"
-
-let g:NFT_support_type_Dic		= {
+" 打开新文件的时候，让vim识别新文件后缀
+let g:NFT_support_type			= {
 			\ 'c'			: ['c'],
 			\ 'cpp'			: ['cpp', 'cxx'], 
-			\ 'go'			: ['go'],
 			\ 'sh'			: ['sh'], 
 			\ 'python'		: ['py'], 
 			\ 'lua'			: ['lua'], 
 			\ 'vim'			: ['vim'], 
 			\}
 
+" 新文件头部信息, 如果需要，直接修改下面的列表即可
+let g:NFT_normal_info			= [
+	\ "\t* File     : " . expand("%s"), 
+	\ "\t* Author   : sunowsir", 
+	\ "\t* Mail     : sunowsir@163.com", 
+	\ "\t* Github   : github.com/sunowsir", 
+	\ "\t* Creation : " . strftime("%c"), 
+	\ ]
 
-
+" 新文件自动添加常用代码，如果需要，直接修改下面的列表即可
+let g:NFT_default_code = {
+	\ 'c'		: ['#include <stdio.h>', ''], 
+	\ 'cpp'		: [
+					\ '#include <iostream>', 
+					\ '#include <string>', 
+					\ ''], 
+	\ 'h'		: [ 
+					\ "#ifndef _" . toupper(expand("%:r")) . "_H", 
+					\ "#define _" . toupper(expand("%:r")) . "_H", 
+					\ "#endif", 
+					\ ], 
+	\ 'sh'		: ['#!/bin/bash', '#'], 
+	\ 'python'	: ['#!/bin/python', '#coding=utf-8', '#'], 
+	\ 'lua'		: ['#!/bin/lua', ''], 
+	\}
 
 
 """""""""""""""""""""""""""""""""""""""

@@ -592,6 +592,7 @@ let g:ale_echo_msg_format = '[%linter%] %code: %%s'
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 0
 let g:airline#extensions#ale#enabled = -1
+let g:airline_powerline_fonts = 1   " 使用powerline打过补丁的字体
 
 " 配置每种语言的检查工具
 let g:ale_linters = { 

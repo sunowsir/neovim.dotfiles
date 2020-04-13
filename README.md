@@ -6,6 +6,7 @@
 1.  Configure 
 
     ```bash
+	# If you are using a debian series system
     sudo apt-get install -y vim wget curl gcc g++ python3 python3-pip exuberant-ctags cmake 
     
     git clone https://github.com/sunowsir/nvim.git
@@ -17,18 +18,18 @@
     # installation `YouCompleteMe` plug-in to make it work, you 
     # can choose the following three ways, or read the offical document.
     
-    sudo chmod +x ~/.vim/plugged/YouCompleteMe/install.py
+    sudo chmod +x ~/.config/nvim/plugged/YouCompleteMe/install.py
 
     # 1. incomplete installation .
-    python3 ~/.vim/plugged/YouCompleteMe/install.py
+    python3 ~/.config/nvim/plugged/YouCompleteMe/install.py
     
     # 3. the installation provides complete completement sit-in capabilities for c-famaily language.
     # need you have a better network enviroment.
-    python3 ./install.py --clang-completer
+    python3 ~/.config/nvim/plugged/YouCompleteMe/install.py --clang-completer
 
     # 3. full installation ( need a better network enviroment and `npm` enviroment and `go` enviroment ) . 
     sudo apt-get instal clang golang-go nodejs nodejs-dev npm
-    python3 ./install.py --all --system-libclang --clang-completer
+    python3 ~/.config/nvim/plugged/YouCompleteMe/install.py --all --system-libclang --clang-completer
 
     ```
 

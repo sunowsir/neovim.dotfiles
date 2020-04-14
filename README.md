@@ -62,6 +62,8 @@
 * [theniceboy](https://github.com/theniceboy/nvim)
 * [ma6174](https://github.com/ma6174/vim)
 
+## note
+国内用户请酌情使用特殊上网策略，否则网速可能会慢到你怀疑人生。。。
 
 
 

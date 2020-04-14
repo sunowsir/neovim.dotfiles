@@ -303,7 +303,6 @@ Plug 'dense-analysis/ale'
 " 代码补全插件，功能很强大，但是最难安装
 Plug 'Valloric/YouCompleteMe'
 " 缩进插件
-" Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Yggdroot/indentLine'
 
 """"""
@@ -400,6 +399,21 @@ call plug#end()
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 插件使用配置
+
+
+
+
+" ===
+" === vim-airline
+" ===
+let g:airline#extensions#ale#enabled = -1
+let g:airline_powerline_fonts = 1   " 使用powerline打过补丁的字体
+"打开tabline功能,方便查看Buffer和切换,省去了minibufexpl插件
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+"设置切换Buffer快捷键"
+noremap <LEADER>h :bn<CR>
+noremap <LEADER>l :bp<CR>
 
 
 
@@ -545,16 +559,6 @@ let g:python_highlight_all = 1
 
 
 " ===
-" === vim-indent-guide
-" ===
-" let g:indent_guides_guide_size = 1
-" let g:indent_guides_start_level = 2
-" let g:indent_guides_enable_on_vim_startup = 1
-" let g:indent_guides_color_change_percent = 1
-" silent! unmap <LEADER>ig
-" autocmd vimEnter * silent! unmap <LEADER>ig
-
-" ===
 " === indentLine
 " ===
 let g:indentLine_char = '¦'
@@ -577,6 +581,7 @@ map L :UndotreeToggle<CR>
 
 
 
+
 " === ALE
 " ===
 
@@ -591,8 +596,6 @@ let g:ale_linters_explicit = 1
 let g:ale_echo_msg_format = '[%linter%] %code: %%s'
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 0
-let g:airline#extensions#ale#enabled = -1
-let g:airline_powerline_fonts = 1   " 使用powerline打过补丁的字体
 
 " 配置每种语言的检查工具
 let g:ale_linters = { 
@@ -664,7 +667,6 @@ let g:NFT_default_code = {
 	\ 'c'		: ['#include <stdio.h>', ''], 
 	\ 'cpp'		: [
 					\ '#include <iostream>', 
-					\ '#include <string>', 
 					\ ''], 
 	\ 'h'		: [ 
 					\ "#ifndef _" . toupper(expand("%:r")) . "_H", 

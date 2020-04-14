@@ -1,5 +1,5 @@
 # MYvimrc
-'vim' configuration
+'nvim' configuration
 
 ## Installation
 

@@ -4,6 +4,7 @@
 ## Installation
 
 1.  Configure 
+
 > you need powerline fonts
 
     ```bash

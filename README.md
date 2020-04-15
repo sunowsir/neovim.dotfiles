@@ -8,7 +8,7 @@
 > 你需要`powerline`字体
 
     ```bash
-	# 如果你使用的是`debian`系列的系统可以像如下这样安装必要软件
+	# 如果你使用的是 `debian` 系列的系统可以像如下这样安装必要软件
 	# 如果您用的其他linux或者是Mac(主要是穷，不清楚Mac该怎么安装)请自行查找安装下面软件的方法，
     sudo apt-get install -y neovim wget curl python3 python3-pip exuberant-ctags cmake clang
 

@@ -5,6 +5,7 @@
 " "                                                                             
 "
 "
+""""""""""""""""""""""""""""""""""""""" Start of configuration.
 
 """"""""""""""""""""""""""" 启动执行
 
@@ -268,7 +269,6 @@ endfunction
 """"""""""""""""""""""""" 插件
 
 
-
 call plug#begin('~/.config/nvim/plugged')
 
 " vim状态栏
@@ -412,8 +412,8 @@ let g:airline_powerline_fonts = 1   " 使用powerline打过补丁的字体
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 "设置切换Buffer快捷键"
-noremap <LEADER>h :bn<CR>
-noremap <LEADER>l :bp<CR>
+noremap <LEADER>h :bp<CR>
+noremap <LEADER>l :bn<CR>
 
 
 
@@ -667,7 +667,8 @@ let g:NFT_default_code = {
 	\ 'c'		: ['#include <stdio.h>', ''], 
 	\ 'cpp'		: [
 					\ '#include <iostream>', 
-					\ ''], 
+					\ ''
+					\ ], 
 	\ 'h'		: [ 
 					\ "#ifndef _" . toupper(expand("%:r")) . "_H", 
 					\ "#define _" . toupper(expand("%:r")) . "_H", 
@@ -679,6 +680,8 @@ let g:NFT_default_code = {
 	\}
 
 
-"""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""" End of configuration.
+
+
 
 

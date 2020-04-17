@@ -108,7 +108,6 @@ set cindent
 " 特殊缩进设置 :case括号、C++类权限关键字是否缩进
 set cinoptions=l1,g0
 
-
 " 输入tab时不要自动转化为空格
 set noexpandtab
 
@@ -340,9 +339,7 @@ Plug 'gko/vim-coloresque', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'c
 """"""" Markdown 相关插件: 
 
 " 使用vim编写markdown的时候，启用该插件，可以在浏览器同步滚动渲染
-" Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-
 " 使用vim编写markdown的时候，启用该插件，可以自动格式化插入的表格
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 
@@ -550,6 +547,7 @@ map <LEADER>tm :TableModeToggle<CR>
 
 
 
+
 " ===
 " === Python-syntax
 " ===
@@ -612,6 +610,7 @@ let g:ale_sign_column_always = 0
 
 
 
+
 " === 
 " === vim-gutentags
 " === 
@@ -624,6 +623,7 @@ let g:gutentags_ctags_tagfile = '.tags'
 " 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录 "
 let s:vim_tags = expand('~/.cache/tags')
 let g:gutentags_cache_dir = s:vim_tags
+
 " 检测 ~/.cache/tags 不存在就新建 "
 if !isdirectory(s:vim_tags)
    silent! call mkdir(s:vim_tags, 'p')
@@ -633,9 +633,13 @@ endif
 let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+l']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+l']
 
-set tags+=$QTDIR\include\tags
-
+set tags=tags;
+set tags+=$PWD/include;
+set tags+=$PWD/src
+set autochdir
 
 
 
@@ -663,6 +667,7 @@ let g:NFT_normal_info			= [
 	\ ]
 
 " 新文件自动添加常用代码，如果需要，直接修改下面的列表即可
+" 请不要添加g:NFT_support_type列表中没有的语言
 let g:NFT_default_code = {
 	\ 'c'		: ['#include <stdio.h>', ''], 
 	\ 'cpp'		: [

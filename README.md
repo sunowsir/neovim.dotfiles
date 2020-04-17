@@ -1,61 +1,37 @@
 # MYvimrc
-我的`nvim`配置文件
+'nvim' configuration
 
 ## Installation
 
 1.  Configure 
 
-> 你需要`powerline`字体
+> you need powerline fonts
 
     ```bash
-	# 如果你使用的是 `debian` 系列的系统可以像如下这样安装必要软件
-	# 如果您用的其他linux或者是Mac(主要是穷，不清楚Mac该怎么安装)请自行查找安装下面软件的方法，
-    sudo apt-get install -y neovim wget curl python3 python3-pip exuberant-ctags cmake clang
-
-	# 安装nvim的python包，使得nvim获得python支持
-	# sudo pip3 install neovim
+	# If you are using a debian series system
+    sudo apt-get install -y vim wget curl gcc g++ python3 python3-pip exuberant-ctags cmake 
     
-	# 拷贝配置文件到你的nvim配置目录(linux下nvim配置文件在~/.config/nvim下)下
     git clone https://github.com/sunowsir/nvim.git ~/.config/nvim
     
-	# 打开`nvim`会自动下载`vim-plug`插件管理工具，并下载插件（根据您的网络条件可能需要特殊网络环境）
+	# Open nvim to configure automatically
     nvim     
 
-	# 等待回到终端后，配置`YouCompleteMe`代码补全插件使得其正常工作
+    # Wait for the configuration to complete and go back to the terminal.
+    # installation `YouCompleteMe` plug-in to make it work, you 
+    # can choose the following three ways, or read the offical document.
     
     sudo chmod +x ~/.config/nvim/plugged/YouCompleteMe/install.py
 
-    # 1. 简易配置，时间最短，功能简单
+    # 1. incomplete installation .
     python3 ~/.config/nvim/plugged/YouCompleteMe/install.py
     
-	# 2. 配置支持`C`家族语言代码
+    # 2. the installation provides complete completement sit-in capabilities for c-famaily language.
+    # need you have a better network enviroment.
     python3 ~/.config/nvim/plugged/YouCompleteMe/install.py --clang-completer
 
-	# 3. 配置支持所有`YouCompleteMe`支持的语言
-    python3 ~/.config/nvim/plugged/YouCompleteMe/install.py --all 
-
-	# 编辑`~/.config/nvim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py`文件中的`flags`数组，
-	# 将包含你想要支持的头文件的路径添加进去, 删除不想要的参数,例如：
-
-	flags = [
-	'-Wall',
-	'-Wextra',
-	'-Werror',
-	'-Wno-long-long',
-	'-Wno-variadic-macros',
-	'-fexceptions',
-	'-DNDEBUG',
-	'-x',
-	'c++',
-	'-isystem',
-	'/usr/include',
-	'-isystem',
-	'/usr/include/c++/9.3.0',
-	'-isystem', 
-	'/usr/include/libdtk-2.0.7/DCore/', 
-	'-isystem', 
-	'/usr/include/libdtk-2.0.7/DWidget/', 
-	]
+    # 3. full installation ( need a better network enviroment and `npm` enviroment and `go` enviroment ) . 
+    sudo apt-get instal clang golang-go nodejs nodejs-dev npm 
+    python3 ~/.config/nvim/plugged/YouCompleteMe/install.py --all --system-libclang --clang-completer
 
     ```
 
@@ -81,6 +57,8 @@
 | `<空格>`+`t`+`m`       | 普通模式下: 在写markdown的时候,敲击该快捷键可开启表格自动格式化功能, 会根据上一行的格式自动格式化正在编辑的这行       |
 | `<空格>` + `h`         | 普通模式下: 切换到左边的标签                                                                                          |
 | `<空格>` + `l`         | 普通模式下: 切换到右边的标签                                                                                          |
+| `<ctrl>` + `]`         | 普通模式下: 跳转到光标所在函数或变量的声明或定义处                                                                    |
+| `<ctrl>` + `t`         | 普通模式下: 跳转回来，与`<ctrl>`+`]`配合使用，更多关于ctags的快捷键请自行查找                                         |
 ...
 
 

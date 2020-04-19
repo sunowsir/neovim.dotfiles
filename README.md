@@ -9,7 +9,7 @@
 
     ```bash
 	# If you are using a debian series system
-    sudo apt-get install -y vim wget curl gcc g++ python3 python3-pip exuberant-ctags cmake 
+    sudo apt-get install -y nvim wget curl gcc g++ python3 python3-pip exuberant-ctags cmake 
     
     git clone https://github.com/sunowsir/nvim.git ~/.config/nvim
     

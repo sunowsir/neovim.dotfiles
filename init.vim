@@ -252,7 +252,7 @@ vmap Y "+y
 vmap <C-A> <ESC>ggVG
 
 " 显示详细错误信息
-nmap <Leader>s :ALEDetail<CR>
+" nmap <Leader>s :ALEDetail<CR>
 
 " 大括号自动分行, 参考https://www.jianshu.com/p/a403d9332d47
 inoremap <Enter> <c-r>=EnterCmd('}')<CR>
@@ -298,9 +298,10 @@ Plug 'itchyny/vim-cursorword'
 """""" 代码质量：
 
 " 异步语法检查插件
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 " 代码补全插件，功能很强大，但是最难安装
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " 缩进插件
 Plug 'Yggdroot/indentLine'
 
@@ -408,9 +409,11 @@ let g:airline_powerline_fonts = 1   " 使用powerline打过补丁的字体
 "打开tabline功能,方便查看Buffer和切换,省去了minibufexpl插件
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-"设置切换Buffer快捷键"
+"设置Buffer快捷键"
 noremap <LEADER>h :bp<CR>
 noremap <LEADER>l :bn<CR>
+noremap <LEADER>c :bd<CR>
+
 
 
 
@@ -419,6 +422,8 @@ noremap <LEADER>l :bn<CR>
 " ===
 " color snazzy
 " let g:SnazzyTransparent = 1
+
+
 
 
 " ===
@@ -435,6 +440,7 @@ let NERDTreeMapOpenInTab = "o"
 let NERDTreeMapPreview = ""
 let NERDTreeMapCloseDir = "n"
 let NERDTreeMapChangeRoot = "y"
+
 
 
 
@@ -455,50 +461,89 @@ let g:NERDTreeIndicatorMapCustom = {
 
 
 
+
 " === 
 " === You Complete ME
 " ===
 " 设置快捷键
-nnoremap gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-"配置默认文件路径
-let g:ycm_global_ycm_extra_conf = '~/.config/nvim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
-"打开vim时不再询问是否加载ycm_extra_conf.py配置
-let g:ycm_confirm_extra_conf = 0
-"自动开启语义补全
-let g:ycm_seed_identifiers_with_syntax = 1
-"在注释中也开启补全
-let g:ycm_complete_in_comments = 1
-let g:ycm_collect_identifiers_from_comments_and_strings = 0
-"字符串中也开启补全
-let g:ycm_complete_in_strings = 1
+" nnoremap gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" "配置默认文件路径
+" let g:ycm_global_ycm_extra_conf = '~/.config/nvim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+" "打开vim时不再询问是否加载ycm_extra_conf.py配置
+" let g:ycm_confirm_extra_conf = 0
+" "自动开启语义补全
+" let g:ycm_seed_identifiers_with_syntax = 1
+" "在注释中也开启补全
+" let g:ycm_complete_in_comments = 1
+" let g:ycm_collect_identifiers_from_comments_and_strings = 0
+" "字符串中也开启补全
+" let g:ycm_complete_in_strings = 1
+" " let g:ycm_collect_identifiers_from_tags_files = 1
+" "开启基于tag的补全，可以在这之后添加需要的标签路径
 " let g:ycm_collect_identifiers_from_tags_files = 1
-"开启基于tag的补全，可以在这之后添加需要的标签路径
-let g:ycm_collect_identifiers_from_tags_files = 1
-"开始补全的字符数
-let g:ycm_min_num_of_chars_for_completion = 1
-"补全后自动关闭预览窗口
-let g:ycm_autoclose_preview_window_after_completion = 1
-"禁止缓存匹配项,每次都重新生成匹配项
-let g:ycm_cache_omnifunc=0
-"离开插入模式后自动关闭预览窗口
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-"语法关键字补全
-let g:ycm_seed_identifiers_with_syntax = 1
-"整合UltiSnips的提示
-let g:ycm_use_ultisnips_completer = 1
-"在实现和声明之间跳转,并分屏打开
-let g:ycm_goto_buffer_command = 'horizontal-split'
+" "开始补全的字符数
+" let g:ycm_min_num_of_chars_for_completion = 1
+" "补全后自动关闭预览窗口
+" let g:ycm_autoclose_preview_window_after_completion = 1
+" "禁止缓存匹配项,每次都重新生成匹配项
+" let g:ycm_cache_omnifunc=0
+" "离开插入模式后自动关闭预览窗口
+" autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+" "语法关键字补全
+" let g:ycm_seed_identifiers_with_syntax = 1
+" "整合UltiSnips的提示
+" let g:ycm_use_ultisnips_completer = 1
+" "在实现和声明之间跳转,并分屏打开
+" let g:ycm_goto_buffer_command = 'horizontal-split'
+" 
+" " 关闭ycm自带的语法检查工具
+" let g:ycm_enable_diagnostic_signs = 0
+" let g:ycm_enable_diagnostic_highlighting = 0
+" let g:ycm_show_diagnostics_ui = 0
+" let g:ycm_echo_current_diagnostic = 0
+" 
+" let g:ycm_semantic_triggers =  {
+" 			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+" 			\ 'cs,lua,javascript': ['re!\w{2}'],
+" 			\ }
+" 
 
-" 关闭ycm自带的语法检查工具
-let g:ycm_enable_diagnostic_signs = 0
-let g:ycm_enable_diagnostic_highlighting = 0
-let g:ycm_show_diagnostics_ui = 0
-let g:ycm_echo_current_diagnostic = 0
 
-let g:ycm_semantic_triggers =  {
-			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
-			\ 'cs,lua,javascript': ['re!\w{2}'],
-			\ }
+
+
+" ===
+" === Coc
+" ===
+let g:coc_global_extensions = [
+	\ 'coc-json',
+	\ 'coc-css', 
+	\ 'coc-html', 
+	\ 'coc-clangd', 
+	\ 'coc-python', 
+	\ 'coc-lua', 
+	\ ]
+
+" 跳转到上一个错误处
+map <LEADER>k  <Plug>(coc-diagnostic-prev-error)
+
+" 跳转到下一个错误处
+map <LEADER>j  <Plug>(coc-diagnostic-next-error)
+
+" 跳转到定义处
+map <LEADER>gd  <Plug>(coc-definition)
+
+" 跳转到声明位置
+map <LEADER>gc  <Plug>(coc-declaration)
+
+" 跳转到实现位置
+map <LEADER>gi  <Plug>(coc-implementation)
+
+" 跳转到类型定义位置
+map <LEADER>gt  <Plug>(coc-type-definition)
+
+" 跳转到引用位置
+map <LEADER>gr  <Plug>(coc-references)
+" 
 
 
 
@@ -507,6 +552,7 @@ let g:ycm_semantic_triggers =  {
 " === Taglist
 " ===
 map <silent> T :TagbarOpenAutoClose<CR>
+
 
 
 
@@ -540,6 +586,7 @@ map <LEADER>smp :MarkdownPreviewStop<CR>
 
 
 
+
 " ===
 " === vim-table-mode
 " ===
@@ -556,6 +603,7 @@ let g:python_highlight_all = 1
 
 
 
+
 " ===
 " === indentLine
 " ===
@@ -564,10 +612,12 @@ let g:indentLine_char = '¦'
 
 
 
+
 " ===
 " === Goyo
 " ===
 map <LEADER>gy :Goyo<CR>
+
 
 
 
@@ -580,33 +630,33 @@ map L :UndotreeToggle<CR>
 
 
 
-" === ALE
-" ===
-
-let g:ale_sign_column_always = 1
-
+" " === ALE
+" " ===
 " 
-let g:ale_sign_error = '✗'
-" let g:ale_sign_warning = '⚠'
-let g:ale_sign_warning = '⚡'
-
-let g:ale_linters_explicit = 1
-let g:ale_echo_msg_format = '[%linter%] %code: %%s'
-let g:ale_lint_on_text_changed = 'normal'
-let g:ale_lint_on_insert_leave = 0
-
-" 配置每种语言的检查工具
-let g:ale_linters = { 
-            \ 'c': ['clang'],
-            \ 'cpp': ['clang'], 
-            \ 'python': ['pylint'], 
-            \ 'sh': ['shellcheck'], 
-            \ 'lua': ['luacheck'], 
-            \ }
-
-let g:ale_c_gcc_options = '-Wall '
-let g:ale_cpp_gcc_options = '-Wall '
-let g:ale_sign_column_always = 0
+" let g:ale_sign_column_always = 1
+" 
+" " 
+" let g:ale_sign_error = '✗'
+" " let g:ale_sign_warning = '⚠'
+" let g:ale_sign_warning = '⚡'
+" 
+" let g:ale_linters_explicit = 1
+" let g:ale_echo_msg_format = '[%linter%] %code: %%s'
+" let g:ale_lint_on_text_changed = 'normal'
+" let g:ale_lint_on_insert_leave = 0
+" 
+" " 配置每种语言的检查工具
+" let g:ale_linters = { 
+" 	\ 'c': ['clang'],
+" 	\ 'cpp': ['clang'], 
+" 	\ 'python': ['pylint'], 
+" 	\ 'sh': ['shellcheck'], 
+" 	\ 'lua': ['luacheck'], 
+" 	\ }
+" 
+" let g:ale_c_gcc_options = '-Wall'
+" let g:ale_cpp_gcc_options = '-Wall'
+" let g:ale_sign_column_always = 0
 
 
 
@@ -630,15 +680,18 @@ if !isdirectory(s:vim_tags)
 endif
 
 " 配置 ctags 的参数 "
-let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
-let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-let g:gutentags_ctags_extra_args += ['--c++-kinds=+l']
-let g:gutentags_ctags_extra_args += ['--c-kinds=+l']
+let g:gutentags_ctags_extra_args = [
+	\ '--fields=+niazSK',
+	\ '--extra=+q',
+	\ '--c++-kinds=+pxI',
+	\ '--c-kinds=+px',
+	\ '--c++-kinds=+l',
+	\ '--c-kinds=+l',
+	\ ]
 
 set tags=tags;
 set tags+=$PWD/include;
-set tags+=$PWD/src
+set tags+=$PWD/src;
 set autochdir
 
 
@@ -649,13 +702,13 @@ set autochdir
 "
 " 打开新文件的时候，让vim识别新文件后缀
 let g:NFT_support_type			= {
-			\ 'c'			: ['c'],
-			\ 'cpp'			: ['cpp', 'cxx'], 
-			\ 'sh'			: ['sh'], 
-			\ 'python'		: ['py'], 
-			\ 'lua'			: ['lua'], 
-			\ 'vim'			: ['vim'], 
-			\}
+	\ 'c'		: ['c'],
+	\ 'cpp'		: ['cpp', 'cxx'], 
+	\ 'sh'		: ['sh'], 
+	\ 'python'	: ['py'], 
+	\ 'lua'		: ['lua'], 
+	\ 'vim'		: ['vim'], 
+	\}
 
 " 新文件头部信息, 如果需要，直接修改下面的列表即可
 let g:NFT_normal_info			= [
@@ -669,7 +722,10 @@ let g:NFT_normal_info			= [
 " 新文件自动添加常用代码，如果需要，直接修改下面的列表即可
 " 请不要添加g:NFT_support_type列表中没有的语言
 let g:NFT_default_code = {
-	\ 'c'		: ['#include <stdio.h>', ''], 
+	\ 'c'		: [
+					\ '#include <stdio.h>', 
+					\ ''
+					\ ], 
 	\ 'cpp'		: [
 					\ '#include <iostream>', 
 					\ ''
@@ -679,9 +735,19 @@ let g:NFT_default_code = {
 					\ "#define _" . toupper(expand("%:r")) . "_H", 
 					\ "#endif", 
 					\ ], 
-	\ 'sh'		: ['#!/bin/bash', '#'], 
-	\ 'python'	: ['#!/bin/python', '#coding=utf-8', '#'], 
-	\ 'lua'		: ['#!/bin/lua', ''], 
+	\ 'sh'		: [
+					\ '#!/bin/bash', 
+					\ '#'
+					\ ], 
+	\ 'python'	: [
+					\ '#!/bin/python', 
+					\ '#coding=utf-8', 
+					\ '#'
+					\ ], 
+	\ 'lua'		: [
+					\ '#!/bin/lua', 
+					\ ''
+					\ ], 
 	\}
 
 

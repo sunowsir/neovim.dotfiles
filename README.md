@@ -17,6 +17,12 @@
     nvim     
 
     * Wait for the configuration to complete and go back to the terminal.
+	
+	* Install language server.
+		* python : `sudo pip install jedi`
+		* c/c++ : `sudo <package-manager> ccls`
+		* lua : `luarocks install --server=http://luarocks.org/dev lua-lsp`
+		* other language-server please goto: [https://github.com/neoclide/coc.nvim/wiki/Language-servers]
 
 3. Other
 

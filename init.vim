@@ -515,12 +515,11 @@ let g:NERDTreeIndicatorMapCustom = {
 " === Coc
 " ===
 let g:coc_global_extensions = [
+	\ 'coc-clangd', 
 	\ 'coc-json',
 	\ 'coc-css', 
 	\ 'coc-html', 
-	\ 'coc-clangd', 
 	\ 'coc-python', 
-	\ 'coc-lua', 
 	\ ]
 
 " 跳转到上一个错误处

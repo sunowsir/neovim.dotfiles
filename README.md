@@ -7,34 +7,20 @@
 
 > you need powerline fonts
 
-    ```bash
-	# If you are using a debian series system
-    sudo apt-get install -y nvim wget curl gcc g++ python3 python3-pip exuberant-ctags cmake 
+2. Installation 
+    * sudo apt-get install -y nvim wget curl  python3 python3-pip exuberant-ctags cmake clang
+		> For non-debian series systems, please find the installation method yourself to ensure that all dependent packages are installed.
     
-    git clone https://github.com/sunowsir/nvim.git ~/.config/nvim
+    * git clone https://github.com/sunowsir/nvim.git ~/.config/nvim
     
-	# Open nvim to configure automatically
+	*  Open nvim to configure automatically
     nvim     
 
-    # Wait for the configuration to complete and go back to the terminal.
-    # installation `YouCompleteMe` plug-in to make it work, you 
-    # can choose the following three ways, or read the offical document.
-    
-    sudo chmod +x ~/.config/nvim/plugged/YouCompleteMe/install.py
+    * Wait for the configuration to complete and go back to the terminal.
 
-    # 1. incomplete installation .
-    python3 ~/.config/nvim/plugged/YouCompleteMe/install.py
-    
-    # 2. the installation provides complete completement sit-in capabilities for c-famaily language.
-    # need you have a better network enviroment.
-    python3 ~/.config/nvim/plugged/YouCompleteMe/install.py --clang-completer
+3. Other
 
-    # 3. full installation ( need a better network enviroment and `npm` enviroment and `go` enviroment ) . 
-    sudo apt-get instal clang golang-go nodejs nodejs-dev npm 
-    python3 ~/.config/nvim/plugged/YouCompleteMe/install.py --all --system-libclang --clang-completer
-
-    ```
-
+	The code completion and inspection tools of each language need to be downloaded and installed when the code file of this type is opened for the first time.
     
 
 ## Shortcuts
@@ -69,7 +55,7 @@
 * [ma6174](https://github.com/ma6174/vim)
 
 ## note
-国内用户请酌情使用特殊上网策略，否则网速可能会慢到你怀疑人生。。。
+国内用户请酌情使用特殊联网策略(hosts、dns以及科学上网等等方案都可)，否则网速可能会慢到你怀疑人生。。。
 
 
 

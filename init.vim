@@ -237,9 +237,6 @@ map P "+p
 " 插入模式下: 退出插入模式
 imap <C-j> <ESC>
 
-" 插入括号自动换行并对齐
-" imap {<CR> {}<ESC>i<CR><ESC>O
-
 " 从插入模式进入普通模式下并全选
 imap <C-A> <ESC>ggVG
 
@@ -251,9 +248,6 @@ vmap Y "+y
 
 " 从选择模式进入普通模式下并全选
 vmap <C-A> <ESC>ggVG
-
-" 显示详细错误信息
-" nmap <Leader>s :ALEDetail<CR>
 
 " 大括号自动分行, 参考https://www.jianshu.com/p/a403d9332d47
 inoremap <Enter> <c-r>=EnterCmd('}')<CR>
@@ -324,7 +318,6 @@ Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 
 
 
-
 """""" HTML, CSS, JavaScript, PHP, JSON, 等等相关: 
 
 Plug 'elzr/vim-json'
@@ -389,6 +382,8 @@ Plug 'Raimondi/delimitMate'
 " vim-gutentags，标签管理插件
 Plug 'ludovicchabant/vim-gutentags'
 
+
+" 新文件自动增加标题
 Plug 'sunowsir/NewFileTitle'
 
 

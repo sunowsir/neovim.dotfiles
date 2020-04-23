@@ -514,34 +514,94 @@ let g:NERDTreeIndicatorMapCustom = {
 " ===
 " === Coc
 " ===
+" fix the most annoying bug that coc has
+"silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
 let g:coc_global_extensions = [
-	\ 'coc-clangd', 
-	\ 'coc-json',
-	\ 'coc-css', 
-	\ 'coc-html', 
 	\ 'coc-python', 
+	\ 'coc-vimlsp', 
+	\ 'coc-html', 
+	\ 'coc-json', 
+	\ 'coc-css', 
+	\ 'coc-tsserver', 
+	\ 'coc-yank', 
+	\ 'coc-lists', 
+	\ 'coc-gitignore', 
+	\ 'coc-vimlsp', 
+	\ 'coc-tailwindcss', 
+	\ 'coc-stylelint', 
+	\ 'coc-tslint', 
+	\ 'coc-lists', 
+	\ 'coc-git', 
+	\ 'coc-explorer', 
+	\ 'coc-pyright', 
+	\ 'coc-sourcekit', 
+	\ 'coc-translator', 
+	\ 'coc-flutter'
 	\ ]
 
+" 使用 <tab> 触发补全
+function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]	=~ '\s'
+endfunction
+inoremap <silent><expr> <Tab>
+	\ pumvisible() ? "\<C-n>" :
+	\ <SID>check_back_space() ? "\<Tab>" :
+	\ coc#refresh()
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" 选择函数内所有行
+xmap fi <Plug>(coc-funcobj-i)
+
+" 选择当前函数所在区间
+xmap fa <Plug>(coc-funcobj-a)
+
+" 选择函数内所有行
+omap fi <Plug>(coc-funcobj-i)
+
+" 选择当前函数所在区间
+omap fa <Plug>(coc-funcobj-a)
+
+" vim剪切板记录
+noremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
+
+" 获取并执行 language server 给出的当前选择区间内的可用操作
+nmap <LEADER>a  <Plug>(coc-codeaction-selected)
+
+" 获取并执行 language server 给出的当前缓冲区的可用操作
+xmap <LEADER>a  <Plug>(coc-codeaction-selected)
+
+" 展开文件树, 使用方向键控制方向，使用j重命名
+nmap tt :CocCommand explorer<CR>
+
+" 重命名光标所在位置符号
+nmap <LEADER>rn <Plug>(coc-rename)
+
 " 跳转到上一个错误处
-map <LEADER>k  <Plug>(coc-diagnostic-prev-error)
+nmap <LEADER>k  <Plug>(coc-diagnostic-prev-error)
 
 " 跳转到下一个错误处
-map <LEADER>j  <Plug>(coc-diagnostic-next-error)
+nmap <LEADER>j  <Plug>(coc-diagnostic-next-error)
 
 " 跳转到定义处
-map <LEADER>gd  <Plug>(coc-definition)
+nmap gd  <Plug>(coc-definition)
 
 " 跳转到声明位置
-map <LEADER>gc  <Plug>(coc-declaration)
+nmap gc  <Plug>(coc-declaration)
 
 " 跳转到实现位置
-map <LEADER>gi  <Plug>(coc-implementation)
+nmap gi  <Plug>(coc-implementation)
 
 " 跳转到类型定义位置
-map <LEADER>gt  <Plug>(coc-type-definition)
+nmap gy  <Plug>(coc-type-definition)
 
 " 跳转到引用位置
-map <LEADER>gr  <Plug>(coc-references)
+nmap gr  <Plug>(coc-references)
 " 
 
 

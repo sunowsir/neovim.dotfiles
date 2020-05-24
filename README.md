@@ -7,7 +7,7 @@
 
 > you need powerline fonts
 
-2. Installation 
+2. Manual configuration 
     * sudo apt-get install -y nvim wget curl  python3 python3-pip exuberant-ctags cmake clang
 		> For non-debian series systems, please find the installation method yourself to ensure that all dependent packages are installed.
     
@@ -24,7 +24,10 @@
 		* lua : `luarocks install --server=http://luarocks.org/dev lua-lsp`
 		* other language-server please goto: [https://github.com/neoclide/coc.nvim/wiki/Language-servers]
 
-3. Other
+3. Auto-configuration
+	``
+
+4. Other
 
 	The code completion and inspection tools of each language need to be downloaded and installed when the code file of this type is opened for the first time.
     

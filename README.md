@@ -25,7 +25,7 @@
 		* other language-server please goto: [https://github.com/neoclide/coc.nvim/wiki/Language-servers]
 
 3. Auto-configuration
-	``
+	`wget -qO- https://raw.githubusercontent.com/sunowsir/Vim_Configuration/master/setup.sh | sh -x`
 
 4. Other
 

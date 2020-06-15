@@ -270,7 +270,7 @@ Plug 'vim-airline/vim-airline'
 
 
 " 主题
-" Plug 'connorholyday/vim-snazzy'
+Plug 'connorholyday/vim-snazzy'
 
 
 """""" 数据显示：
@@ -416,8 +416,8 @@ noremap <LEADER>c :bd<CR>
 " ===
 " === snazzy
 " ===
-" color snazzy
-" let g:SnazzyTransparent = 1
+let g:SnazzyTransparent = 1
+color snazzy
 
 
 

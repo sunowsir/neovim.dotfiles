@@ -15,8 +15,8 @@ exec 'nohlsearch'
 " ===
 " === Auto load for first time uses(from github.com/theniceboy/nvim/init.vim)
 " ===
-if empty(glob('~/.config/nvim/autoload/plug.vim'))
-	silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+if empty(glob('~/.vim/autoload/plug.vim'))
+	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
 				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
@@ -263,7 +263,7 @@ endfunction
 """"""""""""""""""""""""" 插件
 
 
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.vim/plugged')
 
 " vim状态栏
 Plug 'vim-airline/vim-airline'
@@ -295,8 +295,8 @@ Plug 'itchyny/vim-cursorword'
 " 异步语法检查插件
 " Plug 'dense-analysis/ale'
 " 代码补全插件，功能很强大，但是最难安装
-" Plug 'Valloric/YouCompleteMe'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'Valloric/YouCompleteMe'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " 缩进插件
 Plug 'Yggdroot/indentLine'
 
@@ -463,46 +463,46 @@ let g:NERDTreeIndicatorMapCustom = {
 " ===
 " 设置快捷键
 " nnoremap gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-" "配置默认文件路径
-" let g:ycm_global_ycm_extra_conf = '~/.config/nvim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
-" "打开vim时不再询问是否加载ycm_extra_conf.py配置
-" let g:ycm_confirm_extra_conf = 0
-" "自动开启语义补全
-" let g:ycm_seed_identifiers_with_syntax = 1
-" "在注释中也开启补全
-" let g:ycm_complete_in_comments = 1
-" let g:ycm_collect_identifiers_from_comments_and_strings = 0
-" "字符串中也开启补全
-" let g:ycm_complete_in_strings = 1
-" " let g:ycm_collect_identifiers_from_tags_files = 1
-" "开启基于tag的补全，可以在这之后添加需要的标签路径
+"配置默认文件路径
+let g:ycm_global_ycm_extra_conf = '~/.config/nvim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+"打开vim时不再询问是否加载ycm_extra_conf.py配置
+let g:ycm_confirm_extra_conf = 0
+"自动开启语义补全
+let g:ycm_seed_identifiers_with_syntax = 1
+"在注释中也开启补全
+let g:ycm_complete_in_comments = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 0
+"字符串中也开启补全
+let g:ycm_complete_in_strings = 1
 " let g:ycm_collect_identifiers_from_tags_files = 1
-" "开始补全的字符数
-" let g:ycm_min_num_of_chars_for_completion = 1
-" "补全后自动关闭预览窗口
-" let g:ycm_autoclose_preview_window_after_completion = 1
-" "禁止缓存匹配项,每次都重新生成匹配项
-" let g:ycm_cache_omnifunc=0
-" "离开插入模式后自动关闭预览窗口
-" autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-" "语法关键字补全
-" let g:ycm_seed_identifiers_with_syntax = 1
-" "整合UltiSnips的提示
-" let g:ycm_use_ultisnips_completer = 1
-" "在实现和声明之间跳转,并分屏打开
-" let g:ycm_goto_buffer_command = 'horizontal-split'
-" 
-" " 关闭ycm自带的语法检查工具
-" let g:ycm_enable_diagnostic_signs = 0
-" let g:ycm_enable_diagnostic_highlighting = 0
-" let g:ycm_show_diagnostics_ui = 0
-" let g:ycm_echo_current_diagnostic = 0
-" 
-" let g:ycm_semantic_triggers =  {
-" 			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
-" 			\ 'cs,lua,javascript': ['re!\w{2}'],
-" 			\ }
-" 
+"开启基于tag的补全，可以在这之后添加需要的标签路径
+let g:ycm_collect_identifiers_from_tags_files = 1
+"开始补全的字符数
+let g:ycm_min_num_of_chars_for_completion = 1
+"补全后自动关闭预览窗口
+let g:ycm_autoclose_preview_window_after_completion = 1
+"禁止缓存匹配项,每次都重新生成匹配项
+let g:ycm_cache_omnifunc=0
+"离开插入模式后自动关闭预览窗口
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+"语法关键字补全
+let g:ycm_seed_identifiers_with_syntax = 1
+"整合UltiSnips的提示
+let g:ycm_use_ultisnips_completer = 1
+"在实现和声明之间跳转,并分屏打开
+let g:ycm_goto_buffer_command = 'horizontal-split'
+
+" 关闭ycm自带的语法检查工具
+let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_echo_current_diagnostic = 0
+
+let g:ycm_semantic_triggers =  {
+			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+			\ 'cs,lua,javascript': ['re!\w{2}'],
+			\ }
+
 
 
 
@@ -512,92 +512,92 @@ let g:NERDTreeIndicatorMapCustom = {
 " ===
 " fix the most annoying bug that coc has
 "silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
-let g:coc_global_extensions = [
-	\ 'coc-python', 
-	\ 'coc-vimlsp', 
-	\ 'coc-html', 
-	\ 'coc-json', 
-	\ 'coc-css', 
-	\ 'coc-tsserver', 
-	\ 'coc-yank', 
-	\ 'coc-lists', 
-	\ 'coc-gitignore', 
-	\ 'coc-vimlsp', 
-	\ 'coc-tailwindcss', 
-	\ 'coc-stylelint', 
-	\ 'coc-tslint', 
-	\ 'coc-lists', 
-	\ 'coc-git', 
-	\ 'coc-explorer', 
-	\ 'coc-pyright', 
-	\ 'coc-sourcekit', 
-	\ 'coc-translator', 
-	\ 'coc-flutter'
-	\ ]
-
-" 使用 <tab> 触发补全
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]	=~ '\s'
-endfunction
-inoremap <silent><expr> <Tab>
-	\ pumvisible() ? "\<C-n>" :
-	\ <SID>check_back_space() ? "\<Tab>" :
-	\ coc#refresh()
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" 选择函数内所有行
-xmap fi <Plug>(coc-funcobj-i)
-
-" 选择当前函数所在区间
-xmap fa <Plug>(coc-funcobj-a)
-
-" 选择函数内所有行
-omap fi <Plug>(coc-funcobj-i)
-
-" 选择当前函数所在区间
-omap fa <Plug>(coc-funcobj-a)
-
-" vim剪切板记录
-noremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-
-" 获取并执行 language server 给出的当前选择区间内的可用操作
-nmap <LEADER>a  <Plug>(coc-codeaction-selected)
-
-" 获取并执行 language server 给出的当前缓冲区的可用操作
-xmap <LEADER>a  <Plug>(coc-codeaction-selected)
-
-" 展开文件树, 使用方向键控制方向，使用j重命名
-nmap tt :CocCommand explorer<CR>
-
-" 重命名光标所在位置符号
-nmap <LEADER>rn <Plug>(coc-rename)
-
-" 跳转到上一个错误处
-nmap <LEADER>k  <Plug>(coc-diagnostic-prev-error)
-
-" 跳转到下一个错误处
-nmap <LEADER>j  <Plug>(coc-diagnostic-next-error)
-
-" 跳转到定义处
-nmap gd  <Plug>(coc-definition)
-
-" 跳转到声明位置
-nmap gc  <Plug>(coc-declaration)
-
-" 跳转到实现位置
-nmap gi  <Plug>(coc-implementation)
-
-" 跳转到类型定义位置
-nmap gy  <Plug>(coc-type-definition)
-
-" 跳转到引用位置
-nmap gr  <Plug>(coc-references)
+" let g:coc_global_extensions = [
+" 	\ 'coc-python', 
+" 	\ 'coc-vimlsp', 
+" 	\ 'coc-html', 
+" 	\ 'coc-json', 
+" 	\ 'coc-css', 
+" 	\ 'coc-tsserver', 
+" 	\ 'coc-yank', 
+" 	\ 'coc-lists', 
+" 	\ 'coc-gitignore', 
+" 	\ 'coc-vimlsp', 
+" 	\ 'coc-tailwindcss', 
+" 	\ 'coc-stylelint', 
+" 	\ 'coc-tslint', 
+" 	\ 'coc-lists', 
+" 	\ 'coc-git', 
+" 	\ 'coc-explorer', 
+" 	\ 'coc-pyright', 
+" 	\ 'coc-sourcekit', 
+" 	\ 'coc-translator', 
+" 	\ 'coc-flutter'
+" 	\ ]
+" 
+" " 使用 <tab> 触发补全
+" function! s:check_back_space() abort
+" 	let col = col('.') - 1
+" 	return !col || getline('.')[col - 1]	=~ '\s'
+" endfunction
+" inoremap <silent><expr> <Tab>
+" 	\ pumvisible() ? "\<C-n>" :
+" 	\ <SID>check_back_space() ? "\<Tab>" :
+" 	\ coc#refresh()
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" function! s:check_back_space() abort
+" 	let col = col('.') - 1
+" 	return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
+" inoremap <silent><expr> <c-space> coc#refresh()
+" 
+" " 选择函数内所有行
+" xmap fi <Plug>(coc-funcobj-i)
+" 
+" " 选择当前函数所在区间
+" xmap fa <Plug>(coc-funcobj-a)
+" 
+" " 选择函数内所有行
+" omap fi <Plug>(coc-funcobj-i)
+" 
+" " 选择当前函数所在区间
+" omap fa <Plug>(coc-funcobj-a)
+" 
+" " vim剪切板记录
+" noremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
+" 
+" " 获取并执行 language server 给出的当前选择区间内的可用操作
+" nmap <LEADER>a  <Plug>(coc-codeaction-selected)
+" 
+" " 获取并执行 language server 给出的当前缓冲区的可用操作
+" xmap <LEADER>a  <Plug>(coc-codeaction-selected)
+" 
+" " 展开文件树, 使用方向键控制方向，使用j重命名
+" nmap tt :CocCommand explorer<CR>
+" 
+" " 重命名光标所在位置符号
+" nmap <LEADER>rn <Plug>(coc-rename)
+" 
+" " 跳转到上一个错误处
+" nmap <LEADER>k  <Plug>(coc-diagnostic-prev-error)
+" 
+" " 跳转到下一个错误处
+" nmap <LEADER>j  <Plug>(coc-diagnostic-next-error)
+" 
+" " 跳转到定义处
+" nmap gd  <Plug>(coc-definition)
+" 
+" " 跳转到声明位置
+" nmap gc  <Plug>(coc-declaration)
+" 
+" " 跳转到实现位置
+" nmap gi  <Plug>(coc-implementation)
+" 
+" " 跳转到类型定义位置
+" nmap gy  <Plug>(coc-type-definition)
+" 
+" " 跳转到引用位置
+" nmap gr  <Plug>(coc-references)
 " 
 
 
@@ -756,7 +756,7 @@ set autochdir
 " === 
 "
 " 打开新文件的时候，让vim识别新文件后缀
-let g:NFT_support_type			= {
+let g:NFT_support_type = {
 	\ 'c'		: ['c'],
 	\ 'cpp'		: ['cpp', 'cxx'], 
 	\ 'sh'		: ['sh'], 
@@ -766,7 +766,7 @@ let g:NFT_support_type			= {
 	\}
 
 " 新文件头部信息, 如果需要，直接修改下面的列表即可
-let g:NFT_normal_info			= [
+let g:NFT_normal_info = [
 	\ "\t* File     : " . expand("%s"), 
 	\ "\t* Author   : sunowsir", 
 	\ "\t* Mail     : sunowsir@163.com", 
@@ -775,15 +775,14 @@ let g:NFT_normal_info			= [
 	\ ]
 
 " 新文件自动添加常用代码，如果需要，直接修改下面的列表即可
-" 请不要添加g:NFT_support_type列表中没有的语言
 let g:NFT_default_code = {
 	\ 'c'		: [
 					\ '#include <stdio.h>', 
-					\ ''
+					\ '', 
 					\ ], 
 	\ 'cpp'		: [
 					\ '#include <iostream>', 
-					\ ''
+					\ '', 
 					\ ], 
 	\ 'h'		: [ 
 					\ "#ifndef _" . toupper(expand("%:r")) . "_H", 
@@ -792,16 +791,22 @@ let g:NFT_default_code = {
 					\ ], 
 	\ 'sh'		: [
 					\ '#!/bin/bash', 
-					\ '#'
+					\ '#', 
+					\ '', 
 					\ ], 
 	\ 'python'	: [
 					\ '#!/bin/python', 
 					\ '#coding=utf-8', 
-					\ '#'
+					\ '#', 
+					\ '', 
 					\ ], 
 	\ 'lua'		: [
 					\ '#!/bin/lua', 
-					\ ''
+					\ '', 
+					\ ], 
+	\ 'html'		: [
+					\ '<!DOCTYPE html>', 
+					\ '', 
 					\ ], 
 	\}
 

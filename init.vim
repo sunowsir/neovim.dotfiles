@@ -756,7 +756,7 @@ set autochdir
 " === 
 "
 " 打开新文件的时候，让vim识别新文件后缀
-let g:NFT_support_type			= {
+let g:NFT_support_type = {
 	\ 'c'		: ['c'],
 	\ 'cpp'		: ['cpp', 'cxx'], 
 	\ 'sh'		: ['sh'], 
@@ -766,7 +766,7 @@ let g:NFT_support_type			= {
 	\}
 
 " 新文件头部信息, 如果需要，直接修改下面的列表即可
-let g:NFT_normal_info			= [
+let g:NFT_normal_info = [
 	\ "\t* File     : " . expand("%s"), 
 	\ "\t* Author   : sunowsir", 
 	\ "\t* Mail     : sunowsir@163.com", 
@@ -775,15 +775,14 @@ let g:NFT_normal_info			= [
 	\ ]
 
 " 新文件自动添加常用代码，如果需要，直接修改下面的列表即可
-" 请不要添加g:NFT_support_type列表中没有的语言
 let g:NFT_default_code = {
 	\ 'c'		: [
 					\ '#include <stdio.h>', 
-					\ ''
+					\ '', 
 					\ ], 
 	\ 'cpp'		: [
 					\ '#include <iostream>', 
-					\ ''
+					\ '', 
 					\ ], 
 	\ 'h'		: [ 
 					\ "#ifndef _" . toupper(expand("%:r")) . "_H", 
@@ -792,16 +791,22 @@ let g:NFT_default_code = {
 					\ ], 
 	\ 'sh'		: [
 					\ '#!/bin/bash', 
-					\ '#'
+					\ '#', 
+					\ '', 
 					\ ], 
 	\ 'python'	: [
 					\ '#!/bin/python', 
 					\ '#coding=utf-8', 
-					\ '#'
+					\ '#', 
+					\ '', 
 					\ ], 
 	\ 'lua'		: [
 					\ '#!/bin/lua', 
-					\ ''
+					\ '', 
+					\ ], 
+	\ 'html'		: [
+					\ '<!DOCTYPE html>', 
+					\ '', 
 					\ ], 
 	\}
 

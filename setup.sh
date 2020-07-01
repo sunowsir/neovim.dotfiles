@@ -76,8 +76,16 @@ function Setup() {
 		mkdir "${vim_conf_path}"
 		eval "${vimplug_download_command}"
 		mkdir "${vim_plug_path}"
-		cd "${vim_plug_path}" || return 3
-		git clone https://gitee.com/mirrors/youcompleteme.git
+		
+		git clone https://gitee.com/mirrors/youcompleteme.git "${vim_plug_path}"
+		git clone https://gitee.com/coolloser/requests-futures.git "${vim_plug_path}/YouCompleteMe/third_party/requests-futures"
+		git clone https://gitee.com/Harveyxu/python-certifi.git "${vim_plug_path}/YouCompleteMe/third_party/requests_deps/certifi"
+		git clone https://gitee.com/Harveyxu/chardet.git "${vim_plug_path}/YouCompleteMe/third_party/requests_deps/chardet"
+		git clone https://gitee.com/coolloser/idna.git "${vim_plug_path}/YouCompleteMe/third_party/requests_deps/idna"
+		git clone https://gitee.com/zrsharp/requests.git "${vim_plug_path}/YouCompleteMe/third_party/requests_deps/requests"
+		git clone https://gitee.com/Harveyxu/urllib3.git "${vim_plug_path}/YouCompleteMe/third_party/requests_deps/urllib3"
+		git clone https://gitee.com/zrsharp/ycmd.git "${vim_plug_path}/YouCompleteMe/third_party/ycmd"
+
 		mv "${vim_plug_path}/youcompleteme" "${vim_plug_path}/YouCompleteMe"
 		cd "${vim_plug_path}/YouCompleteMe" || return 4
 		cp "${HOME}/Vim_Configuration/config" "${vim_plug_path}/YouCompleteMe/.git/"

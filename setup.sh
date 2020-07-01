@@ -78,6 +78,8 @@ function Setup() {
 		mkdir "${vim_plug_path}"
 		
 		git clone https://gitee.com/mirrors/youcompleteme.git "${vim_plug_path}"
+		mv "${vim_plug_path}/youcompleteme" "${vim_plug_path}/YouCompleteMe"
+
 		git clone https://gitee.com/coolloser/requests-futures.git "${vim_plug_path}/YouCompleteMe/third_party/requests-futures"
 		git clone https://gitee.com/Harveyxu/python-certifi.git "${vim_plug_path}/YouCompleteMe/third_party/requests_deps/certifi"
 		git clone https://gitee.com/Harveyxu/chardet.git "${vim_plug_path}/YouCompleteMe/third_party/requests_deps/chardet"
@@ -86,10 +88,9 @@ function Setup() {
 		git clone https://gitee.com/Harveyxu/urllib3.git "${vim_plug_path}/YouCompleteMe/third_party/requests_deps/urllib3"
 		git clone https://gitee.com/zrsharp/ycmd.git "${vim_plug_path}/YouCompleteMe/third_party/ycmd"
 
-		mv "${vim_plug_path}/youcompleteme" "${vim_plug_path}/YouCompleteMe"
 		cd "${vim_plug_path}/YouCompleteMe" || return 4
 		cp "${HOME}/Vim_Configuration/config.backup" "${vim_plug_path}/YouCompleteMe/.git/config"
-		git submodule update --init --recursive
+		# git submodule update --init --recursive
 		cp ~/Vim_Configuration/vimrc "${nvim_conf_path}"
 		vim -c 'PlugInstall' -c 'q' -c 'q'
 		eval "python3 ${vim_plug_path}/YouCompleteMe/install.py --clang-completer"

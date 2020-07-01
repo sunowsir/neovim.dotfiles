@@ -56,6 +56,7 @@ function Install() {
 }
 
 function Clone() {
+	rm -rf ~/Vim_Configuration
 	git clone https://github.com/sunowsir/Vim_Configuration.git
 	
 	return 0
@@ -84,7 +85,7 @@ function Setup() {
 		cp "${HOME}/Vim_Configuration/config.backup" "${vim_plug_path}/YouCompleteMe/.git/config"
 		cp ~/Vim_Configuration/vimrc "${nvim_conf_path}"
 		vim -c 'PlugInstall' -c 'q' -c 'q'
-		python3 ~/.config/nvim/plugged/YouCompleteMe/install.py --clang-completer
+		eval "python3 ${vim_plug_path}/YouCompleteMe/install.py --clang-completer"
 	fi
 
 	rm -rf "${HOME}/Vim_Configuration"

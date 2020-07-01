@@ -29,4 +29,4 @@
 	url = https://gitee.com/Harveyxu/urllib3
 [submodule "third_party/ycmd"]
 	active = true
-	url = https://gitee.com/coolloser/ycmd
+	url = https://gitee.com/zrsharp/ycmd

@@ -14,15 +14,15 @@ apt_need_package=" clang python3 python-pip shellcheck vim git cmake python3-dev
 yum_need_package=" epel-release clang gcc vim git ctags xclip python3-devel cmake "
 pacman_need_package=" gcc clang python python-pip neovim shellcheck git ccls nodejs npm cmake "
 
-nvim_conf_path="${HOME}/.config/nvim/"
+nvim_conf_path="${HOME}/.config/nvim"
 nvim_conf_name="init.vim"
-vim_conf_path="${HOME}/.vim/"
-vim_plug_path="${vim_conf_path}/plugged/"
+vim_conf_path="${HOME}/.vim"
+vim_plug_path="${vim_conf_path}/plugged"
 vim_conf_name="vimrc"
 vim_default_conf_path="${HOME}"
 vim_default_conf_name=".vimrc"
 
-clone_project_path="${HOME}/Vim_Configuration/"
+clone_project_path="${HOME}/Vim_Configuration"
 
 vimplug_download_command="curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://gitee.com/c4pr1c3/vim-plug/raw/master/plug.vim"
 

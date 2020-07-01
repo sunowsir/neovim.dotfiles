@@ -88,9 +88,8 @@ function Setup() {
 
 		mv "${vim_plug_path}/youcompleteme" "${vim_plug_path}/YouCompleteMe"
 		cd "${vim_plug_path}/YouCompleteMe" || return 4
-		cp "${HOME}/Vim_Configuration/config" "${vim_plug_path}/YouCompleteMe/.git/"
-		git submodule update --init --recursive
 		cp "${HOME}/Vim_Configuration/config.backup" "${vim_plug_path}/YouCompleteMe/.git/config"
+		git submodule update --init --recursive
 		cp ~/Vim_Configuration/vimrc "${nvim_conf_path}"
 		vim -c 'PlugInstall' -c 'q' -c 'q'
 		eval "python3 ${vim_plug_path}/YouCompleteMe/install.py --clang-completer"

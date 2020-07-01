@@ -6,20 +6,44 @@
 #	* Github   : github.com/sunowsir
 #	* Creation : Sat 23 May 2020 02:56:33 PM CST
 
+
+####################################################
+
+
+apt_need_package=" clang python3 python-pip shellcheck vim git cmake python3-dev "
+yum_need_package=" epel-release clang gcc vim git ctags xclip python3-devel cmake "
+pacman_need_package=" gcc clang python python-pip neovim shellcheck git ccls nodejs npm cmake "
+
+nvim_conf_path="${HOME}/.config/nvim/"
+nvim_conf_name="init.vim"
+vim_conf_path="${HOME}/.vim/"
+vim_plug_path="${vim_conf_path}/plugged/"
+vim_conf_name="vimrc"
+vim_default_conf_path="${HOME}"
+vim_default_conf_name=".vimrc"
+
+clone_project_path="${HOME}/Vim_Configuration/"
+
+vimplug_download_command="curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://gitee.com/c4pr1c3/vim-plug/raw/master/plug.vim"
+
+
+####################################################
+
+
 function Init() {
 	cd ~/ || return 1
 }
 
-function Install_Necessary_software() {
+function Install() {
 	if apt --version;
 	then
-		sudo apt-get install -y clang python3 python-pip shellcheck vim git cmake python3-dev
+		eval "sudo apt-get install -y ${apt_need_package}"
 	elif yum --version;
 	then
-		sudo yum install -y epel-release clang gcc vim git ctags xclip python3-devel cmake
+		eval "sudo yum install -y ${yum_need_package}"
 	elif pacman --version;
 	then
-		sudo pacman -S --noconfirm gcc clang python python-pip neovim shellcheck git ccls nodejs npm cmake
+		eval "sudo pacman -S --noconfirm ${pacman_need_package}"
 		sudo pip3 install neovim
 		sudo pip install neovim
 		sudo npm install -g neovim
@@ -41,33 +65,36 @@ function Setup() {
 	
 	if pacman --version;
 	then
-		mv ~/.config/nvim/ ~/.config/nvim.old
-		mkdir ~/.config/nvim
-		cp ~/Vim_Configuration/init.vim ~/.config/nvim/
+		mv "${nvim_conf_path}" "${nvim_conf_path}.old"
+		mkdir "${nvim_conf_path}"
+		cp "${clone_project_path}/${nvim_conf_name}" "${nvim_conf_path}"
 		nvim -c 'PlugInstall' -c 'q' -c 'q'
 	else 
-		mv ~/.vimrc ~/.vimrc.old
-		mv ~/.vim ~/.vim.old
-		mkdir ~/.vim/
-		curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://gitee.com/c4pr1c3/vim-plug/raw/master/plug.vim
-		mkdir ~/.vim/plugged/
-		cd ~/.vim/plugged/ || return 3
+		mv "${vim_default_conf_path}/${vim_default_conf_name}" "${vim_default_conf_path}/${vim_default_conf_name}.old"
+		mv "${vim_conf_path}" "${vim_conf_path}.old"
+		mkdir "${vim_conf_path}"
+		eval "${vimplug_download_command}"
+		mkdir "${vim_plug_path}"
+		cd "${vim_plug_path}" || return 3
 		git clone https://gitee.com/mirrors/youcompleteme.git
-		mv ~/.vim/plugged/youcompleteme ~/.vim/plugged/YouCompleteMe
-		cd ~/.vim/plugged/YouCompleteMe || return 4
+		mv "${vim_plug_path}/youcompleteme" "${vim_plug_path}/YouCompleteMe"
+		cd "${vim_plug_path}/YouCompleteMe" || return 4
+		cp "${HOME}/Vim_Configuration/config" "${vim_plug_path}/YouCompleteMe/.git/"
 		git submodule update --init --recursive
-		sed -i 's/https:\/\/gitee.com\/mirrors\/youcompleteme\.git/https:\/\/github\.com\/ycm-core\/YouCompleteMe\.git/g' "${HOME}/.vim/plugged/YouCompleteMe/.git/config"
-		cp ~/Vim_Configuration/vimrc ~/.vim/
+		cp "${HOME}/Vim_Configuration/config.backup" "${vim_plug_path}/YouCompleteMe/.git/config"
+		cp ~/Vim_Configuration/vimrc "${nvim_conf_path}"
 		vim -c 'PlugInstall' -c 'q' -c 'q'
 		python3 ~/.config/nvim/plugged/YouCompleteMe/install.py --clang-completer
 	fi
+
+	rm -rf "${HOME}/Vim_Configuration"
 }
 
 
 function Main() {
-	Install_Necessary_software || return "${?}"
-	Clone_Profile || return "${?}"
-	Setup_file || return "${?}"
+	Install || return "${?}"
+	Clone || return "${?}"
+	Setup || return "${?}"
 	
 	return 0
 }

@@ -12,7 +12,7 @@
 
 apt_need_package=" clang python3 python-pip shellcheck vim git cmake python3-dev "
 yum_need_package=" epel-release clang gcc vim git ctags xclip python3-devel cmake "
-pacman_need_package=" gcc clang python python-pip neovim shellcheck git ccls nodejs npm cmake "
+pacman_need_package=" gcc clang python python-pip neovim shellcheck git nodejs npm cmake clangd "
 
 nvim_conf_path="${HOME}/.config/nvim"
 nvim_conf_name="init.vim"
@@ -70,6 +70,7 @@ function Setup() {
 		mkdir "${nvim_conf_path}"
 		cp "${clone_project_path}/${nvim_conf_name}" "${nvim_conf_path}"
 		nvim -c 'PlugInstall' -c 'q' -c 'q'
+		nvim -c 'CocInstall coc-clangd' -c 'q' -c 'q'
 	else 
 		mv "${vim_default_conf_path}/${vim_default_conf_name}" "${vim_default_conf_path}/${vim_default_conf_name}.old"
 		mv "${vim_conf_path}" "${vim_conf_path}.old"
@@ -77,8 +78,7 @@ function Setup() {
 		eval "${vimplug_download_command}"
 		mkdir "${vim_plug_path}"
 		
-		git clone https://gitee.com/mirrors/youcompleteme.git "${vim_plug_path}"
-		mv "${vim_plug_path}/youcompleteme" "${vim_plug_path}/YouCompleteMe"
+		git clone https://gitee.com/mirrors/youcompleteme.git "${vim_plug_path}/YouCompleteMe"
 
 		git clone https://gitee.com/coolloser/requests-futures.git "${vim_plug_path}/YouCompleteMe/third_party/requests-futures"
 		git clone https://gitee.com/Harveyxu/python-certifi.git "${vim_plug_path}/YouCompleteMe/third_party/requests_deps/certifi"

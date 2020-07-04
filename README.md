@@ -3,6 +3,7 @@
 
 ## Installation
 
+
 1.  Configure 
 
 > you need powerline fonts
@@ -26,6 +27,7 @@
 
 3. Auto-configuration
 > Developing and testing.
+> Only support `pacman` now.
 	`wget -qO- https://raw.githubusercontent.com/sunowsir/Vim_Configuration/master/setup.sh | sh -x`
 
 4. Other

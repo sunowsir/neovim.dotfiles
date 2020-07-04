@@ -387,6 +387,10 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'sunowsir/NewFileTitle'
 
 
+" 悬浮终端
+Plug 'voldikss/vim-floaterm'
+
+
 call plug#end()
 
 
@@ -810,6 +814,18 @@ let g:NFT_default_code = {
 					\ ], 
 	\}
 
+
+
+
+" === 
+" === Floaterm
+" === 
+"
+
+" 打开一个新的悬浮终端
+map <LEADER>fm :FloatermNew ranger<CR>
+
+hi FloatermNC guibg=skyblue
 
 """"""""""""""""""""""""""""""""""""""" End of configuration.
 

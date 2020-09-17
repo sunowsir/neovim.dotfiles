@@ -752,7 +752,6 @@ let g:gutentags_ctags_extra_args = [
 set tags=tags;
 set tags+=$PWD/include;
 set tags+=$PWD/src;
-set autochdir
 
 
 

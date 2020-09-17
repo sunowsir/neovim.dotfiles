@@ -9,6 +9,7 @@
 
 ####################################################
 
+now_dir="dirname ${0}"
 
 apt_need_package=" clangd-9 python3 python-pip shellcheck vim git cmake python3-dev nodejs npm"
 yum_need_package=" epel-release clang gcc vim git ctags xclip python3-devel cmake nodejs npm"
@@ -48,12 +49,20 @@ function Install() {
 		eval "sudo pacman -S --noconfirm ${pacman_need_package}"
 		sudo pip3 install neovim
 		sudo pip install neovim
-		sudo npm install -g neovim
+		sudo npm install -i -g neovim
 	else 
 		echo "Sorry, not supported at this time."
 		return 2
 	fi
-	
+
+	sudo npm install diagnostic-languageserver bash-language-server
+
+	if ! clangd --version;
+	then
+		local clangd_bin="$(ls /usr/bin/clangd* | head -1 | awk '{print $1}'"
+		sudo ln -s "${clangd_bin}" "/usr/bin/clangd"
+	fi
+
 	return 0
 }
 
@@ -74,9 +83,6 @@ function Setup() {
 		cp -r "${clone_project_path}/${nvim_conf_name}" "${nvim_conf_path}"
         cp -r "${clone_project_path}/${coc_conf_file}" "${nvim_conf_path}"
 
-        sudo npm install -i -g neovim
-        sudo pip3 install neovim
-
 		nvim -c 'PlugInstall' -c 'q' -c 'q'
 		nvim -c 'CocInstall coc-clangd' -c 'q' -c 'q'
 	else 
@@ -85,12 +91,6 @@ function Setup() {
 
 		cp -r "${clone_project_path}/${vim_conf_name}" "${vim_conf_path}"
         cp -r "${clone_project_path}/${coc_conf_file}" "${vim_conf_path}"
-
-        if clangd-9 --version && 
-           ! clangd --version;
-        then
-            sudo ln -s /usr/bin/clangd-9 /usr/bin/clangd
-        fi
 
 		vim -c 'PlugInstall' -c 'q' -c 'q'
 		vim -c 'CocInstall coc-clangd' -c 'q' -c 'q'

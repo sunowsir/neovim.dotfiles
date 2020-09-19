@@ -79,13 +79,16 @@ filetype plugin on
 set encoding=utf-8
 
 " 设置菜单语言为中文, 编码为utf-8
-set langmenu=zh_CN.UTF-8
+" set langmenu=zh_CN.UTF-8
 
 " 设置提示语言为中文, 编码为utf-8
-language message zh_CN.UTF-8
+" language message zh_CN.UTF-8
 
 " 设置文件默认编码
 set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
+
+" 设置终端编码
+set termencoding=utf-8
 
 " 防止特殊符号无法正常显示
 set ambiwidth=double
@@ -109,7 +112,10 @@ set cindent
 set cinoptions=l1,g0
 
 " 输入tab时不要自动转化为空格
-set noexpandtab
+" set noexpandtab
+
+" 输入tab时自动转化为空格
+set expandtab
 
 " shiftwidth (sw) : 使用每层缩进的空格数。
 set tabstop=4
@@ -294,8 +300,7 @@ Plug 'itchyny/vim-cursorword'
 
 " 异步语法检查插件
 " Plug 'dense-analysis/ale'
-" 代码补全插件，功能很强大，但是最难安装
-" Plug 'Valloric/YouCompleteMe'
+"
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " 缩进插件
 Plug 'Yggdroot/indentLine'
@@ -386,11 +391,6 @@ Plug 'ludovicchabant/vim-gutentags'
 " 新文件自动增加标题
 Plug 'sunowsir/NewFileTitle'
 
-
-" 悬浮终端
-Plug 'voldikss/vim-floaterm'
-
-
 call plug#end()
 
 
@@ -409,10 +409,11 @@ let g:airline_powerline_fonts = 1   " 使用powerline打过补丁的字体
 "打开tabline功能,方便查看Buffer和切换,省去了minibufexpl插件
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
+
 "设置Buffer快捷键"
 noremap <LEADER>h :bp<CR>
 noremap <LEADER>l :bn<CR>
-noremap <LEADER>c :bd<CR>
+noremap <LEADER>d :bd<CR>
 
 
 
@@ -461,61 +462,12 @@ let g:NERDTreeIndicatorMapCustom = {
 
 
 
-
-" === 
-" === You Complete ME
-" ===
-" 设置快捷键
-" nnoremap gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-" "配置默认文件路径
-" let g:ycm_global_ycm_extra_conf = '~/.config/nvim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
-" "打开vim时不再询问是否加载ycm_extra_conf.py配置
-" let g:ycm_confirm_extra_conf = 0
-" "自动开启语义补全
-" let g:ycm_seed_identifiers_with_syntax = 1
-" "在注释中也开启补全
-" let g:ycm_complete_in_comments = 1
-" let g:ycm_collect_identifiers_from_comments_and_strings = 0
-" "字符串中也开启补全
-" let g:ycm_complete_in_strings = 1
-" " let g:ycm_collect_identifiers_from_tags_files = 1
-" "开启基于tag的补全，可以在这之后添加需要的标签路径
-" let g:ycm_collect_identifiers_from_tags_files = 1
-" "开始补全的字符数
-" let g:ycm_min_num_of_chars_for_completion = 1
-" "补全后自动关闭预览窗口
-" let g:ycm_autoclose_preview_window_after_completion = 1
-" "禁止缓存匹配项,每次都重新生成匹配项
-" let g:ycm_cache_omnifunc=0
-" "离开插入模式后自动关闭预览窗口
-" autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-" "语法关键字补全
-" let g:ycm_seed_identifiers_with_syntax = 1
-" "整合UltiSnips的提示
-" let g:ycm_use_ultisnips_completer = 1
-" "在实现和声明之间跳转,并分屏打开
-" let g:ycm_goto_buffer_command = 'horizontal-split'
-" 
-" " 关闭ycm自带的语法检查工具
-" let g:ycm_enable_diagnostic_signs = 0
-" let g:ycm_enable_diagnostic_highlighting = 0
-" let g:ycm_show_diagnostics_ui = 0
-" let g:ycm_echo_current_diagnostic = 0
-" 
-" let g:ycm_semantic_triggers =  {
-" 			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
-" 			\ 'cs,lua,javascript': ['re!\w{2}'],
-" 			\ }
-" 
-
-
-
-
 " ===
 " === Coc
 " ===
 " fix the most annoying bug that coc has
 "silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
+let g:coc_disable_startup_warning = 1
 let g:coc_global_extensions = [
 	\ 'coc-python', 
 	\ 'coc-vimlsp', 
@@ -528,7 +480,6 @@ let g:coc_global_extensions = [
 	\ 'coc-gitignore', 
 	\ 'coc-vimlsp', 
 	\ 'coc-tailwindcss', 
-	\ 'coc-stylelint', 
 	\ 'coc-tslint', 
 	\ 'coc-lists', 
 	\ 'coc-git', 
@@ -536,8 +487,7 @@ let g:coc_global_extensions = [
 	\ 'coc-pyright', 
 	\ 'coc-sourcekit', 
 	\ 'coc-translator', 
-	\ 'coc-flutter', 
-    \ 'coc-clangd', 
+	\ 'coc-flutter'
 	\ ]
 
 " 使用 <tab> 触发补全
@@ -752,6 +702,7 @@ let g:gutentags_ctags_extra_args = [
 set tags=tags;
 set tags+=$PWD/include;
 set tags+=$PWD/src;
+set autochdir
 
 
 
@@ -772,9 +723,9 @@ let g:NFT_support_type = {
 " 新文件头部信息, 如果需要，直接修改下面的列表即可
 let g:NFT_normal_info = [
 	\ "\t* File     : " . expand("%s"), 
-	\ "\t* Author   : author", 
-	\ "\t* Mail     : user@email.com", 
-	\ "\t* Github   : github.com/user", 
+	\ "\t* Author   : sunowsir", 
+	\ "\t* Mail     : sunowsir@163.com", 
+	\ "\t* Github   : github.com/sunowsir", 
 	\ "\t* Creation : " . strftime("%c"), 
 	\ ]
 
@@ -817,15 +768,6 @@ let g:NFT_default_code = {
 
 
 
-" === 
-" === Floaterm
-" === 
-"
-
-" 打开一个新的悬浮终端
-map <LEADER>fm :FloatermNew ranger<CR>
-
-hi FloatermNC guibg=skyblue
 
 """"""""""""""""""""""""""""""""""""""" End of configuration.
 

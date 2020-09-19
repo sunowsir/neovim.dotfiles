@@ -59,7 +59,7 @@ function Install() {
 
 	if ! clangd --version;
 	then
-		local clangd_bin="$(ls /usr/bin/clangd* | head -1 | awk '{print $1}'"
+		local clangd_bin="$(ls /usr/bin/clangd* | head -1)"
 		sudo ln -s "${clangd_bin}" "/usr/bin/clangd"
 	fi
 
@@ -67,36 +67,34 @@ function Install() {
 }
 
 function Clone() {
-	rm -rf ~/Vim_Configuration
-	git clone https://github.com/sunowsir/Vim_Configuration.git
+	if ! test -d ~/Vim_Configuration; then
+		git clone https://github.com/sunowsir/Vim_Configuration.git
+	fi
 	
 	return 0
 }
 
 function Setup() {
-	
+
 	if pacman --version;
 	then
 		mv "${nvim_conf_path}" "${nvim_conf_path}.old"
 		mkdir "${nvim_conf_path}"
 
 		cp -r "${clone_project_path}/${nvim_conf_name}" "${nvim_conf_path}"
-        cp -r "${clone_project_path}/${coc_conf_file}" "${nvim_conf_path}"
+        	cp -r "${clone_project_path}/${coc_conf_file}" "${nvim_conf_path}"
 
 		nvim -c 'PlugInstall' -c 'q' -c 'q'
-		nvim -c 'CocInstall coc-clangd' -c 'q' -c 'q'
 	else 
 		mv "${vim_conf_path}" "${vim_conf_path}.old"
 		mkdir "${vim_conf_path}"
 
 		cp -r "${clone_project_path}/${vim_conf_name}" "${vim_conf_path}"
-        cp -r "${clone_project_path}/${coc_conf_file}" "${vim_conf_path}"
+        	cp -r "${clone_project_path}/${coc_conf_file}" "${vim_conf_path}"
 
 		vim -c 'PlugInstall' -c 'q' -c 'q'
-		vim -c 'CocInstall coc-clangd' -c 'q' -c 'q'
 	fi
 
-	rm -rf "${HOME}/Vim_Configuration"
 }
 
 

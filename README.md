@@ -27,8 +27,12 @@
 
 3. Auto-configuration
 > Developing and testing.
-> Only support `pacman` now.
-	`wget -qO- https://raw.githubusercontent.com/sunowsir/Vim_Configuration/master/setup.sh | sh -x`
+
+```bash
+wget https://raw.githubusercontent.com/sunowsir/Vim_Configuration/master/setup.sh
+chmod +x ./setup.sh
+./setup.sh --install
+```
 
 4. Other
 

@@ -82,7 +82,7 @@ function Setup() {
 		mkdir "${nvim_conf_path}"
 
 		cp -r "${clone_project_path}/${nvim_conf_name}" "${nvim_conf_path}"
-        	cp -r "${clone_project_path}/${coc_conf_file}" "${nvim_conf_path}"
+        cp -r "${clone_project_path}/${coc_conf_file}" "${nvim_conf_path}"
 
 		nvim -c 'PlugInstall' -c 'q' -c 'q'
 	else 
@@ -90,7 +90,7 @@ function Setup() {
 		mkdir "${vim_conf_path}"
 
 		cp -r "${clone_project_path}/${vim_conf_name}" "${vim_conf_path}"
-        	cp -r "${clone_project_path}/${coc_conf_file}" "${vim_conf_path}"
+        cp -r "${clone_project_path}/${coc_conf_file}" "${vim_conf_path}"
 
 		vim -c 'PlugInstall' -c 'q' -c 'q'
 	fi

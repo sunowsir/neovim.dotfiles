@@ -211,7 +211,12 @@
 					"shellcheck": {
 						"command": "shellcheck",
 						"debounce": 100,
-						"args": [ "--format=gcc", "-"],
+						"args": [ 
+                            "--format=gcc",
+                            "--source-path=SCRIPTDIR",
+                            "--external-sources", 
+                            "-"
+                        ],
 						"offsetLine": 0,
 						"offsetColumn": 0,
 						"sourceName": "shellcheck",

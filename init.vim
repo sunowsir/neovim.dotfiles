@@ -391,6 +391,9 @@ Plug 'ludovicchabant/vim-gutentags'
 " 新文件自动增加标题
 Plug 'sunowsir/NewFileTitle'
 
+" fzf 模糊搜索
+Plug 'junegunn/fzf.vim'
+
 call plug#end()
 
 
@@ -487,7 +490,8 @@ let g:coc_global_extensions = [
 	\ 'coc-pyright', 
 	\ 'coc-sourcekit', 
 	\ 'coc-translator', 
-	\ 'coc-flutter'
+	\ 'coc-flutter', 
+	\ 'coc-clangd'
 	\ ]
 
 " 使用 <tab> 触发补全
@@ -555,6 +559,11 @@ nmap gy  <Plug>(coc-type-definition)
 nmap gr  <Plug>(coc-references)
 " 
 
+
+" ===
+" === vim-signify
+"
+let g:signify_sign_change_delete ='-'
 
 
 
@@ -746,7 +755,7 @@ let g:NFT_default_code = {
 					\ ], 
 	\ 'sh'		: [
 					\ '#!/bin/bash', 
-					\ '#', 
+					\ "#", 
 					\ '', 
 					\ ], 
 	\ 'python'	: [

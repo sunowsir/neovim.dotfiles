@@ -269,6 +269,7 @@ endfunction
 """"""""""""""""""""""""" 插件
 
 
+let g:plug_url_format='https://git::@hub.fastgit.org/%s.git'
 call plug#begin('~/.config/nvim/plugged')
 
 " vim状态栏

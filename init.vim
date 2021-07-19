@@ -434,35 +434,24 @@ color snazzy
 " ===
 " === NERDTree
 " ===
-map tt :NERDTreeToggle<CR>
-let NERDTreeMapOpenExpl = ""
-let NERDTreeMapUpdir = ""
-let NERDTreeMapUpdirKeepOpen = "l"
-let NERDTreeMapOpenSplit = ""
-let NERDTreeOpenVSplit = ""
-let NERDTreeMapActivateNode = "i"
-let NERDTreeMapOpenInTab = "o"
-let NERDTreeMapPreview = ""
-let NERDTreeMapCloseDir = "n"
-let NERDTreeMapChangeRoot = "y"
 
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
 
-
-
-" ==
-" == NERDTree-git
-" ==
 let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ "Unknown"   : "?"
-    \ }
+	\ "Modified"  : "✹",
+	\ "Staged"    : "✚",
+	\ "Untracked" : "✭",
+	\ "Renamed"   : "➜",
+	\ "Unmerged"  : "═",
+	\ "Deleted"   : "✖",
+	\ "Dirty"     : "✗",
+	\ "Clean"     : "✔︎",
+	\ 'Ignored'   : '☒',
+	\ "Unknown"   : "?"
+	\ }
 
 
 
@@ -487,7 +476,6 @@ let g:coc_global_extensions = [
 	\ 'coc-tslint', 
 	\ 'coc-lists', 
 	\ 'coc-git', 
-	\ 'coc-explorer', 
 	\ 'coc-pyright', 
 	\ 'coc-sourcekit', 
 	\ 'coc-translator', 
@@ -531,9 +519,6 @@ nmap <LEADER>a  <Plug>(coc-codeaction-selected)
 
 " 获取并执行 language server 给出的当前缓冲区的可用操作
 xmap <LEADER>a  <Plug>(coc-codeaction-selected)
-
-" 展开文件树, 使用方向键控制方向，使用j重命名
-nmap tt :CocCommand explorer<CR>
 
 " 重命名光标所在位置符号
 nmap <LEADER>rn <Plug>(coc-rename)

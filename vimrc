@@ -518,10 +518,10 @@ xmap <LEADER>a  <Plug>(coc-codeaction-selected)
 nmap <LEADER>rn <Plug>(coc-rename)
 
 " 跳转到上一个错误处
-nmap <LEADER>k  <Plug>(coc-diagnostic-prev-error)
+nmap ek  <Plug>(coc-diagnostic-prev-error)
 
 " 跳转到下一个错误处
-nmap <LEADER>j  <Plug>(coc-diagnostic-next-error)
+nmap ej  <Plug>(coc-diagnostic-next-error)
 
 " 跳转到定义处
 nmap gd  <Plug>(coc-definition)

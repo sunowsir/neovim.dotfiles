@@ -299,12 +299,12 @@ Plug 'itchyny/vim-cursorword'
 
 """""" 代码质量：
 
-" 异步语法检查插件
-" Plug 'dense-analysis/ale'
-"
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " 缩进插件
 Plug 'Yggdroot/indentLine'
+
+"gdb
+Plug 'hiberabyss/NeovimGdb'
 
 """"""
 
@@ -327,11 +327,7 @@ Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 """""" HTML, CSS, JavaScript, PHP, JSON, 等等相关: 
 
 Plug 'elzr/vim-json'
-" Plug 'hail2u/vim-css3-syntax'
-" Plug 'spf13/PIV', { 'for' :['php', 'vim-plug'] }
 Plug 'gko/vim-coloresque', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
-" Plug 'pangloss/vim-javascript', { 'for' :['javascript', 'vim-plug'] }
-" Plug 'mattn/emmet-vim'
 
 """""" 
 
@@ -372,7 +368,7 @@ Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or 
 
 
 " 快速注释插件
-" Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line
+Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line
 
 
 " Dependencies
@@ -392,12 +388,7 @@ Plug 'ludovicchabant/vim-gutentags'
 " 新文件自动增加标题
 Plug 'sunowsir/NewFileTitle'
 
-" fzf 模糊搜索
-Plug 'junegunn/fzf.vim'
-
 call plug#end()
-
-
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 插件使用配置
@@ -524,10 +515,10 @@ xmap <LEADER>a  <Plug>(coc-codeaction-selected)
 nmap <LEADER>rn <Plug>(coc-rename)
 
 " 跳转到上一个错误处
-nmap <LEADER>k  <Plug>(coc-diagnostic-prev-error)
+nmap ek  <Plug>(coc-diagnostic-prev-error)
 
 " 跳转到下一个错误处
-nmap <LEADER>j  <Plug>(coc-diagnostic-next-error)
+nmap ej  <Plug>(coc-diagnostic-next-error)
 
 " 跳转到定义处
 nmap gd  <Plug>(coc-definition)
@@ -635,37 +626,6 @@ map L :UndotreeToggle<CR>
 
 
 
-" " === ALE
-" " ===
-" 
-" let g:ale_sign_column_always = 1
-" 
-" " 
-" let g:ale_sign_error = '✗'
-" " let g:ale_sign_warning = '⚠'
-" let g:ale_sign_warning = '⚡'
-" 
-" let g:ale_linters_explicit = 1
-" let g:ale_echo_msg_format = '[%linter%] %code: %%s'
-" let g:ale_lint_on_text_changed = 'normal'
-" let g:ale_lint_on_insert_leave = 0
-" 
-" " 配置每种语言的检查工具
-" let g:ale_linters = { 
-" 	\ 'c': ['clang'],
-" 	\ 'cpp': ['clang'], 
-" 	\ 'python': ['pylint'], 
-" 	\ 'sh': ['shellcheck'], 
-" 	\ 'lua': ['luacheck'], 
-" 	\ }
-" 
-" let g:ale_c_gcc_options = '-Wall'
-" let g:ale_cpp_gcc_options = '-Wall'
-" let g:ale_sign_column_always = 0
-
-
-
-
 " === 
 " === vim-gutentags
 " === 
@@ -759,6 +719,7 @@ let g:NFT_default_code = {
 					\ '', 
 					\ ], 
 	\}
+
 
 
 

@@ -469,7 +469,6 @@ let g:coc_global_extensions = [
     \ 'coc-texlab', 
     \ 'coc-markdownlint', 
     \ 'coc-rls', 
-    \ 'coc-sh'
 	\ ]
 
 " 使用 <tab> 触发补全

@@ -112,6 +112,11 @@
 			"command": "lua-lsp",
 			"filetypes": ["lua"]
 		},
+        "bash": {
+            "command": "bash-language-server",
+            "args": ["start"],
+            "filetypes": ["sh"]
+        }, 
 		"dls": {
 			"command": "diagnostic-languageserver",
 			"args": ["--stdio"],

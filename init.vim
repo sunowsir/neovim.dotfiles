@@ -234,26 +234,17 @@ map Q :q<CR>
 " 普通模式下保存
 map <C-j> :w<CR>
 
-" 普通模式下全选
-map <C-A> <ESC><ESC>ggVG
-
 " 普通模式下将系统剪切板内容粘贴到当前光标后
 map P "+p
 
 " 插入模式下: 退出插入模式
 imap <C-j> <ESC>
 
-" 从插入模式进入普通模式下并全选
-imap <C-A> <ESC>ggVG
-
 " 选择模式下: 退出选择模式
 vmap <C-j> <ESC>
 
 " 选择模式下: 复制到外部
 vmap Y "+y
-
-" 从选择模式进入普通模式下并全选
-vmap <C-A> <ESC>ggVG
 
 " 大括号自动分行, 参考https://www.jianshu.com/p/a403d9332d47
 inoremap <Enter> <c-r>=EnterCmd('}')<CR>
@@ -274,7 +265,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 " vim状态栏
 Plug 'vim-airline/vim-airline'
-
 
 " 主题
 Plug 'connorholyday/vim-snazzy'
@@ -300,6 +290,7 @@ Plug 'itchyny/vim-cursorword'
 """""" 代码质量：
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 " 缩进插件
 Plug 'Yggdroot/indentLine'
 
@@ -453,11 +444,11 @@ let g:NERDTreeIndicatorMapCustom = {
 "silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
 let g:coc_disable_startup_warning = 1
 let g:coc_global_extensions = [
+	\ 'coc-html', 
+	\ 'coc-css', 
+	\ 'coc-json', 
 	\ 'coc-python', 
 	\ 'coc-vimlsp', 
-	\ 'coc-html', 
-	\ 'coc-json', 
-	\ 'coc-css', 
 	\ 'coc-tsserver', 
 	\ 'coc-yank', 
 	\ 'coc-lists', 
@@ -471,7 +462,14 @@ let g:coc_global_extensions = [
 	\ 'coc-sourcekit', 
 	\ 'coc-translator', 
 	\ 'coc-flutter', 
-	\ 'coc-clangd'
+	\ 'coc-clangd', 
+    \ 'coc-texlab', 
+    \ 'coc-cmake', 
+    \ 'coc-go', 
+    \ 'coc-texlab', 
+    \ 'coc-markdownlint', 
+    \ 'coc-rls', 
+    \ 'coc-sh'
 	\ ]
 
 " 使用 <tab> 触发补全
@@ -613,8 +611,6 @@ let g:indentLine_char = '¦'
 " === Goyo
 " ===
 map <LEADER>gy :Goyo<CR>
-
-
 
 
 " ===

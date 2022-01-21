@@ -17,7 +17,7 @@ exec 'nohlsearch'
 " ===
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
 	silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+				\ https://pd.zwc365.com/seturl/https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -260,7 +260,8 @@ endfunction
 """"""""""""""""""""""""" 插件
 
 
-let g:plug_url_format='https://git::@hub.fastgit.org/%s.git'
+" let g:plug_url_format='https://git::@hub.fastgit.org/%s.git'
+let g:plug_url_format='https://git::@github.com.cnpmjs.org/%s.git'
 call plug#begin('~/.config/nvim/plugged')
 
 " vim状态栏

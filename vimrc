@@ -270,7 +270,9 @@ endfunction
 
 
 " let g:plug_url_format='https://git::@hub.fastgit.org/%s.git'
-let g:plug_url_format='https://git::@github.com.cnpmjs.org/%s.git'
+let g:plug_url_format='https://git::@hub.fastgit.xyz/%s.git'
+" let g:plug_url_format='https://git::@github.com.cnpmjs.org/%s.git'
+" let g:plug_url_format='https://git::@gitclone.com/github.com/%s.git'
 call plug#begin('~/.vim/plugged')
 
 " vim状态栏

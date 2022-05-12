@@ -17,7 +17,7 @@ exec 'nohlsearch'
 " ===
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
 	silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-				\ https://pd.zwc365.com/seturl/https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -260,10 +260,7 @@ endfunction
 """"""""""""""""""""""""" 插件
 
 
-" let g:plug_url_format='https://git::@hub.fastgit.org/%s.git'
-let g:plug_url_format='https://git::@hub.fastgit.xyz/%s.git'
-" let g:plug_url_format='https://git::@github.com.cnpmjs.org/%s.git'
-" let g:plug_url_format='https://git::@gitclone.com/github.com/%s.git'
+" let g:plug_url_format='https://git::@hub.fastgit.xyz/%s.git'
 call plug#begin('~/.config/nvim/plugged')
 
 " vim状态栏
@@ -298,8 +295,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Yggdroot/indentLine'
 
 "gdb
-Plug 'hiberabyss/NeovimGdb'
-
+" Plug 'hiberabyss/NeovimGdb'
 """"""
 
 
@@ -333,6 +329,8 @@ Plug 'gko/vim-coloresque', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'c
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 " 使用vim编写markdown的时候，启用该插件，可以自动格式化插入的表格
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
+" 自动生成行好的插件
+Plug 'dkarter/bullets.vim'
 
 """"""" 
 
@@ -576,6 +574,19 @@ map <LEADER>smp :MarkdownPreviewStop<CR>
 " === vim-table-mode
 " ===
 map <LEADER>tm :TableModeToggle<CR>
+
+
+
+
+" ===
+" === bullets
+" ===
+let g:bullets_enabled_file_types = [
+    \ 'markdown',
+    \ 'text',
+    \ 'gitcommit',
+    \ 'scratch'
+    \]
 
 
 

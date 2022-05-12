@@ -17,7 +17,7 @@ exec 'nohlsearch'
 " ===
 if empty(glob('~/.vim/autoload/plug.vim'))
 	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-				\ https://pd.zwc365.com/seturl/https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -234,26 +234,17 @@ map Q :q<CR>
 " 普通模式下保存
 map <C-j> :w<CR>
 
-" 普通模式下全选
-map <C-A> <ESC><ESC>ggVG
-
 " 普通模式下将系统剪切板内容粘贴到当前光标后
 map P "+p
 
 " 插入模式下: 退出插入模式
 imap <C-j> <ESC>
 
-" 从插入模式进入普通模式下并全选
-imap <C-A> <ESC>ggVG
-
 " 选择模式下: 退出选择模式
 vmap <C-j> <ESC>
 
 " 选择模式下: 复制到外部
 vmap Y "+y
-
-" 从选择模式进入普通模式下并全选
-vmap <C-A> <ESC>ggVG
 
 " 大括号自动分行, 参考https://www.jianshu.com/p/a403d9332d47
 inoremap <Enter> <c-r>=EnterCmd('}')<CR>
@@ -269,15 +260,11 @@ endfunction
 """"""""""""""""""""""""" 插件
 
 
-" let g:plug_url_format='https://git::@hub.fastgit.org/%s.git'
-let g:plug_url_format='https://git::@hub.fastgit.xyz/%s.git'
-" let g:plug_url_format='https://git::@github.com.cnpmjs.org/%s.git'
-" let g:plug_url_format='https://git::@gitclone.com/github.com/%s.git'
+" let g:plug_url_format='https://git::@hub.fastgit.xyz/%s.git'
 call plug#begin('~/.vim/plugged')
 
 " vim状态栏
 Plug 'vim-airline/vim-airline'
-
 
 " 主题
 Plug 'connorholyday/vim-snazzy'
@@ -302,13 +289,13 @@ Plug 'itchyny/vim-cursorword'
 
 """""" 代码质量：
 
-" 异步语法检查插件
-" Plug 'dense-analysis/ale'
-"
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 " 缩进插件
 Plug 'Yggdroot/indentLine'
 
+"gdb
+" Plug 'hiberabyss/NeovimGdb'
 """"""
 
 
@@ -330,11 +317,7 @@ Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 """""" HTML, CSS, JavaScript, PHP, JSON, 等等相关: 
 
 Plug 'elzr/vim-json'
-" Plug 'hail2u/vim-css3-syntax'
-" Plug 'spf13/PIV', { 'for' :['php', 'vim-plug'] }
 Plug 'gko/vim-coloresque', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
-" Plug 'pangloss/vim-javascript', { 'for' :['javascript', 'vim-plug'] }
-" Plug 'mattn/emmet-vim'
 
 """""" 
 
@@ -346,6 +329,8 @@ Plug 'gko/vim-coloresque', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'c
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 " 使用vim编写markdown的时候，启用该插件，可以自动格式化插入的表格
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
+" 自动生成行好的插件
+Plug 'dkarter/bullets.vim'
 
 """"""" 
 
@@ -375,7 +360,7 @@ Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or 
 
 
 " 快速注释插件
-" Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line
+Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line
 
 
 " Dependencies
@@ -396,8 +381,6 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'sunowsir/NewFileTitle'
 
 call plug#end()
-
-
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 插件使用配置
@@ -427,6 +410,7 @@ noremap <LEADER>d :bd<CR>
 " ===
 let g:SnazzyTransparent = 1
 color snazzy
+
 
 
 
@@ -461,24 +445,20 @@ let g:NERDTreeIndicatorMapCustom = {
 "silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
 let g:coc_disable_startup_warning = 1
 let g:coc_global_extensions = [
-	\ 'coc-python', 
-	\ 'coc-vimlsp', 
 	\ 'coc-html', 
-	\ 'coc-json', 
 	\ 'coc-css', 
-	\ 'coc-tsserver', 
-	\ 'coc-yank', 
-	\ 'coc-lists', 
-	\ 'coc-gitignore', 
-	\ 'coc-vimlsp', 
-	\ 'coc-tailwindcss', 
-	\ 'coc-tslint', 
-	\ 'coc-lists', 
+	\ 'coc-json', 
 	\ 'coc-git', 
+	\ 'coc-gitignore', 
+	\ 'coc-clangd', 
 	\ 'coc-pyright', 
-	\ 'coc-sourcekit', 
-	\ 'coc-translator', 
-	\ 'coc-flutter'
+	\ 'coc-vimlsp', 
+	\ 'coc-tsserver', 
+    \ 'coc-cmake', 
+    \ 'coc-go', 
+    \ 'coc-texlab', 
+    \ 'coc-rls', 
+    \ 'coc-vetur', 
 	\ ]
 
 " 使用 <tab> 触发补全
@@ -544,6 +524,11 @@ nmap gr  <Plug>(coc-references)
 " 
 
 
+" ===
+" === vim-signify
+"
+let g:signify_sign_change_delete ='-'
+
 
 
 " ===
@@ -594,6 +579,19 @@ map <LEADER>tm :TableModeToggle<CR>
 
 
 " ===
+" === bullets
+" ===
+let g:bullets_enabled_file_types = [
+    \ 'markdown',
+    \ 'text',
+    \ 'gitcommit',
+    \ 'scratch'
+    \]
+
+
+
+
+" ===
 " === Python-syntax
 " ===
 let g:python_highlight_all = 1
@@ -617,44 +615,11 @@ let g:indentLine_char = '¦'
 map <LEADER>gy :Goyo<CR>
 
 
-
-
 " ===
 " === Undotree
 " ===
 let g:undotree_DiffAutoOpen = 0
 map L :UndotreeToggle<CR>
-
-
-
-
-" " === ALE
-" " ===
-" 
-" let g:ale_sign_column_always = 1
-" 
-" " 
-" let g:ale_sign_error = '✗'
-" " let g:ale_sign_warning = '⚠'
-" let g:ale_sign_warning = '⚡'
-" 
-" let g:ale_linters_explicit = 1
-" let g:ale_echo_msg_format = '[%linter%] %code: %%s'
-" let g:ale_lint_on_text_changed = 'normal'
-" let g:ale_lint_on_insert_leave = 0
-" 
-" " 配置每种语言的检查工具
-" let g:ale_linters = { 
-" 	\ 'c': ['clang'],
-" 	\ 'cpp': ['clang'], 
-" 	\ 'python': ['pylint'], 
-" 	\ 'sh': ['shellcheck'], 
-" 	\ 'lua': ['luacheck'], 
-" 	\ }
-" 
-" let g:ale_c_gcc_options = '-Wall'
-" let g:ale_cpp_gcc_options = '-Wall'
-" let g:ale_sign_column_always = 0
 
 
 
@@ -734,7 +699,7 @@ let g:NFT_default_code = {
 					\ ], 
 	\ 'sh'		: [
 					\ '#!/bin/bash', 
-					\ '#', 
+					\ "#", 
 					\ '', 
 					\ ], 
 	\ 'python'	: [
@@ -752,6 +717,7 @@ let g:NFT_default_code = {
 					\ '', 
 					\ ], 
 	\}
+
 
 
 

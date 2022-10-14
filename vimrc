@@ -453,7 +453,6 @@ let g:coc_global_extensions = [
 	\ 'coc-clangd', 
 	\ 'coc-pyright', 
 	\ 'coc-vimlsp', 
-	\ 'coc-tsserver', 
     \ 'coc-cmake', 
     \ 'coc-go', 
     \ 'coc-texlab', 

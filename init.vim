@@ -79,10 +79,10 @@ filetype plugin on
 set encoding=utf-8
 
 " 设置菜单语言为中文, 编码为utf-8
-" set langmenu=zh_CN.UTF-8
+set langmenu=zh_CN.UTF-8
 
 " 设置提示语言为中文, 编码为utf-8
-" language message zh_CN.UTF-8
+language message zh_CN.UTF-8
 
 " 设置文件默认编码
 set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
@@ -500,18 +500,20 @@ let g:coc_global_extensions = [
 " 使用 <tab> 触发补全
 function! s:check_back_space() abort
 	let col = col('.') - 1
-	return !col || getline('.')[col - 1]	=~ '\s'
+	return !col || getline('.')[col - 1] =~ '\s'
 endfunction
 inoremap <silent><expr> <Tab>
 	\ pumvisible() ? "\<C-n>" :
 	\ <SID>check_back_space() ? "\<Tab>" :
 	\ coc#refresh()
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" inoremap <silent><expr> <c-space> coc#refresh()
 function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 " 选择函数内所有行
 xmap fi <Plug>(coc-funcobj-i)

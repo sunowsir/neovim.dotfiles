@@ -495,6 +495,10 @@ let g:coc_global_extensions = [
     \ 'coc-texlab', 
     \ 'coc-rls', 
     \ 'coc-vetur', 
+    \ 'coc-lua', 
+    \ 'coc-sh', 
+    \ 'coc-java', 
+    \ 'coc-fzf-preview', 
 	\ ]
 
 " 使用 <tab> 触发补全

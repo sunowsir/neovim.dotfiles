@@ -16,9 +16,9 @@ exec 'nohlsearch'
 " === Auto load for first time uses(from github.com/theniceboy/nvim/init.vim)
 " ===
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
-	silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 
@@ -461,17 +461,17 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
 let g:NERDTreeIndicatorMapCustom = {
-	\ "Modified"  : "✹",
-	\ "Staged"    : "✚",
-	\ "Untracked" : "✭",
-	\ "Renamed"   : "➜",
-	\ "Unmerged"  : "═",
-	\ "Deleted"   : "✖",
-	\ "Dirty"     : "✗",
-	\ "Clean"     : "✔︎",
-	\ 'Ignored'   : '☒',
-	\ "Unknown"   : "?"
-	\ }
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
 
 
 
@@ -482,34 +482,32 @@ let g:NERDTreeIndicatorMapCustom = {
 "silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
 let g:coc_disable_startup_warning = 1
 let g:coc_global_extensions = [
-	\ 'coc-html', 
-	\ 'coc-css', 
-	\ 'coc-json', 
-	\ 'coc-git', 
-	\ 'coc-gitignore', 
-	\ 'coc-clangd', 
-	\ 'coc-pyright', 
-	\ 'coc-vimlsp', 
+    \ 'coc-html', 
+    \ 'coc-css', 
+    \ 'coc-json', 
+    \ 'coc-git', 
+    \ 'coc-gitignore', 
+    \ 'coc-clangd', 
+    \ 'coc-pyright', 
+    \ 'coc-vimlsp', 
     \ 'coc-cmake', 
     \ 'coc-go', 
-    \ 'coc-texlab', 
-    \ 'coc-rls', 
-    \ 'coc-vetur', 
     \ 'coc-lua', 
     \ 'coc-sh', 
-    \ 'coc-java', 
     \ 'coc-fzf-preview', 
-	\ ]
+    \ 'coc-rust-analyzer', 
+    \ 'coc-markdownlint', 
+    \ ]
 
 " 使用 <tab> 触发补全
 function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1] =~ '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1] =~ '\s'
 endfunction
 inoremap <silent><expr> <Tab>
-	\ pumvisible() ? "\<C-n>" :
-	\ <SID>check_back_space() ? "\<Tab>" :
-	\ coc#refresh()
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<Tab>" :
+    \ coc#refresh()
 inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " inoremap <silent><expr> <c-space> coc#refresh()
@@ -686,13 +684,13 @@ endif
 
 " 配置 ctags 的参数 "
 let g:gutentags_ctags_extra_args = [
-	\ '--fields=+niazSK',
-	\ '--extra=+q',
-	\ '--c++-kinds=+pxI',
-	\ '--c-kinds=+px',
-	\ '--c++-kinds=+l',
-	\ '--c-kinds=+l',
-	\ ]
+    \ '--fields=+niazSK',
+    \ '--extra=+q',
+    \ '--c++-kinds=+pxI',
+    \ '--c-kinds=+px',
+    \ '--c++-kinds=+l',
+    \ '--c-kinds=+l',
+    \ ]
 
 set tags=tags;
 set tags+=$PWD/include;
@@ -707,58 +705,58 @@ set autochdir
 "
 " 打开新文件的时候，让vim识别新文件后缀
 let g:NFT_support_type = {
-	\ 'c'		: ['c'],
-	\ 'cpp'		: ['cpp', 'cxx'], 
-	\ 'sh'		: ['sh'], 
-	\ 'python'	: ['py'], 
-	\ 'lua'		: ['lua'], 
-	\ 'vim'		: ['vim'], 
-	\}
+    \ 'c'        : ['c'],
+    \ 'cpp'        : ['cpp', 'cxx'], 
+    \ 'sh'        : ['sh'], 
+    \ 'python'    : ['py'], 
+    \ 'lua'        : ['lua'], 
+    \ 'vim'        : ['vim'], 
+    \}
 
 " 新文件头部信息, 如果需要，直接修改下面的列表即可
 let g:NFT_normal_info = [
-	\ "\t* File     : " . expand("%s"), 
-	\ "\t* Author   : sunowsir", 
-	\ "\t* Mail     : sunowsir@163.com", 
-	\ "\t* Github   : github.com/sunowsir", 
-	\ "\t* Creation : " . strftime("%c"), 
-	\ ]
+    \ "\t* File     : " . expand("%s"), 
+    \ "\t* Author   : sunowsir", 
+    \ "\t* Mail     : sunowsir@163.com", 
+    \ "\t* Github   : github.com/sunowsir", 
+    \ "\t* Creation : " . strftime("%c"), 
+    \ ]
 
 " 新文件自动添加常用代码，如果需要，直接修改下面的列表即可
 let g:NFT_default_code = {
-	\ 'c'		: [
-					\ '#include <stdio.h>', 
-					\ '', 
-					\ ], 
-	\ 'cpp'		: [
-					\ '#include <iostream>', 
-					\ '', 
-					\ ], 
-	\ 'h'		: [ 
-					\ "#ifndef _" . toupper(expand("%:r")) . "_H", 
-					\ "#define _" . toupper(expand("%:r")) . "_H", 
-					\ "#endif", 
-					\ ], 
-	\ 'sh'		: [
-					\ '#!/bin/bash', 
-					\ "#", 
-					\ '', 
-					\ ], 
-	\ 'python'	: [
-					\ '#!/bin/python', 
-					\ '#coding=utf-8', 
-					\ '#', 
-					\ '', 
-					\ ], 
-	\ 'lua'		: [
-					\ '#!/bin/lua', 
-					\ '', 
-					\ ], 
-	\ 'html'		: [
-					\ '<!DOCTYPE html>', 
-					\ '', 
-					\ ], 
-	\}
+    \ 'c'        : [
+                    \ '#include <stdio.h>', 
+                    \ '', 
+                    \ ], 
+    \ 'cpp'        : [
+                    \ '#include <iostream>', 
+                    \ '', 
+                    \ ], 
+    \ 'h'        : [ 
+                    \ "#ifndef _" . toupper(expand("%:r")) . "_H", 
+                    \ "#define _" . toupper(expand("%:r")) . "_H", 
+                    \ "#endif", 
+                    \ ], 
+    \ 'sh'        : [
+                    \ '#!/bin/bash', 
+                    \ "#", 
+                    \ '', 
+                    \ ], 
+    \ 'python'    : [
+                    \ '#!/bin/python', 
+                    \ '#coding=utf-8', 
+                    \ '#', 
+                    \ '', 
+                    \ ], 
+    \ 'lua'        : [
+                    \ '#!/bin/lua', 
+                    \ '', 
+                    \ ], 
+    \ 'html'        : [
+                    \ '<!DOCTYPE html>', 
+                    \ '', 
+                    \ ], 
+    \}
 
 
 

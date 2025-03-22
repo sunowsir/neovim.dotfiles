@@ -1,14 +1,11 @@
 {
     "hover.target": "preview",
-	"coc.preferences.snippetStatusText": "Ⓢ ",
-	"coc.preferences.extensionUpdateCheck": "daily",
-	"suggest.detailMaxLength": 60,
+	"extensions.updateCheck": "daily",
+	"suggest.labelMaxLength": 60, 
 	"suggest.noselect": true,
 	"suggest.enablePreselect": false,
 	"suggest.triggerAfterInsertEnter": false,
 	"suggest.timeout": 5000,
-	"suggest.enablePreview": true,
-	"suggest.floatEnable": true,
 	"suggest.detailField": "preview",
 	"suggest.snippetIndicator": "",
 	"suggest.triggerCompletionWait": 50,
@@ -52,13 +49,7 @@
 	"list.previewHighlightGroup": "Statement",
 	"list.nextKeymap": "<C-e>",
 	"list.previousKeymap": "<C-u>",
-	"coc.preferences.formatOnSaveFiletypes": [
-		"javascript",
-		"html",
-		"css",
-		"python",
-		"dart"
-	],
+	"coc.preferences.formatOnSave": true,
 	"signature.target": "float",
 	"git.enableGutters": true,
 	"git.branchCharacter":"\uf408",
@@ -82,10 +73,6 @@
 				"{SPACES_AROUND_POWER_OPERATOR: True, SPACES_BEFORE_COMMENT: 1}"
 		],
 	"html.format.enable": true,
-	"javascript.referencesCodeLens.enable": true,
-	"javascript.showUnused": true,
-	"javascript.suggest.names": true,
-	"javascript.suggestionActions.enabled": true,
 	"json.format.enable": true,
     "diagnostic.filetypeMap": {
 		"vim": "vint",
@@ -98,19 +85,10 @@
 		"dart": "dartfmt"
     },
 	"languageserver": {
-        "vala": {
-            "command": "vala-language-server",
-            "filetypes": ["vala"]
-        }, 
 		"lua": {
 			"command": "lua-lsp",
 			"filetypes": ["lua"]
 		},
-        "bash": {
-            "command": "bash-language-server",
-            "args": ["start"],
-            "filetypes": ["sh"]
-        }, 
 		"dls": {
 			"command": "diagnostic-languageserver",
 			"args": ["--stdio"],

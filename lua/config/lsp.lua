@@ -1,13 +1,6 @@
--- Remove Global Default Key mapping
-vim.keymap.del("n", "grn")
-vim.keymap.del("n", "gra")
-vim.keymap.del("n", "grr")
-vim.keymap.del("n", "gri")
-vim.keymap.del("n", "gO")
-
 -- lsp快捷键
 vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function (args)
+    callback = function ()
         local keymap = vim.keymap
         local lsp = vim.lsp
 	    local bufopts = { noremap = true, silent = true }

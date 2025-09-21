@@ -1,3 +1,6 @@
+-- 常规配置
+
+
 -- 空格键作为Leader键
 vim.g.mapleader = " "
 
@@ -78,16 +81,16 @@ vim.cinoptions = "l1,g0"
 
 
 -- 输入tab时自动转化为空格
-vim.opt.expandtab = true 
+vim.opt.expandtab = true
 
 -- 编辑时一个TAB字符占多少个空格的位置。
-vim.opt.tabstop = 4 
+vim.opt.tabstop = 4
 
 -- 使用每层缩进的空格数。
-vim.opt.shiftwidth = 4 
+vim.opt.shiftwidth = 4
 
 -- 敲入tab时实际占有的列数
-vim.opt.softtabstop = 4 
+vim.opt.softtabstop = 4
 
 -- 行尾空格显示
 -- set list
@@ -203,48 +206,43 @@ vim.cmd("highlight SpecialKey ctermfg=8 guifg=#555555")
 -- 记录最多1000个文件的标记位置
 vim.opt.shada = "'1000,f1,<500"
 
--- 自动跳转到上次编辑时的光标位置
-vim.api.nvim_create_autocmd("BufReadPost", {
-    pattern = "*",
-    callback = function()
-        local mark = vim.api.nvim_buf_get_mark(0, '"')
-        local lcount = vim.api.nvim_buf_line_count(0)
+-- 将全部窗口边框统一设置为圆角
+vim.opt.winborder = "rounded"
 
-        if mark[1] <= 0 or mark[1] > lcount then
-            return 
-        end
 
-        local ok, err = pcall(vim.api.nvim_win_set_cursor, 0, mark)
-        if ok then 
-            return 
-        end
+-- lsp 配置
 
-        vim.notify("光标定位失败: mark = " .. mark[1] .. ", lcount = " .. lcount ", " .. err, vim.log.levels.WARN)
-    end,
+
+-- lsp检查提示信息
+vim.diagnostic.config({
+    virtual_text = true,
+    update_in_insert = true,
+    signs = {
+        active = { {
+            name = "DiagnosticSignError",
+            text = "󰅙",
+            texthl = "DiagnosticSignError"
+        }, {
+            name = "DiagnosticSignWarn",
+            text = "",
+            texthl = "DiagnosticSignWarn"
+        }, {
+            name = "DiagnosticSignHint",
+            text = "󰌵",
+            texthl = "DiagnosticSignHint"
+        }, {
+            name = "DiagnosticSignInfo",
+            text = "󰋼",
+            texthl = "DiagnosticSignInfo"
+        } }
+    }
 })
 
--- 配置大括号自动分行
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = {"*"},
-    callback = function()
-        vim.keymap.set("i", "<CR>", function()
-            local line = vim.api.nvim_get_current_line()
-            local col = vim.api.nvim_win_get_cursor(0)[2] + 1
-            local char_before = line:sub(col-1, col-1)
-            local char_after = line:sub(col, col)
-
-            if char_before == "{" and char_after == "}" then
-                -- 获取当前缩进
-                local indent = line:match("^%s*")
-                -- 执行分三行操作
-                return "<CR>" .. indent .. "    <CR>" .. indent .. "<Up><End>"
-            else
-                return "<CR>"
-            end
-        end, {buffer = true, expr = true})
-    end
-})
-
-
-
-
+-- 加载lsp
+vim.lsp.enable({ "ty" })
+vim.lsp.enable({ "bash-language-server" })
+vim.lsp.enable({ "docker-compose-langserver" })
+vim.lsp.enable({ "docker-langserver" })
+vim.lsp.enable({ "lua-language-server" })
+vim.lsp.enable({ "clangd" })
+vim.lsp.enable({ "cmake-language-server" })

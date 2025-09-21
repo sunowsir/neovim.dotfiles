@@ -1,3 +1,6 @@
+-- functions 
+
+
 local buf_read_post = function()
     local mark = vim.api.nvim_buf_get_mark(0, '"')
     local lcount = vim.api.nvim_buf_line_count(0)
@@ -37,6 +40,10 @@ local test_yank_post = function()
 end
 
 local test_yank_post_group = vim.api.nvim_create_augroup("UserHighlightYank", { clear = true })
+
+
+-- call
+
 
 -- 自动跳转到上次编辑时的光标位置
 vim.api.nvim_create_autocmd("BufReadPost", {

@@ -1,5 +1,5 @@
-require('option')
-require('keymaps')
-require('plugins')
-require('lsp')
+require('config.option')
+require('config.keymaps')
+require('config.lsp')
+require('config.lazy')
 

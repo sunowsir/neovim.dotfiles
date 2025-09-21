@@ -1,29 +1,29 @@
 -- 空格键作为Leader键
-vim.g.mapleader = " "  
+vim.g.mapleader = " "
 
 -- 高亮
 vim.opt.syntax = "enable"
 
 -- 搜索词高亮
-vim.opt.hlsearch = true 
+vim.opt.hlsearch = true
 
 -- 搜索词输入同步高亮
-vim.opt.incsearch = true 
+vim.opt.incsearch = true
 
 -- 搜索词忽略大小写
-vim.opt.ignorecase = true 
+vim.opt.ignorecase = true
 
 -- 智能大小写
-vim.opt.smartcase = true 
+vim.opt.smartcase = true
 
 -- 行号
-vim.opt.number = true 
+vim.opt.number = true
 
 -- 相对行号
-vim.opt.relativenumber = true 
+vim.opt.relativenumber = true
 
 -- 光标线
-vim.opt.cursorline = true 
+vim.opt.cursorline = true
 
 -- " 换行显示 -- 使得字不会超出屏幕显示
 vim.opt.wrap = true
@@ -35,13 +35,13 @@ vim.opt.showcmd = true
 vim.opt.wildmenu = true
 
 -- 文件识别
-vim.opt.filetype = "enable"  
+vim.opt.filetype = "enable"
 
 -- 为特定文件类型载入相关缩进文件
-vim.opt.filetype.indent = "enable"  
+vim.opt.filetype.indent = "enable"
 
 -- 载入文件类型插件
-vim.opt.filetype.plugin = "enable"  
+vim.opt.filetype.plugin = "enable"
 
 -- 编码设置为utf-8
 vim.opt.encoding = "utf-8"

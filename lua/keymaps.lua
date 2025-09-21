@@ -31,8 +31,12 @@ vim.keymap.set('n', '<C-Down>', ':resize +2<CR>', opts)
 vim.keymap.set('n', '<C-Left>', ':vertical resize -2<CR>', opts)
 vim.keymap.set('n', '<C-Right>', ':vertical resize +2<CR>', opts)
 
+-- neo-tree 文件管理器
+vim.keymap.set('n', '<C-t>', ':Neotree<CR>', opts)
+
 -- 将s按键映射为无功能
 vim.keymap.set('n', 's', '<nop>', opts)
+
 
 -----------------
 -- Visual mode --

@@ -206,6 +206,18 @@ vim.cmd("highlight SpecialKey ctermfg=8 guifg=#555555")
 -- 记录最多1000个文件的标记位置
 vim.opt.shada = "'1000,f1,<500"
 
+-- 基础圆角设置
+vim.opt.winblend = 0 -- 窗口透明度（0-100）
+vim.opt.pumblend = 0 -- 弹出菜单透明度
+vim.opt.winhighlight = "NormalFloat:Normal" -- 浮动窗口高亮组匹配
+
+-- 完整圆角窗口配置
+vim.api.nvim_set_hl(0, "FloatBorder", {
+  bg = "NONE",      -- 透明背景
+  fg = "#7aa2f7",   -- 边框颜色（可自定义）
+  blend = 0         -- 不混合
+})
+
 -- 将全部窗口边框统一设置为圆角
 vim.opt.winborder = "rounded"
 

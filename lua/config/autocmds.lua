@@ -48,16 +48,19 @@ local test_yank_post_group = vim.api.nvim_create_augroup("UserHighlightYank", { 
 -- 自动跳转到上次编辑时的光标位置
 vim.api.nvim_create_autocmd("BufReadPost", {
     pattern = "*",
-    callback = buf_read_post})
+    callback = buf_read_post
+})
 
 -- 配置大括号自动分行
 vim.api.nvim_create_autocmd("FileType", {
     pattern = {"*"},
-    callback = file_type})
+    callback = file_type
+})
 
 -- 复制时高亮显示复制区域，防止出错
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = test_yank_post_group,
-    callback = test_yank_post })
+    callback = test_yank_post
+})
 
 

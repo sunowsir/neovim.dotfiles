@@ -60,9 +60,9 @@ vim.cmd('language message zh_CN.UTF-8')
 
 -- 设置文件默认编码
 vim.opt.fileencodings="utf8,ucs-bom,gbk,cp936,gb2312,gb18030"
-
--- 防止特殊符号无法正常显示
-vim.opt.ambiwidth = "double"
+-- 
+-- -- 防止特殊符号无法正常显示，该配置会导致snacks插件无法正常工作
+-- vim.opt.ambiwidth = "double"
 
 -- 根据文件中其他位置的缩进空格个数来决定一个tab是多少个空
 vim.opt.smarttab = true
@@ -92,13 +92,9 @@ vim.opt.shiftwidth = 4
 -- 敲入tab时实际占有的列数
 vim.opt.softtabstop = 4
 
--- 行尾空格显示
--- set list
--- set listchars=tab:▸\ ,trail:▫
-
 -- 光标移动到buffer的顶部和底部时保持若干行行距离  
 vim.opt.scrolloff = 5
-
+ 
 -- 总是显示状态栏
 vim.opt.laststatus = 2
 

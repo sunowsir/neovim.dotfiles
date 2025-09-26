@@ -79,7 +79,6 @@ vim.opt.cindent = true
 -- 特殊缩进设置 :case括号、C++类权限关键字是否缩进
 vim.cinoptions = "l1,g0"
 
-
 -- 输入tab时自动转化为空格
 vim.opt.expandtab = true
 
@@ -94,7 +93,7 @@ vim.opt.softtabstop = 4
 
 -- 光标移动到buffer的顶部和底部时保持若干行行距离  
 vim.opt.scrolloff = 5
- 
+
 -- 总是显示状态栏
 vim.opt.laststatus = 2
 
@@ -133,7 +132,6 @@ vim.opt.belloff = "all"
 -- 使回格键（backspace）正常处理indent, eol, start等
 -- 使回格键可以删除缩进、跨行和起始位置
 vim.opt.backspace = "indent,eol,start"
-
 
 -- 允许backspace和光标键跨越行边界
 vim.opt.whichwrap = vim.opt.whichwrap:append("<,>,h,l")

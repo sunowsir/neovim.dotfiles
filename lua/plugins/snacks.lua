@@ -3,49 +3,40 @@ return {{
     priority = 1000,
     lazy = false,
     opts = {
-        bigfile = { enabled = true },
-        dashboard = { enabled = true },
-        explorer = { enabled = true },
-        indent = { enabled = true },
-        input = { enabled = true },
-        notifier = { enabled = true },
-        picker = { prompt = "  " },
-        quickfile = { enabled = true },
+        bigfile      = { enabled = true },
+        dashboard    = { enabled = true },
+        explorer     = { enabled = true },
+        indent       = { enabled = true },
+        input        = { enabled = true },
+        notifier     = { enabled = true },
+        picker       = { prompt  = "  " },
+        quickfile    = { enabled = true },
         statuscolumn = { enabled = true },
     },
-    keys = {
-        -- find
-        {
+    keys = {{
             "<leader>fb",
             function()
-              Snacks.picker.buffers()
+                Snacks.picker.buffers()
             end,
             desc = "Buffers",
-        },
-        {
+        }, {
             "<leader>ff",
             function()
-              Snacks.picker.files()
+                Snacks.picker.files()
             end,
             desc = "Find Files",
-        },
-        {
+        }, {
             "<leader>fg",
             function()
-              Snacks.picker.grep()
+                Snacks.picker.grep()
             end,
             desc = "Grep",
-        },
-
-        --   explorer
-        {
-            "<M-e>",
+        }, {
+            "<leader>fe",
             function()
-              Snacks.explorer()
+                Snacks.explorer()
             end,
             desc = "File Explorer",
         },
     },
-    config = function()
-    end
 }}

@@ -8,18 +8,18 @@
 
 local M = {}
 
-local generate_cpp_header_guard = function()
+local generate_cpp_header_guard = function(header)
     -- 转换文件名成为适合宏定义的格式
     local guard_name = string.upper(M.filename : gsub("[^%w]", "_") : gsub("(.)", function(c)
         return c == "." and "_" or c
     end)) .. "_H"
 
-    return {
-        '#ifndef ' .. guard_name,
-        '#define ' .. guard_name,
-        '',
-        '#endif'
-    }
+    table.insert(header, '#ifndef ' .. guard_name)
+    table.insert(header, '#define ' .. guard_name)
+    table.insert(header, '')
+    table.insert(header, '#endif')
+
+    return header
 end
 
 local general_generate_header = function(comment_symbols)
@@ -36,10 +36,7 @@ local general_generate_header = function(comment_symbols)
 
     -- 如果是头文件且是C/C++，添加保护宏
     if M.filename:match("%.h$") and (M.filetype == 'c' or M.filetype == 'cpp') then
-        local guard = generate_cpp_header_guard()
-        for _, line in ipairs(guard) do
-            table.insert(header, line)
-        end
+        return generate_cpp_header_guard(header)
     end
 
     return header

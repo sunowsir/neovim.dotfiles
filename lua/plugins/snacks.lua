@@ -1,8 +1,5 @@
 local M = {}
 
--- 前置声明避免LSP警告
-local Snacks = {}
-
 -- 基础配置
 M[1] = "folke/snacks.nvim"
 M.priority = 1000
@@ -45,3 +42,4 @@ M.keys = {
 }
 
 return M
+

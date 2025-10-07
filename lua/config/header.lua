@@ -66,7 +66,15 @@ M.generate = function()
     elseif M.filetype == 'lua' then
         comment_symbols = {'--', '-- ', '--'}
 
-    -- 添加更多文件类型支持...
+    -- 添加更多文件类型支持，通过setup参数传入comment表，key为文件类型，value为包含三个注释符的表
+    -- opts.comment['c'] = {'/*', '*', '*/'}
+    -- require("header").setup(opts)
+    else
+        for key, value in ipairs(M.comment) do
+            if M.filetype == key then
+                comment_symbols = value
+            end
+        end
     end
 
     neovim_buf_set(general_generate_header(comment_symbols) or '')
@@ -78,6 +86,7 @@ M.setup = function(opts)
     M.author   = opts.author or ''
     M.mail     = opts.mail   or ''
     M.github   = opts.github or ''
+    M.comment  = opts.comment or {}
 
     -- 注册自动命令
     vim.api.nvim_create_autocmd('BufNewFile', {

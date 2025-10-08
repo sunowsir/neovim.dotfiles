@@ -1,4 +1,8 @@
 -- 如下为通用功能快捷键，插件相关功能在各个插件模块中配置
+
+-- 空格键作为Leader键
+vim.g.mapleader = " "
+
 -- define common options
 local opts = {
     noremap = true,      -- non-recursive

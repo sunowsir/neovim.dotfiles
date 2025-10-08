@@ -1,6 +1,5 @@
 -- 常规配置
 
-
 -- 空格键作为Leader键
 vim.g.mapleader = " "
 
@@ -183,10 +182,10 @@ vim.opt.list = true
 
 -- 配置制表符显示为竖线+空格（需转义竖线）
 vim.opt.listchars = {
-  tab = "¦ ",  -- 制表符显示（4个空格宽度）
-  -- trail = "•",    -- 行尾空格
-  extends = "›",  -- 被隐藏的右侧文本
-  precedes = "‹"  -- 被隐藏的左侧文本
+    tab = "¦ ",  -- 制表符显示（4个空格宽度）
+    -- trail = "•",    -- 行尾空格
+    extends = "›",  -- 被隐藏的右侧文本
+    precedes = "‹"  -- 被隐藏的左侧文本
 }
 
 -- 可选：设置高亮颜色
@@ -199,21 +198,6 @@ vim.cmd("highlight SpecialKey ctermfg=8 guifg=#555555")
 -- 启用viminfo/shada功能（包含标记位置记录）
 -- 记录最多1000个文件的标记位置
 vim.opt.shada = "'1000,f1,<500"
-
--- 基础圆角设置
-vim.opt.winblend = 0 -- 窗口透明度（0-100）
-vim.opt.pumblend = 0 -- 弹出菜单透明度
-vim.opt.winhighlight = "NormalFloat:Normal" -- 浮动窗口高亮组匹配
-
--- 完整圆角窗口配置
-vim.api.nvim_set_hl(0, "FloatBorder", {
-  bg = "NONE",      -- 透明背景
-  fg = "#7aa2f7",   -- 边框颜色（可自定义）
-  blend = 0         -- 不混合
-})
-
--- 将全部窗口边框统一设置为圆角
-vim.opt.winborder = "rounded"
 
 
 -- lsp 配置

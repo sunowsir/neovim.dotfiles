@@ -1,5 +1,3 @@
 return {{
-    "Raimondi/delimitMate", 
-    config = function() 
-    end
+    "Raimondi/delimitMate",
 }}

@@ -1,5 +1,3 @@
 return {{
-    "gisphm/vim-gitignore", 
-    config = function() 
-    end
+    "gisphm/vim-gitignore",
 }}

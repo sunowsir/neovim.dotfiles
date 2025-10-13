@@ -70,6 +70,10 @@ M.generate = function()
     -- opts.comment['c'] = {'/*', '*', '*/'}
     -- require("header").setup(opts)
     else
+        if M.comment == nil then
+            return
+        end
+
         for key, value in ipairs(M.comment) do
             if M.filetype == key then
                 comment_symbols = value
@@ -86,7 +90,7 @@ M.setup = function(opts)
     M.author   = opts.author or ''
     M.mail     = opts.mail   or ''
     M.github   = opts.github or ''
-    M.comment  = opts.comment or {}
+    M.comment  = opts.comment
 
     -- 注册自动命令
     vim.api.nvim_create_autocmd('BufNewFile', {

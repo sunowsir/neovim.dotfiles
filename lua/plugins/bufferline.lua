@@ -2,11 +2,9 @@ return {{
     "akinsho/bufferline.nvim",
     event = "VeryLazy",
     init = function()
-      require("bufferline").setup({
-        options = {
-          numbers = "ordinal",
-        },
-      })
+        require("bufferline").setup({
+            options = { numbers = "ordinal" },
+        })
     end,
     keys = {
       { "<LEADER>1", "<CMD>BufferLineGoToBuffer 1<CR>" },

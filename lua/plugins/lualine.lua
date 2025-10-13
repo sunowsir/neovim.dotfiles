@@ -168,13 +168,16 @@ return {{
             local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
             for _, client in ipairs(clients) do
                 local filetypes = client.config.filetypes
-                if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-                    if lsp_names == "" then
-                        lsp_names = client.name
-                    else
-                        lsp_names = lsp_names .. ", " .. client.name
-                    end
+                if not filetypes or vim.fn.index(filetypes, buf_ft) == -1 then
+                    goto continue
                 end
+
+                if lsp_names ~= "" then
+                    lsp_names = lsp_names .. ", "
+                end
+                lsp_names = lsp_names .. client.name
+
+                ::continue::
             end
 
             return lsp_names == "" and msg or lsp_names

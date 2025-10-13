@@ -2,10 +2,10 @@ return {{
     "saghen/blink.cmp",
     -- optional: provides snippets for the snippet source
     dependencies = { "rafamadriz/friendly-snippets" },
-    
+
     -- Use a release tag to download pre-built binaries
     version = "*",
-    
+
     opts = {
         -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
         -- 'super-tab' for mappings similar to VSCode (tab to accept)
@@ -33,21 +33,21 @@ return {{
             -- Show/hide signature
             ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
         },
-    
+
         appearance = {
             -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
             -- Adjusts spacing to ensure icons are aligned
             nerd_font_variant = "mono",
         },
-    
+
         sources = {
             -- `lsp`, `buffer`, `snippets`, `path`, and `omni` are built-in
             -- so you don't need to define them in `sources.providers`
             default = { "lsp", "path", "snippets", "buffer" },
-    
+
             -- Sources are configured via the sources.providers table
         },
-    
+
         -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
         -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
         -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
@@ -70,7 +70,7 @@ return {{
                 auto_show = true,
             },
         },
-    
+
         -- Signature help when tying
         signature = { enabled = true },
     },

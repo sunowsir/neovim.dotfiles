@@ -14,8 +14,8 @@
   "snacks.nvim": { "branch": "main", "commit": "d67a47739dfc652cfcf66c59e929c704a854b37a" },
   "vim-cursorword": { "branch": "master", "commit": "371fdd7fa8817c28aa09d181cfcfa3c7ca29bf56" },
   "vim-gitignore": { "branch": "master", "commit": "641dfa648d2581a5e5e9b0d11ffee37da8de49d7" },
-  "vim-gutentags": { "branch": "master", "commit": "aa47c5e29c37c52176c44e61c780032dfacef3dd" },
   "vim-signify": { "branch": "master", "commit": "9ec7989ef5f92c5073de26abb46fc6a998b75ef8" },
   "vim-snazzy": { "branch": "master", "commit": "d979964b4dc0d6860f0803696c348c5a912afb9e" },
-  "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" }
+  "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
+  "vista.vim": { "branch": "master", "commit": "1e90efad6e32c4f7d16b1ca8f49bf63d0693802e" }
 }

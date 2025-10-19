@@ -90,7 +90,7 @@ M.setup = function(opts)
     M.author   = opts.author or ''
     M.mail     = opts.mail   or ''
     M.github   = opts.github or ''
-    M.comment  = opts.comment
+    M.comment  = opts.comment or nil
 
     -- 注册自动命令
     vim.api.nvim_create_autocmd('BufNewFile', {

@@ -239,6 +239,8 @@ vim.lsp.enable({ "cmake-language-server" })
 vim.lsp.enable({ "cmake-language-server" })
 vim.lsp.enable({ "markdown-oxide" })
 vim.lsp.enable({ "matlab-language-server" })
+vim.lsp.enable({ "rust_analyzer" })
+
 
 -- 新文件头部信息
 require('config.header').setup({

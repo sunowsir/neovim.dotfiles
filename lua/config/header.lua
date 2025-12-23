@@ -10,9 +10,14 @@ local M = {}
 
 local generate_cpp_header_guard = function(header)
     -- 转换文件名成为适合宏定义的格式
-    local guard_name = string.upper(M.filename : gsub("[^%w]", "_") : gsub("(.)", function(c)
-        return c == "." and "_" or c
-    end)) .. "_H"
+    -- local guard_name = string.upper(M.filename : gsub("[^%w]", "_") : gsub("(.)", function(c)
+    --     return c == "." and "_" or c
+    -- end)) .. "_H"
+
+    local guard_name = M.filename
+        :gsub("[^%w]", "_")
+        :upper() .. "_H"
+
 
     table.insert(header, '#ifndef ' .. guard_name)
     table.insert(header, '#define ' .. guard_name)
@@ -70,14 +75,10 @@ M.generate = function()
     -- opts.comment['c'] = {'/*', '*', '*/'}
     -- require("header").setup(opts)
     else
-        if M.comment == nil then
+        if M.comment and M.comment[M.filetype] then
+            comment_symbols = M.comment[M.filetype]
+        else
             return
-        end
-
-        for key, value in ipairs(M.comment) do
-            if M.filetype == key then
-                comment_symbols = value
-            end
         end
     end
 

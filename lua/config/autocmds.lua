@@ -23,7 +23,7 @@ local file_type_keymap_set_do = function()
         -- 获取当前缩进
         local indent = line:match("^%s*")
         -- 执行分三行操作
-        return "<CR>" .. indent .. "    <CR>" .. indent .. "<Up><End>"
+        return "<CR>" .. indent .. "<CR>" .. "<Up><End>"
     end
     return "<CR>"
 end

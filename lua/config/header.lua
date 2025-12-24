@@ -32,8 +32,8 @@ local general_generate_header = function(opts)
         return
     end
 
-    if M.before_head ~= nil then
-        local before_head = M.before_head[M.filetype]
+    if opts.before_head ~= nil and opts.before_head[opts.filetype] ~= nil then
+        local before_head = opts.before_head[opts.filetype]
         for idx, value in ipairs(before_head) do
             opts.header[idx] = value
         end
@@ -56,7 +56,7 @@ local general_generate_header = function(opts)
         generate_cpp_header_guard(opts)
     end
 
-    if opts.after_head == nil then
+    if opts.after_head == nil or opts.after_head[opts.filetype] == nil then
         return
     end
 

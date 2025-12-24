@@ -243,8 +243,26 @@ vim.lsp.enable({ "rust_analyzer" })
 
 
 -- 新文件头部信息
+
+local before_head = {
+    sh = {'#!/bin/bash'},
+    python = {'#!/bin/python'}
+}
+
+local comment_symbols = {
+    c      = {'/*', ' * ', '*/'},
+    cpp    = {'/*', ' * ', '*/'},
+    java   = {'/*', ' * ', '*/'},
+    sh     = {'#', '# ', '#'},
+    lua    = {'--', '-- ', '--'},
+    python = {'#', '# ', '#'},
+}
+
 require('config.header').setup({
-    author = "sun.wang",
-    mail   = "sunowsir@163.com",
-    github = "github.com/sunowsir"
+    author      = "sun.wang",
+    mail        = "sunowsir@163.com",
+    github      = "github.com/sunowsir",
+    before_head = before_head,
+    comment     = comment_symbols
 })
+

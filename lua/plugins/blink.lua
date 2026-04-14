@@ -1,3 +1,4 @@
+-- 补全菜单（cmp 的新一代替代品，界面更好看）
 return {{
     "saghen/blink.cmp",
     -- optional: provides snippets for the snippet source

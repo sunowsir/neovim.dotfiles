@@ -6,6 +6,7 @@
 -- Creation : 2025-10-19 18:03:50
 --
 
+-- 显示代码结构（函数/变量/类的大纲视图，侧边栏导航）
 return {{
     "liuchengxu/vista.vim",
     config = function()

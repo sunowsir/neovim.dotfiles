@@ -1,3 +1,4 @@
+-- 消息/通知/弹出式 UI，比原生 msg 更美观
 return {{
     "folke/noice.nvim",
     lazy = true,

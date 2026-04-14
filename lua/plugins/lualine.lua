@@ -1,3 +1,4 @@
+-- 底部状态栏（显示 mode/git branch/编码等）
 return {{
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",

@@ -1,3 +1,4 @@
+-- 弹出通知（独立通知系统，支持滚动历史）
 return {{
     "rcarriga/nvim-notify",
     lazy = true,

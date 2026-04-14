@@ -1,3 +1,4 @@
+-- 瑞士军刀合集（dashboard/indentline/quickfix 等工具集合）
 return {
     -- 基础配置
     "folke/snacks.nvim",

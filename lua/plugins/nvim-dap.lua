@@ -1,4 +1,4 @@
--- dap 
+-- dap: Debug Adapter Protocol，调试代码（支持 Python/JS 等）
 return {
     "mfussenegger/nvim-dap",
     dependencies = {

@@ -1,3 +1,4 @@
+-- 顶部标签页，显示当前打开的 buffer
 return {{
     "akinsho/bufferline.nvim",
     event = "VeryLazy",

@@ -200,47 +200,6 @@ vim.cmd("highlight SpecialKey ctermfg=8 guifg=#555555")
 vim.opt.shada = "'1000,f1,<500"
 
 
--- lsp 配置
-
-
--- lsp检查提示信息
-vim.diagnostic.config({
-    virtual_text = true,
-    update_in_insert = true,
-    signs = {
-        active = { {
-            name = "DiagnosticSignError",
-            text = "󰅙",
-            texthl = "DiagnosticSignError"
-        }, {
-            name = "DiagnosticSignWarn",
-            text = "",
-            texthl = "DiagnosticSignWarn"
-        }, {
-            name = "DiagnosticSignHint",
-            text = "󰌵",
-            texthl = "DiagnosticSignHint"
-        }, {
-            name = "DiagnosticSignInfo",
-            text = "󰋼",
-            texthl = "DiagnosticSignInfo"
-        } }
-    }
-})
-
--- 加载lsp
-vim.lsp.enable({ "ty" })
-vim.lsp.enable({ "bash-language-server" })
-vim.lsp.enable({ "docker-compose-langserver" })
-vim.lsp.enable({ "docker-langserver" })
-vim.lsp.enable({ "lua-language-server" })
-vim.lsp.enable({ "clangd" })
-vim.lsp.enable({ "cmake-language-server" })
-vim.lsp.enable({ "markdown-oxide" })
-vim.lsp.enable({ "matlab-language-server" })
-vim.lsp.enable({ "rust_analyzer" })
-
-
 -- 新文件头部信息
 
 local before_head = {

@@ -11,7 +11,8 @@ local dap = require("dap")
 dap.adapters.cppdbg = {
     id = "cppdbg",
     type = 'executable',
-    command = "/home/sun/.local/share/nvim/mason/bin/OpenDebugAD7",
+    -- [[ download from https://github.com/microsoft/vscode-cpptools/releases ]]
+    command = "/home/sun/.local/share/nvim/dap/cpptools/extension/debugAdapters/bin/OpenDebugAD7",
 }
 
 dap.configurations.cpp = {
